@@ -1,0 +1,234 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  <link rel="preconnect" href="https://fonts.googleapis.com">
+		  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+		  
+		  <style>
+		  
+			body{
+				background: url("assets/img/decor.png");
+				background-repeat: no-repeat;
+				background-size: 100vw 100vh;
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+			div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+			img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+		  
+		  </style>
+	</head>
+	
+	<body style="  overflow: hidden; width:100%;">
+	
+		<div id="princ_container" style="width:100%;height: auto;aspect-ratio: 16/9;">
+
+			<div style="height:3vh;font-size:3vh;margin-top:1vh;margin-left:0.75vw;position:absolute;color:white;font-family: 'Press Start 2P', cursive;">
+				SCORE: <span id="score">0</span> 
+			</div>
+			
+			<span id="vehicules_container"></span>
+			
+			<div id="type_vehicule_show" style="height:3vh;font-size:3vh;top:85vh;margin-left:1vh;position:absolute;color:white;"></div>
+			<div id="mod_score_show" style="display:none;height:3vh;font-size:3vh;top:89vh;margin-left:1vh;position:absolute;color:white;"><span id="score_mod"></span> points</div>
+		
+		</div>
+
+		<div id="final_container" style="display:none;width:100%;">
+			
+			<div style="top:48.5vh;margin:auto;left:20vw;position:absolute;height:5vh;font-size:5vh;color:white;font-family: 'Press Start 2P', cursive;"><b>SCORE FINAL: <span id="final_score"></span> points</b></div>
+			<div class="vehicule" onclick="location.reload();" style="background-color:#eef52a;top:85vh;left:20vw;padding:5px;position:absolute;height:5vh;font-size:5vh;color:black;border: solid 1px black;"><b>RECOMMENCER</b></div>
+			<div class="vehicule" onclick="window.open('https://tripli.ca/martine/', '_blank').focus();" style="background-color:#eef52a;top:5vh;left:15vw;padding:5px;position:absolute;height:5vh;font-size:5vh;color:black;border: solid 1px black;"><b>Jouez à notre autre jeu: MARTINE DANS LE TRAFFIC</b></div>
+
+		</div>
+
+
+	</body>
+	
+	<script>
+	
+		var score = 0;
+		
+		var audio = new Audio('assets/sounds/explosion.wav');
+
+		
+		
+		var vehicule_counter = 0
+		
+		var vehicules_dispo = [ ["assets/img/vehicules/bus_articule.png",5,25],
+								["assets/img/vehicules/bus.png",5,16.7],
+								["assets/img/vehicules/hummer.png",5,13],
+								["assets/img/vehicules/f150.png",5,14],
+								["assets/img/vehicules/vus.png",5,11.5],
+								["assets/img/vehicules/camion.png",5,32]]
+		
+
+		function constructor(num_vehicule,temps_depart,descriptif,direction,ligne,mod_points){
+			
+			vehicule_counter++;
+
+			if(direction=="levis"){
+				var flip = "-webkit-transform: scaleX(-1); transform: scaleX(-1)";
+				if (ligne == 0){
+					var v_pos = "59.5";
+				}
+				else{
+					var v_pos = "71.5";
+				}
+				var pos_x = "-50vw";
+			}
+			else{
+				var flip = "";
+				if(ligne == 0){
+					var v_pos = "25";
+				}
+				else{
+					var v_pos = "37";
+				}
+				var pos_x = "100vw"
+			}
+			
+			var img_src = vehicules_dispo[num_vehicule][0];
+			var div_height = vehicules_dispo[num_vehicule][1];
+			var div_width = vehicules_dispo[num_vehicule][2];
+			
+			var new_html =`
+						<div class="vehicule" id="vehicule${vehicule_counter}" score="${mod_points}" type_vehicule="${descriptif}" onclick="explode('vehicule${vehicule_counter}')" style="position:absolute;top:${v_pos}vh;left:${pos_x};height:${div_height}vh;width:${div_width}vh;user-drag:none;user-select:none;-moz-user-select:none;-webkit-user-drag:none;-websit-user-select:none;-ms-user-select:none;">
+							<img id="vehicule${vehicule_counter}_1" 											src="${img_src}" style="height:100%; width:100%;${flip};user-drag:none;user-select:none;-moz-user-select:none;-webkit-user-drag:none;-websit-user-select:none;-ms-user-select:none;">
+							<img id="vehicule${vehicule_counter}_2" src="assets/img/explosion.gif"              style="height:100%; width:100%; display:none;user-drag:none;user-select:none;-moz-user-select:none;-webkit-user-drag:none;-websit-user-select:none;-ms-user-select:none;">
+						</div>
+					`;
+
+			console.log(new_html)
+
+			var div_name = `#vehicule${vehicule_counter}`
+
+			$("#vehicules_container").append(new_html).promise().done(function (data){
+			
+				setTimeout(function(){
+
+					console.log()
+					if(direction=="levis"){
+						$(div_name).animate({"left":"100vw"},7500,"linear");
+					}
+					else{
+						$(div_name).animate({"left":"-32vw"},7500,"linear");
+					}
+				}, temps_depart);
+
+			});
+			
+			
+		}
+		
+		
+		function change_score(mod,type_vehicule){
+			$("#mod_score_show").show();
+			score = score + mod
+			$("#score").html(score);
+			$("#type_vehicule_show").html(type_vehicule)
+			
+			if(mod > 0){
+				mod = "+" + mod;
+			}
+			
+			$("#score_mod").html(mod)
+		}
+		
+		
+		function explode(id_vehicule){
+			audio.pause();
+			audio.currentTime = 0;
+			audio.play();
+			$("#"+id_vehicule+"_1").hide();
+			
+			change_score( parseInt($("#"+id_vehicule).attr("score")  ),  $("#"+id_vehicule).attr("type_vehicule") );	
+			
+			$("#"+id_vehicule+"_2").show();
+			setTimeout(function(){
+				$("#"+id_vehicule+"_2").hide();
+				$("#"+id_vehicule).hide();
+			}, 1000);
+		}
+
+		
+		constructor(5,0,"Camion de livraison Costco","levis",1,-50);
+		constructor(1,0,"Autobus 40 pieds","quebec",0,10);
+		constructor(3,1000,"F150 avec aileron","quebec",1,-20);
+		constructor(1,2000,"Autobus contenant des maternelles 4 ans","quebec",1,0);
+		constructor(1,3000,"Autobus contenant des électeurs libéraux fédéraux","levis",0,30);
+		constructor(0,3500,"Autobus 62 pieds","quebec",0,20);
+		constructor(0,4000,"Autobus 62 pieds","levis",1,20);
+		constructor(0,5000,"Autobus 62 pieds","quebec",0,20);
+		constructor(4,6000,"VUS de banlieusard","levis",1,-15);
+		constructor(4,6500,"VUS de banlieusard","levis",0,-15);
+		constructor(4,6000,"VUS de banlieusard","levis",0,-15);
+		constructor(5,6500,"Camion de livraison contenant des migrants illégaux","quebec",1,40);
+		constructor(4,7000,"VUS de banlieusard","levis",0,-15);
+		constructor(3,8000,"F150 (appartenant à un fonctionnaire travaillant au complexe G)","levis",0,-40);
+		constructor(2,8000,"Hummer (faisant une course avec le Hummer de l'autre voie)","quebec",0,-40);
+		constructor(2,8000,"Hummer (faisant une course avec le Hummer de l'autre voie)","quebec",1,-40);
+		constructor(4,8500,"VUS autonome avec aucun passager","quebec",0,-20);
+		constructor(0,9000,"Autobus 62 pieds, vide...","levis",0,0);
+		constructor(0,9500,"Autobus 62 pieds, vide...","levis",1,0);
+		constructor(5,9500,"Camion de livraison Casa Grecque","quebec",0,-30);
+		constructor(3,9700,"F150 avec 500 lbs dans la boîte, juste pour le fun","quebec",1,-20);
+		constructor(4,10000,"VUS de fonctionnaire","levis",1,-10);
+		constructor(5,10500,"Camion de livraison Ashton","quebec",1,-100);
+		constructor(1,12500,"Autobus 40 pieds flambant neuf","quebec",0,50);
+		constructor(2,13500,"Hummer de livraison de coke","levis",0,-50);
+		constructor(1,14000,"Autobus 40 pieds avec clientèle variée","quebec",1,15);
+		constructor(4,15000,"VUS de fonctionnaire","levis",0,-10);
+		constructor(2,15500,"Hummer d'un animateur de radio poubelle","levis",0,-100);
+		constructor(1,17000,"Autobus 40 pieds, mais avec chauffeur écoutant la radio poubelle","levis",1,-10);
+		constructor(0,18000,"Autobus 62 pieds avec usager coincé dans la partie articulée","quebec",0,20);
+		constructor(4,18500,"VUS faisant de l'autopartage","quebec",1,5);
+		constructor(0,19500,"Autobus 62 pieds contenant des électeurs de Québec Solidaire","quebec",0,40);
+
+		setTimeout(function(){
+			$("#final_score").html(score);
+			$("#princ_container").hide();
+			$("#final_container").show();
+		}, 25000);
+
+		$( document ).ready(function() {
+            //$(document).scrollTop($(document).height());
+        });
+
+	</script>
+
+</html>

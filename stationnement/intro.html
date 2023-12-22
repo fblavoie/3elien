@@ -1,0 +1,131 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+
+
+          <style>
+		  
+			body{
+				background: #757575;
+				background-size: 100vw 100vh;
+                font-family: 'Arial';
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+            div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+            img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+			
+			.clickable{
+				color:white;
+				font-size:2vh;
+				margin-top:1vh;
+				margin-bottom:1vh;
+				width:98%;
+				padding:2vw;
+				background-color:rgb(40,40,40);
+			}
+			
+			.clickable:hover{
+				cursor:pointer;
+			}
+
+
+			/* ===== Scrollbar CSS ===== */
+			  /* Firefox */
+			  * {
+				scrollbar-width: auto;
+				scrollbar-color: #000000 #757575;
+			  }
+
+			  /* Chrome, Edge, and Safari */
+			  *::-webkit-scrollbar {
+				width: 16px;
+			  }
+
+			  *::-webkit-scrollbar-track {
+				background: #757575;
+			  }
+
+			  *::-webkit-scrollbar-thumb {
+				background-color: #000000;
+				border-radius: 10px;
+				border: 3px solid #bb950c;
+			  }
+		  
+		  </style>
+	</head>
+	
+	<body scroll="no" style="  overflow: hidden; width:100%;">
+	
+
+		<div style="position:absolute;top:88.5vh;left:0vw;width:100vw;background-color:#2F42F5;height:11.5vh;">
+		</div>
+		<img src="assets/img/LOGO.png" style="top:3vh;left:3vw;width:94vw;height:auto;">
+		
+		<img class="logo" src="assets/img/avtlogo.PNG" style="position:absolute;top:90vh;height:8vh;left:70vw;width:auto;" onclick="window.open('https://tripli.ca/avt/', '_blank').focus();">
+
+		<div style="width:95vw;position:absolute;left:2.5vw;top:31.5vh;height:57vh;overflow:scroll;overflow-x:hidden;">
+			<div class="clickable" onclick="document.location.href = 'game.html?level=6';"><b>Niveau 1</b><br>Sortie du stationnement du restaurant de poutine</div>
+			<div class="clickable" onclick="document.location.href = 'game.html?level=7';"><b>Niveau 2</b><br>Déversement de sauce brune dans le stationnement du restaurant de poutine</div>
+			<div class="clickable" onclick="document.location.href = 'game.html?level=2';"><b>Niveau 3</b><br>Sortie du stationnement de la clinique médicale privée</div>
+			<div class="clickable" onclick="document.location.href = 'game.html?level=1';"><b>Niveau 4</b><br>Sortie du stationnement du Costco un samedi matin</div>
+			<div class="clickable" onclick="document.location.href = 'game.html?level=4';"><b>Niveau 5</b><br>Sortie du stationnement du Costco un 24 décembre</div>
+			<div class="clickable" onclick="document.location.href = 'game.html?level=3';"><b>Niveau 6</b><br>Sortie du stationnement du centre Vidéotron après la prestation de Metallica</div>
+			<div class="clickable" onclick="document.location.href = 'game.html?level=5';"><b>Niveau 7</b><br>Sortie du stationnement du Costco un 1er janvier</div>
+
+		</div>
+		
+		
+
+
+
+	</body>
+
+
+</html>

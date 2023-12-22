@@ -1,0 +1,1056 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  <link rel="preconnect" href="https://fonts.googleapis.com">
+		  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+		  
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+		  
+		  <style>
+		  
+			body{
+				background-color:black;
+				font-family: 'Arial';
+
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+			div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+			img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			.window{
+				background: rgb(2,0,36);
+				background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(39,39,42,1) 35%, rgba(49,64,68,1) 100%);
+			}
+			
+			.window:hover{
+				cursor:pointer;
+			}
+			
+			.open_window{
+				background: rgb(246,255,15);
+				background: linear-gradient(180deg, rgba(246,255,15,1) 0%, rgba(160,173,23,1) 35%, rgba(98,99,57,1) 100%);
+
+			}
+			
+			.interruption{
+				filter: brightness(50%);
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+			
+			.tile{
+				width:9.2vw;
+				height:9.2vw;
+				position:fixed;
+			}
+
+			.big{
+				width:18.4vw;
+				height:18.4vw;
+				position:fixed;
+				z-index:99;
+				margin-top:-0.2vw;
+				margin-left:-0.2vw;
+			}
+			
+			.road{
+				background: url(assets/img/tile_road.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.oneway{
+				background: url(assets/img/tile_oneway.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.block{
+				background: url(assets/img/tile_block.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.resto{
+				background: url(assets/img/tile_resto.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.costco{
+				background: url(assets/img/tile_costco.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.clinic{
+				background: url(assets/img/tile_medical.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.videotron{
+				background: url(assets/img/tile_videotron.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.green{
+				background: url(assets/img/tile_green.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.vomit{
+				background: url(assets/img/tile_vomit.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.ice{
+				background: url(assets/img/tile_ice.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.finished{
+				background: url(assets/img/tile_finished.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.x_0{
+				top:5vw;
+			}
+			
+			.x_1{
+				top:14vw;
+			}
+			
+			.x_2{
+				top:23vw;
+			}
+			
+			.x_3{
+				top:32vw;
+			}
+			
+			.x_4{
+				top:41vw;
+			}
+			
+			.x_5{
+				top:50vw;
+			}
+			
+			.x_6{
+				top:59vw;
+			}
+			
+			.x_7{
+				top:68vw;
+			}
+			
+			.x_8{
+				top:77vw;
+			}
+			
+			.x_9{
+				top:86vw;
+			}
+			
+			.y_0{
+				left:5vw;
+			}
+			
+			.y_1{
+				left:14vw;
+			}
+			
+			.y_2{
+				left:23vw;
+			}
+			
+			.y_3{
+				left:32vw;
+			}
+		  
+			.y_4{
+				left:41vw;
+			}
+			
+			.y_5{
+				left:50vw;
+			}
+			
+			.y_6{
+				left:59vw;
+			}
+			
+			.y_7{
+				left:68vw;
+			}
+			
+			.y_8{
+				left:77vw;
+			}
+			
+			.y_9{
+				left:86vw;
+			}
+			
+			.hero{
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+			}
+			
+			.arrow{
+				background: url(assets/img/arrow.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.talk{
+				background: url(assets/img/talk.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.fire{
+				background: url(assets/img/bruler.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.suite{
+				background: url(assets/img/suite.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.arrow:hover{
+				cursor:pointer;
+			}
+			
+			.car_yellow{
+				background: url(assets/img/car_yellow.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				transform: rotate(90deg);
+			}
+			
+			.car_blue{
+				background: url(assets/img/car_patient.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				transform: rotate(90deg);
+			}
+			
+			.car_green{
+				background: url(assets/img/car_green.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				transform: rotate(90deg);
+			}
+
+			.car_cone{
+				background: url(assets/img/cone.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.reversed{
+				transform: rotate(225deg);
+			}
+
+			.right{
+				transform: rotate(180deg);
+			}
+
+			.left{
+				transform: rotate(0deg);
+			}	
+
+			.down{
+				transform: rotate(270deg);
+			}	
+
+			.up{
+				transform: rotate(90deg);
+			}
+			
+			.block1{
+			}
+
+			.hero_right{
+				background: url(assets/img/left1.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+				    transform: scaleX(-1);
+
+			}
+
+			.hero_left{
+				background: url(assets/img/left1.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+			}	
+
+			.hero_down{
+				background: url(assets/img/down1.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+			}	
+
+			.hero_up{
+				background: url(assets/img/up1.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+			}				
+
+			.btn:hover{
+				cursor:pointer;
+			}
+			
+		  </style>
+	</head>
+	
+	<body id="bodygame" scroll="no" style="  overflow: hidden; width:100%;">
+	
+		<div id="princ_container" style="width:100%;height: 100%;">
+			
+			<div style="width:90vw;top:5vw;left:5vw;height:height:90vw;background-color:#848484;"></div>
+			<div id="tile_0_0" class="tile road x_0 y_0"></div>
+			<div id="tile_0_1" class="tile road x_0 y_1"></div>
+			<div id="tile_0_2" class="tile road x_0 y_2"></div>
+			<div id="tile_0_3" class="tile road x_0 y_3"></div>
+			<div id="tile_0_4" class="tile road x_0 y_4"></div>
+			<div id="tile_0_5" class="tile road x_0 y_5"></div>
+			<div id="tile_0_6" class="tile road x_0 y_6"></div>
+			<div id="tile_0_7" class="tile road x_0 y_7"></div>
+			<div id="tile_0_8" class="tile road x_0 y_8"></div>
+			<div id="tile_0_9" class="tile road x_0 y_9"></div>
+			<div id="tile_1_0" class="tile road x_1 y_0"></div>
+			<div id="tile_1_1" class="tile road x_1 y_1"></div>
+			<div id="tile_1_2" class="tile road x_1 y_2"></div>
+			<div id="tile_1_3" class="tile road x_1 y_3"></div>
+			<div id="tile_1_4" class="tile road x_1 y_4"></div>
+			<div id="tile_1_5" class="tile road x_1 y_5"></div>
+			<div id="tile_1_6" class="tile road x_1 y_6"></div>
+			<div id="tile_1_7" class="tile road x_1 y_7"></div>
+			<div id="tile_1_8" class="tile road x_1 y_8"></div>
+			<div id="tile_1_9" class="tile road x_1 y_9"></div>
+			<div id="tile_2_0" class="tile road x_2 y_0"></div>
+			<div id="tile_2_1" class="tile road x_2 y_1"></div>
+			<div id="tile_2_2" class="tile road x_2 y_2"></div>
+			<div id="tile_2_3" class="tile road x_2 y_3"></div>
+			<div id="tile_2_4" class="tile road x_2 y_4"></div>
+			<div id="tile_2_5" class="tile road x_2 y_5"></div>
+			<div id="tile_2_6" class="tile road x_2 y_6"></div>
+			<div id="tile_2_7" class="tile road x_2 y_7"></div>
+			<div id="tile_2_8" class="tile road x_2 y_8"></div>
+			<div id="tile_2_9" class="tile road x_2 y_9"></div>
+			<div id="tile_3_0" class="tile road x_3 y_0"></div>
+			<div id="tile_3_1" class="tile road x_3 y_1"></div>
+			<div id="tile_3_2" class="tile road x_3 y_2"></div>
+			<div id="tile_3_3" class="tile road x_3 y_3"></div>
+			<div id="tile_3_4" class="tile road x_3 y_4"></div>
+			<div id="tile_3_5" class="tile road x_3 y_5"></div>
+			<div id="tile_3_6" class="tile road x_3 y_6"></div>
+			<div id="tile_3_7" class="tile road x_3 y_7"></div>
+			<div id="tile_3_8" class="tile road x_3 y_8"></div>
+			<div id="tile_3_9" class="tile road x_3 y_9"></div>
+			<div id="tile_4_0" class="tile road x_4 y_0"></div>
+			<div id="tile_4_1" class="tile road x_4 y_1"></div>
+			<div id="tile_4_2" class="tile road x_4 y_2"></div>
+			<div id="tile_4_3" class="tile road x_4 y_3"></div>
+			<div id="tile_4_4" class="tile road x_4 y_4"></div>
+			<div id="tile_4_5" class="tile road x_4 y_5"></div>
+			<div id="tile_4_6" class="tile road x_4 y_6"></div>
+			<div id="tile_4_7" class="tile road x_4 y_7"></div>
+			<div id="tile_4_8" class="tile road x_4 y_8"></div>
+			<div id="tile_4_9" class="tile road x_4 y_9"></div>
+			<div id="tile_5_0" class="tile road x_5 y_0"></div>
+			<div id="tile_5_1" class="tile road x_5 y_1"></div>
+			<div id="tile_5_2" class="tile road x_5 y_2"></div>
+			<div id="tile_5_3" class="tile road x_5 y_3"></div>
+			<div id="tile_5_4" class="tile road x_5 y_4"></div>
+			<div id="tile_5_5" class="tile road x_5 y_5"></div>
+			<div id="tile_5_6" class="tile road x_5 y_6"></div>
+			<div id="tile_5_7" class="tile road x_5 y_7"></div>
+			<div id="tile_5_8" class="tile road x_5 y_8"></div>
+			<div id="tile_5_9" class="tile road x_5 y_9"></div>
+			<div id="tile_6_0" class="tile road x_6 y_0"></div>
+			<div id="tile_6_1" class="tile road x_6 y_1"></div>
+			<div id="tile_6_2" class="tile road x_6 y_2"></div>
+			<div id="tile_6_3" class="tile road x_6 y_3"></div>
+			<div id="tile_6_4" class="tile road x_6 y_4"></div>
+			<div id="tile_6_5" class="tile road x_6 y_5"></div>
+			<div id="tile_6_6" class="tile road x_6 y_6"></div>
+			<div id="tile_6_7" class="tile road x_6 y_7"></div>
+			<div id="tile_6_8" class="tile road x_6 y_8"></div>
+			<div id="tile_6_9" class="tile road x_6 y_9"></div>
+			<div id="tile_7_0" class="tile road x_7 y_0"></div>
+			<div id="tile_7_1" class="tile road x_7 y_1"></div>
+			<div id="tile_7_2" class="tile road x_7 y_2"></div>
+			<div id="tile_7_3" class="tile road x_7 y_3"></div>
+			<div id="tile_7_4" class="tile road x_7 y_4"></div>
+			<div id="tile_7_5" class="tile road x_7 y_5"></div>
+			<div id="tile_7_6" class="tile road x_7 y_6"></div>
+			<div id="tile_7_7" class="tile road x_7 y_7"></div>
+			<div id="tile_7_8" class="tile road x_7 y_8"></div>
+			<div id="tile_7_9" class="tile road x_7 y_9"></div>
+			<div id="tile_8_0" class="tile road x_8 y_0"></div>
+			<div id="tile_8_1" class="tile road x_8 y_1"></div>
+			<div id="tile_8_2" class="tile road x_8 y_2"></div>
+			<div id="tile_8_3" class="tile road x_8 y_3"></div>
+			<div id="tile_8_4" class="tile road x_8 y_4"></div>
+			<div id="tile_8_5" class="tile road x_8 y_5"></div>
+			<div id="tile_8_6" class="tile road x_8 y_6"></div>
+			<div id="tile_8_7" class="tile road x_8 y_7"></div>
+			<div id="tile_8_8" class="tile road x_8 y_8"></div>
+			<div id="tile_8_9" class="tile road x_8 y_9"></div>
+			<div id="tile_9_0" class="tile road x_9 y_0"></div>
+			<div id="tile_9_1" class="tile road x_9 y_1"></div>
+			<div id="tile_9_2" class="tile road x_9 y_2"></div>
+			<div id="tile_9_3" class="tile road x_9 y_3"></div>
+			<div id="tile_9_4" class="tile road x_9 y_4"></div>
+			<div id="tile_9_5" class="tile road x_9 y_5"></div>
+			<div id="tile_9_6" class="tile road x_9 y_6"></div>
+			<div id="tile_9_7" class="tile road x_9 y_7"></div>
+			<div id="tile_9_8" class="tile road x_9 y_8"></div>
+			<div id="tile_9_9" class="tile road x_9 y_9"></div>
+			
+			<div id="hero" class="tile hero hero_down"></div>
+			
+			<div id="other_cars">
+			</div>
+			<div onclick="location.reload();" class="btn" style="position:fixed;top:98vw;left:5vw;font-size:2vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>RECOMMENCER</b></div>
+			<div onclick="window.location.href = 'intro.html'" class="btn" style="position:fixed;top:104.5vw;left:5vw;font-size:2vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>MENU</b></div>
+			<div id="nb_bruleurs" style="position:fixed;top:98vw;left:65vw;font-size:2vh;color:white;padding-left:1vw;padding-right:1vw;display:none;">BRÛLEURS X 10</div>
+
+			<div style="position:fixed;top:98.25vh;font-size:1.5vh;width:100%;text-align: center;color:rgb(240,240,240)">Sur un ordinateur, vous pouvez jouer avec les flèches du clavier.</div>
+
+		</div>
+
+		<div id="final_container" style="position:absolute;left:0;top:0;width:100%;height:100%;background-color:rgb(240,240,240);z-index:999;display:none;">
+			
+			 <div style="position:absolute;top:5vh;left:5vw;width:80vw;text-align:left;height:auto;color:black;font-size:3.2vh;font-family: Arial, Helvetica, sans-serif;">
+				Je ne suis pas fier de toi. Les usines de mes amis ont manqué d'électricité pendant <b><span style="color:red;" id="nb_seconds"></span></b> secondes. J'espère que tu feras mieux la prochaine fois.
+			</div>
+
+			<img src="assets/img/fitz2.png" style="position:fixed;top:50vh;left:-5vw;height:50vh;width:130vw;">
+
+			<div id="recommencer" style="display:none;" >
+				<div  onclick="location.reload();" class="vehicule" style="background-color:#eef52a;top:30vh;left:5vw;padding:5px;position:absolute;height:5vh;font-size:5vh;color:black;border: solid 1px black;font-family: Arial, Helvetica, sans-serif;" ><b>RECOMMENCER</b></div>
+				<div  onclick="window.open('https://tripli.ca/3elien/', '_blank').focus();" class="vehicule" style="background-color:#eef52a;top:37vh;left:5vw;padding:5px;position:absolute;height:3vh;font-size:3vh;color:black;border: solid 1px black;" ><b>Jouez à 3e lien, LE jeu</b></div>
+				<div  onclick="window.open('https://tripli.ca/martine/', '_blank').focus();" class="vehicule" style="background-color:#eef52a;top:42vh;left:5vw;padding:5px;position:absolute;height:3vh;font-size:3vh;color:black;border: solid 1px black;" ><b>Jouez à Martine dans le traffic</b></div>
+				<img class="logo" src="assets/img/avtlogo.PNG" onclick="window.open('https://tripli.ca/avt/', '_blank').focus();" style="position:absolute;top:50vh;height:5vh;left:80vw;width:auto;">
+			</div>
+			
+		</div>
+		
+		<div>
+			
+			<div id="arrow_menu">
+				<div style="position:fixed;top:98vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow down" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="direction='no';" ontouchend="direction='no';" ></div>
+				<div style="position:fixed;top:148vw;left:37.5vw;width:25vw;height:25vw;" class="arrow up" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="direction='no';" ontouchend="direction='no';"  ></div>
+				<div style="position:fixed;top:123vw;left:12.5vw;width:25vw;height:25vw;" class="arrow right" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="direction='no';" ontouchend="direction='no';"  ></div>
+				<div style="position:fixed;top:123vw;left:62.5vw;width:25vw;height:25vw;" class="arrow left" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="direction='no';" ontouchend="direction='no';"  ></div>
+				<div style="position:fixed;top:123vw;left:37.5vw;width:25vw;height:25vw;display:none;" class="arrow talk" onmousedown="pressbutton('talk')" ontouchstart="pressbutton('talk')"  onmouseup="direction='no';" ontouchend="direction='no';"  ></div>
+				<div style="position:fixed;top:123vw;left:37.5vw;width:25vw;height:25vw;display:none;" class="arrow fire" onmousedown="pressbutton('talk')" ontouchstart="pressbutton('fire')"  onmouseup="direction='no';" ontouchend="direction='no';"  ></div>
+
+			</div>
+
+			<img src="assets/img/explosion.gif" style="width:100vw;height:95vw;display:none;position:fixed;left:0;top:0;z-index:500;" id="explosion">
+			
+			<div style="position:fixed;top:110vw;left:5vw;width:90vw;color:rgb(230,230,230);font-size:3vh;">
+				<p style="display:none;" id="green_trigger">Faites attention! Depuis l'imposition de la sobriété énergétique par le super-ministre Fitzgibbon, les bornes de recharge électrique sont très négligées.</p>
+				<p style="display:none;" id="success_trigger"></p>
+				<div id="next_level" onclick="next_level()" class="btn" style="position:fixed;top:160vw;left:5vw;font-size:3.5vh;background-color:yellow;color:black;padding-left:1vw;padding-right:1vw;display:none;"><b>ALLER À LA ZONE SUIVANTE</b></div>
+
+			</div>
+		
+			<div id="dialogs" style="position:fixed;top:110vw;left:5vw;width:90vw;color:rgb(230,230,230);font-size:2.3vh;display:none;">
+				<p id="dialog_name">:</p>
+				<p id="dialog_text"></p>
+				<div style="position:fixed;top:148vw;left:68vw;width:25vw;height:25vw;" class="arrow suite" onmousedown="pressbutton('talk')" ontouchstart="pressbutton('talk')"  onmouseup="direction='no';" ontouchend="direction='no';"  ></div>
+			</div>
+		
+		</div>
+
+
+	</body>
+	
+	<script>
+
+	const queryString = window.location;
+	console.log(queryString.search)
+	params = queryString.search.replace("?level=","")
+	params = parseInt(params)
+	console.log(params)
+
+
+	var hero_x = null;
+	var hero_y = null;
+	var trees = [];
+	var nb_fire = 0;
+
+	var sprites = [];
+	
+	
+	function next_level(){
+		window.location = "game.html?level="+(parseInt(params)+1);
+	}
+
+	$.getScript( "level"+params+".js", function(  ) {
+
+		sprites = sprites_l;
+		for (i=0;i<sprites.length;i++){
+			$('#tile_'+sprites[i][0]+'_'+sprites[i][1]).addClass("block1");
+			$('#tile_'+sprites[i][0]+'_'+sprites[i][1]).css("background-image", "url('assets/img/"+sprites[i][2]+"')");
+		}
+		
+		$("#success_trigger").html(succes_sentence);
+
+		for (i=0;i<ot_cars.length;i++){
+			html = `<div id="car_${i}" class="x_${ot_cars[i][0]} y_${ot_cars[i][1]} hero ${ot_cars[i][2]}"></div>`;
+			console.log(html)
+			$("#other_cars").append( `<div id="car_${i}" class="tile x_${ot_cars[i][0]} y_${ot_cars[i][1]} car_${ot_cars[i][3]} ${ot_cars[i][2]}"></div>` )
+		}
+		
+		$("#hero").addClass("x_"+pos_begginning[0]);
+		$("#hero").addClass("y_"+pos_begginning[1]);
+		
+		for(i=0;i<tiles.length;i++){
+			$("#tile_"+tiles[i][1]+"_"+tiles[i][2]).removeClass("road");
+			$("#tile_"+tiles[i][1]+"_"+tiles[i][2]).addClass(tiles[i][0]);
+			if(tiles[i][0]=="oneway"){
+				$("#tile_"+tiles[i][1]+"_"+tiles[i][2]).addClass(tiles[i][3]);
+			}
+		}
+		
+		$("#tile_"+finished[0]+"_"+finished[1]).addClass("finished");
+	
+		
+		 hero_x = pos_begginning[0];
+		 hero_y = pos_begginning[1];
+		
+
+		$("#hero").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+
+		// Block appearance change
+		for (i=0;i<change_tile.length;i++){
+			$('#tile_'+change_tile[i][0]+'_'+change_tile[i][1]).css("background-image", "url('assets/img/"+change_tile[i][2]+"')");
+		}
+
+		// Trees
+		trees = trees_l;
+		nb_fire = nb_fire_l;
+		for (i=0;i<trees.length;i++){
+			$("#tile_"+trees[i][0]+"_"+trees[i][1]).removeClass("road");
+			$("#tile_"+trees[i][0]+"_"+trees[i][1]).addClass("block");
+			$("#tile_"+trees[i][0]+"_"+trees[i][1]).css("background-image", "url('assets/img/tree.png')");
+		}
+		
+		
+		
+
+	});
+	
+	
+
+
+	
+	var can_move = true;
+	var direction = "no";
+	
+	$( "body" ).keydown(function( event ) {
+		if ( event.which == 37 ) {
+			direction="left";
+		}
+		else if ( event.which == 38 ) {
+			direction="up";
+		}
+		else if ( event.which == 40 ) {
+			direction="down";
+		}
+		else if ( event.which == 39 ) {
+			direction="right";
+		}
+		else if ( event.which == 32 ) {
+			direction="talk";
+		}
+
+	});
+			
+	document.addEventListener('keyup', function() {
+		direction="no"
+	});
+	
+	
+	function pressbutton(pb){
+		if(direction.localeCompare("no") == 0){
+			direction = pb;
+		}
+	}
+	
+	function change_direction(delta_x,delta_y,car=-1){
+		
+		movable = true;
+		if( car == -1 ){
+			new_x = hero_x + delta_x;
+			new_y = hero_y + delta_y;
+		}
+		else{
+			console.log("crashed");
+			new_x = ot_cars[car][0] + delta_x;
+			new_y = ot_cars[car][1] + delta_y
+			movable = ot_cars[car][4]
+		}
+		
+		if( (new_x >= 0) && (new_x <10) && (new_y >= 0) && (new_y < 10) && movable ){
+			
+
+			
+			// Check if block
+			if(($('#tile_'+new_x+'_'+new_y).hasClass("block")==false)&&($('#tile_'+new_x+'_'+new_y).hasClass("block1")==false)){
+		
+				no_car = true;
+				hit_car = -1;
+				
+				for (i=0;i<ot_cars.length;i++){
+					if(car != i){
+						if( (new_x == ot_cars[i][0]) && (new_y == ot_cars[i][1]) ){
+							no_car = false;
+							hit_car = i
+						}
+					}
+				}
+				
+				
+				if(no_car){
+
+					if( car == -1 ){
+						hero_x = new_x;
+						hero_y = new_y;
+						console.log(hero_x)
+						console.log(hero_y)
+						pos_x = hero_x;
+						pos_y = hero_y;
+						div = "hero";
+						
+					}
+					else{
+						ot_cars[car][0] = new_x
+						ot_cars[car][1] = new_y
+						pos_x = new_x;
+						pos_y = new_y;
+						div = "car_"+car;
+					}
+						
+					
+					if(delta_x != 0){
+						$("#"+div).animate({"top":(5+pos_x*9)+"vw"},300,"linear");
+					}
+					else{
+						$("#"+div).animate({"left":(5+pos_y*9)+"vw"},300,"linear");
+					}
+					setTimeout(function(){
+						
+						nocone = true;
+						if(car > -1){
+							if(ot_cars[car][3].localeCompare("cone")==0){
+								nocone = false;
+							}
+						}
+
+						// Vomit
+						if($('#tile_'+new_x+'_'+new_y).hasClass("vomit")){
+							if(car > -1){
+								ot_cars[car][4] = false;
+								can_move = true;
+								$("#car_"+car).addClass("invomit");
+							}
+							else{
+								$("#hero").addClass("invomit");
+								$(".arrow").hide();
+							}
+						}
+						// One way
+						else if( ($('#tile_'+new_x+'_'+new_y).hasClass("oneway")) && (nocone) ){
+
+							if(car > -1){
+								$("#car_"+car).removeClass("left");
+								$("#car_"+car).removeClass("right");
+								$("#car_"+car).removeClass("up");
+								$("#car_"+car).removeClass("down");
+							}
+							else{
+								$("#hero").removeClass("hero_left");
+								$("#hero").removeClass("hero_right");
+								$("#hero").removeClass("hero_up");
+								$("#hero").removeClass("hero_down");
+							}
+						
+
+							if($('#tile_'+new_x+'_'+new_y).hasClass("up")){
+								ow_direction = "up";
+								delta_x = -1;
+								delta_y = 0;
+							}
+							else if($('#tile_'+new_x+'_'+new_y).hasClass("down")){
+								ow_direction = "down";
+								delta_x = +1;
+								delta_y = 0;
+							}
+							else if($('#tile_'+new_x+'_'+new_y).hasClass("left")){
+								ow_direction = "left";
+								delta_x = 0;
+								delta_y = -1;
+							}
+							else if($('#tile_'+new_x+'_'+new_y).hasClass("right")){
+								ow_direction = "right";
+								delta_x = 0;
+								delta_y = +1;
+							}
+
+							if(car > -1){
+								$("#car_"+car).addClass(ow_direction);
+								ot_cars[car][2] = ow_direction
+							}
+							else{
+								$("#hero").addClass(ow_direction);
+							}
+
+							change_direction(delta_x,delta_y,car);
+						}
+						// Ice
+						else if($('#tile_'+new_x+'_'+new_y).hasClass("ice")){
+							change_direction(delta_x,delta_y,car);
+						}
+						// Cone
+						else if(car > -1){
+							if(ot_cars[car][3].localeCompare("cone")==0){
+								ot_cars[car][4] = false;
+								$("#car_"+car).addClass("reversed");
+							}
+							can_move = true;
+						}
+						// Green parking
+						else if(($('#tile_'+new_x+'_'+new_y).hasClass("green")) && (car == -1)){
+							$(".arrow").hide();
+							$("#green_trigger").show();
+							$("#explosion").show();
+							$("#hero").fadeOut();
+							audio.pause();
+							audio.currentTime = 0;
+							audio.play();
+						}
+						// Level completed
+						else if((pos_x==finished[0]) && (pos_y==finished[1]) && (car == -1)){
+							$(".arrow").hide();
+							$("#success_trigger").show();
+							if(params<4){
+								$("#next_level").show();
+							}
+							$("#hero").fadeOut();
+						}
+						// Nothing special
+						else{
+							can_move = true;
+						}
+						
+					}, 300);
+				
+				}
+				else{ // Crash
+					// Check if car moves
+					if(ot_cars[hit_car][3] == "cone"){
+						change_direction(delta_x,delta_y,hit_car);
+					}
+					else if( ((ot_cars[hit_car][2] == "up") || (ot_cars[hit_car][2] == "down")) && (delta_x != 0) ){
+						change_direction(delta_x,delta_y,hit_car);
+					}
+					else if( ((ot_cars[hit_car][2] == "right") || (ot_cars[hit_car][2] == "left")) && (delta_y != 0) ){
+						change_direction(delta_x,delta_y,hit_car);
+					}
+					else{
+						can_move = true;
+					}
+				}
+				
+			}
+			else{
+				can_move = true;
+			}
+		}
+		else{
+			can_move = true;
+		}
+		
+	}
+
+	current_nb = 1;
+	var rotate = 5;
+	last_direction = "no";
+	var can_talk = false;
+	var can_fire = false;
+	var in_dialog = false;
+	var in_fire = false;
+	var current_dialog = [];
+	var dialog_pos = -1;
+	
+	function next_dialog(){
+		dialog_pos++;
+		if( dialog_pos < current_dialog.length  ){
+			$("#dialog_name").html(current_dialog[dialog_pos][0])
+			$("#dialog_text").html(current_dialog[dialog_pos][1])
+		}
+		else{
+			dialog_pos = -1;
+			in_dialog = false;
+			can_move = true;
+			can_talk = true;
+
+			$("#arrow_menu").show()
+			$("#dialogs").hide();
+		}
+	}
+	
+	
+	
+	setInterval(function () {
+		
+		rotate = rotate + 5;
+		if(rotate>360){
+			rotate = 0;
+		}
+
+		// Rotate in vomit
+		$(".invomit").css({'transform' : 'rotate('+ rotate +'deg)'});
+
+
+		if((can_move==false) && in_dialog){
+			if(direction.localeCompare("talk") == 0){
+				direction = "no";
+				next_dialog();
+			}
+		}
+
+
+		if(nb_fire>0){
+			$("#nb_bruleurs").html("BRÛLEURS X "+nb_fire)
+			$("#nb_bruleurs").show();
+		}
+		else{
+			$("#nb_bruleurs").hide();
+		}
+
+		if(can_move){
+		
+			if(direction.localeCompare("right") == 0){
+				$("#hero").removeClass("hero_left");
+				$("#hero").removeClass("hero_up");
+				$("#hero").removeClass("hero_down");
+				$("#hero").addClass("hero_right");
+				can_move = false;
+				change_direction(0,1);
+				diff_y = 1;
+				diff_x = 0;
+			}
+			
+			if(direction.localeCompare("left") == 0){
+				$("#hero").removeClass("hero_right");
+				$("#hero").removeClass("hero_up");
+				$("#hero").removeClass("hero_down");
+				$("#hero").addClass("hero_left");
+				can_move = false;
+				change_direction(0,-1);
+				diff_y = -1;
+				diff_x = 0;
+			}
+			
+			if(direction.localeCompare("up") == 0){
+				$("#hero").removeClass("hero_left");
+				$("#hero").removeClass("hero_up");
+				$("#hero").removeClass("hero_down");
+				$("#hero").addClass("hero_up");
+				can_move = false;
+				change_direction(-1,0);
+				diff_y = 0;
+				diff_x = -1;
+			}
+			
+			if(direction.localeCompare("down") == 0){
+				$("#hero").removeClass("hero_left");
+				$("#hero").removeClass("hero_up");
+				$("#hero").removeClass("hero_right");
+				$("#hero").addClass("hero_down");
+				can_move = false;
+				change_direction(+1,0);
+				diff_y = 0;
+				diff_x = 1;
+			}
+			
+			if((direction.localeCompare("talk") == 0) && can_talk){
+			
+				can_move = false;
+				can_talk = false;
+				in_dialog = true;
+				direction = "no";
+
+				for (i=0;i<sprites.length;i++){
+					if( ((hero_x+diff_x) == sprites[i][0]) && ((hero_y+diff_y) == sprites[i][1]) ){
+						current_dialog = sprites[i][3];
+					}
+				}
+				
+				
+				next_dialog();
+				$("#arrow_menu").hide()
+				$("#dialogs").show();
+				
+			}
+			
+			if((direction.localeCompare("talk") == 0) && can_fire){
+				can_move = false;
+
+
+				nb_fire = nb_fire - 1;
+				direction = "no";
+				tree_x = hero_x+diff_x
+				tree_y = hero_y+diff_y
+				$(".fire").hide();
+				
+				// Change tile
+				$("#tile_"+tree_x+"_"+tree_y).css("background-image", "url('assets/img/fire.png')");
+				
+				// Animation 1 second
+				setTimeout(function() {
+					$("#tile_"+tree_x+"_"+tree_y).removeClass("block");
+					$("#tile_"+tree_x+"_"+tree_y).addClass("road");
+					$("#tile_"+tree_x+"_"+tree_y).css("background-image", "url('assets/img/tile_road.png')");
+					can_move = true;
+				}, 1000);
+				
+				// Remove from list
+				pos = null;
+				all_trees = []
+				for (i=0;i<trees.length;i++){
+					if( ((tree_x) == trees[i][0]) && ((tree_y) == trees[i][1])  ){
+						pos = i;
+					}
+					else{
+						all_trees.push(trees[i])
+					}
+				}
+				trees = all_trees;
+			}
+			
+			
+			
+			// Sprite verif
+			count = 0
+			for (i=0;i<sprites.length;i++){
+			
+				if( ((hero_x+diff_x) == sprites[i][0]) && ((hero_y+diff_y) == sprites[i][1]) ){
+					console.log("available dialog")
+					count++;
+					if(can_talk == false){
+						$(".talk").show();
+						can_talk = true;
+					}
+				}
+				
+			}
+			if((count == 0) && can_talk){
+				
+					$(".talk").hide();
+					can_talk = false;
+					
+			}
+			
+			// Tree/fire verif
+			for (i=0;i<trees.length;i++){
+			
+				if( ((hero_x+diff_x) == trees[i][0]) && ((hero_y+diff_y) == trees[i][1]) && (nb_fire>0) ){
+					console.log("fire dialog")
+					count++;
+					if(can_fire == false){
+						$(".fire").show();
+						can_fire = true;
+					}
+				}
+				
+			}
+			if((count == 0) && can_fire){
+				
+					$(".fire").hide();
+					can_fire = false;
+					
+			}
+			
+
+		}
+		
+	}, 20);
+	
+	
+
+
+	var audio = new Audio('assets/sounds/explosion.wav');
+
+
+	</script>
+
+</html>

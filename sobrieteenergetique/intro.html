@@ -1,0 +1,83 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+
+
+          <style>
+		  
+			body{
+				background: #757575;
+				background-size: 100vw 100vh;
+                font-family: 'Courgette', cursive;
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+            div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+            img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+		  
+		  </style>
+	</head>
+	
+	<body scroll="no" style="  overflow: hidden; width:100%;">
+	
+		<img src="assets/img/fitz1.png" style="position:fixed;top:50vh;left:-5vw;height:50vh;width:110vw;">
+
+		<div style="position:absolute;top:2vh;left:3vw;width:50vw;text-align:left;height:auto;color:white;font-size:4vh;font-family: Arial, Helvetica, sans-serif;">
+            SOBRIÉTÉ ÉNERGÉTIQUE<br>
+			LE jeu
+        </div>
+		
+		<img class="logo" src="assets/img/avtlogo.PNG" style="position:absolute;top:2vh;height:8vh;left:70vw;width:auto;" onclick="window.open('https://tripli.ca/avt/', '_blank').focus();">
+
+        <div style="position:absolute;top:18vh;left:3vw;width:90vw;text-align:left;height:auto;color:white;font-size:2.3vh;font-family: Arial, Helvetica, sans-serif;">
+			Bonjour, je suis ton superministre Fitzgibbon. STP, aide-moi à forcer la sobriété énergétique des citoyens afin que mes amis propriétaires d'alumineries ne manquent pas d'électricité que je leur vends à rabais. Afin d'y parvenir, c'est très simple. Dès que tu vois une lumière qui s'allume à travers une fenêtre, tu appuies sur cette dernière afin de couper le courant.
+        </div>
+
+        <div class="vehicule" onclick="document.location.href = 'game.html';" style="background-color:#eef52a;top:42.5vh;left:3vw;padding:5px;position:absolute;height:5vh;font-size:5vh;color:black;border: solid 1px black;font-family: Arial, Helvetica, sans-serif;"><b>COMMENCER</b></div>
+
+
+	</body>
+
+
+</html>

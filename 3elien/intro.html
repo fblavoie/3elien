@@ -1,0 +1,72 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+
+
+          <style>
+		  
+			body{
+				background: rgb(130, 87, 187);
+				background-size: 100vw 100vh;
+                font-family: 'Courgette', cursive;
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+            div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+            img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+		  
+		  </style>
+	</head>
+	
+	<body style="  overflow: hidden; width:100%;">
+	
+        <img src="assets/img/fl.png" style="position:absolute;top:0vh;left:-2vw;width:53vw;height:auto;" />
+
+        <div style="position:absolute;top:15vh;left:50vw;width:47vw;height:auto;color:white;font-size:4vh;">
+            Bonjour! Je suis ton roi François 1er. Mon troisième lien a été inauguré il y a de ça quelques jours. Malheureusement, du transport en commun s'y est infiltré. SVP, pourrais-tu aller éliminer ce fléau qui pollue la vie des automobilistes? C'est très simple. Tu n'as qu'à cliquer sur ces maudits véhicules et ils disparaîtront. Si tu es sur ton cellulaire, je te suggère de le mettre à l'horizontale.
+        </div>
+
+        <div class="vehicule" onclick="document.location.href = 'game.html';" style="background-color:#eef52a;top:75vh;left:50vw;padding:5px;position:absolute;height:5vh;font-size:5vh;color:black;border: solid 1px black;font-family: Arial, Helvetica, sans-serif;"><b>COMMENCER</b></div>
+
+
+	</body>
+
+
+</html>

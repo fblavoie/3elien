@@ -1,0 +1,351 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  <link rel="preconnect" href="https://fonts.googleapis.com">
+		  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+		  
+		  <style>
+		  
+			body{
+				background: url("assets/img/decor.png");
+				background-repeat: no-repeat;
+				background-size: 100vw 100vh;
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+			div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+			img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			.window{
+				background: rgb(2,0,36);
+				background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(39,39,42,1) 35%, rgba(49,64,68,1) 100%);
+			}
+			
+			.window:hover{
+				cursor:pointer;
+			}
+			
+			.open_window{
+				background: rgb(246,255,15);
+				background: linear-gradient(180deg, rgba(246,255,15,1) 0%, rgba(160,173,23,1) 35%, rgba(98,99,57,1) 100%);
+
+			}
+			
+			.interruption{
+				filter: brightness(50%);
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+		  
+		  </style>
+	</head>
+	
+	<body id="bodygame" scroll="no" style="  overflow: hidden; width:100%;">
+	
+		<div id="princ_container" style="width:100%;height: 100%;">
+
+			<img src="assets/img/avtlogo.PNG" style="position:absolute;top:93vh;height:5vh;left:80vw;width:auto;">
+
+			
+			<img id="factory" class="" src="assets/img/usine.png" style="position:absolute;top:4vh;left:56vw;height:12vh;width:30vw;">
+			
+			<span id="fumee_container">
+				<img id="fumee1" src="assets/img/fumee1.png" style="position:absolute;top:0.9vh;left:59vw;height:9vh;width:19vw;">
+				<img id="fumee2" src="assets/img/fumee2.png" style="position:absolute;top:0.9vh;left:59vw;height:9vh;width:19vw;display:none;">
+			</span>
+			
+			<script>
+				
+				function show_fumee1(){
+				
+					setTimeout(function(){
+						$("#fumee2").hide();
+						$("#fumee1").show();
+						show_fumee2();
+					}, 200);
+
+				}
+				
+				function show_fumee2(){
+				
+					setTimeout(function(){
+						$("#fumee1").hide();
+						$("#fumee2").show();
+						show_fumee1();
+					}, 200);
+
+				}
+				
+				show_fumee2();
+			
+			</script>
+			
+			
+				
+				<div class="window" onclick="wc=0;" id="w_0" style="top:11vh;left:4vw;width:8vw;height:7vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=1;" id="w_1" style="top:11vh;left:14vw;width:8vw;height:7vh;position:fixed;z-index:500" ></div>
+				<div class="window" onclick="wc=(2)" id="w_2" style="top:19vh;left:4vw;width:8vw;height:7vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(3)" id="w_3" style="top:19vh;left:14vw;width:8vw;height:7vh;position:fixed;z-index:500" ></div>
+				<div class="window" onclick="wc=(4)" id="w_4" style="top:27vh;left:4vw;width:8vw;height:7vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(5)" id="w_5" style="top:27vh;left:14vw;width:8vw;height:7vh;position:fixed;z-index:500" ></div>
+				<div class="window" onclick="wc=(6)" id="w_6" style="top:35vh;left:4vw;width:8vw;height:7vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(7)" id="w_7" style="top:35vh;left:14vw;width:8vw;height:7vh;position:fixed;z-index:500" ></div>
+
+				<div class="window" onclick="wc=(8)" id="w_8" style="top:20vh;left:29vw;width:9vw;height:7vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(9)" id="w_9" style="top:20vh;left:39vw;width:9vw;height:7vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(10)" id="w_10" style="top:20vh;left:49vw;width:9vw;height:7vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(11)" id="w_11" style="top:28vh;left:29vw;width:9vw;height:7vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(12)" id="w_12" style="top:28vh;left:39vw;width:9vw;height:7vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(13)" id="w_13" style="top:28vh;left:49vw;width:9vw;height:7vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(14)" id="w_14" style="top:36vh;left:29vw;width:9vw;height:7vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(15)" id="w_15" style="top:36vh;left:39vw;width:9vw;height:7vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(16)" id="w_16" style="top:36vh;left:49vw;width:9vw;height:7vh;position:fixed;z-index:1" ></div>
+
+				<div class="window" onclick="wc=(17)" id="w_17" style="top:31.5vh;left:66vw;width:11vw;height:6.5vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(18)" id="w_18" style="top:31.5vh;left:80vw;width:11vw;height:6.5vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(19)" id="w_19" style="top:38.5vh;left:66vw;width:11vw;height:5.5vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(20)" id="w_20" style="top:38.5vh;left:80vw;width:11vw;height:5.5vh;position:fixed;z-index:1" ></div>
+
+				<div class="window" onclick="wc=(21)" id="w_21" style="top:66.5vh;left:4vw;width:9vw;height:5vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(22)" id="w_22" style="top:66.5vh;left:17vw;width:9vw;height:5vh;position:fixed;z-index:1" ></div>
+
+				<div class="window" onclick="wc=(23)" id="w_23" style="top:62.25vh;left:32vw;width:9.5vw;height:5vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(24)" id="w_24" style="top:62.25vh;left:44vw;width:9.5vw;height:5vh;position:fixed;z-index:1" ></div>
+
+				<div class="window" onclick="wc=(25)" id="w_25" style="top:62.25vh;left:77vw;width:9.5vw;height:5vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(26)" id="w_26" style="top:62.25vh;left:88vw;width:9.5vw;height:5vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(27)" id="w_27" style="top:53vh;left:77vw;width:9.5vw;height:8vh;position:fixed;z-index:1" ></div>
+				<div class="window" onclick="wc=(28)" id="w_28" style="top:53vh;left:88vw;width:9.5vw;height:8vh;position:fixed;z-index:1" ></div>
+
+			
+			<script>
+			
+				var clicking_possible = true
+				
+				var wc = 0
+				
+				
+				setInterval(function () {
+					
+					
+					if(wc > -1){
+						let window_number = wc;
+						console.log(window_number)
+						wc = -1
+						position = open_windows.indexOf(window_number);
+						console.log("passed")
+						console.log(position)
+						console.log(open_windows)
+						if( position > -1 ){
+							open_windows.splice(position,1)
+							$("#w_"+window_number).removeClass("open_window");
+							switchs.pause();
+							switchs.currentTime = 0;
+							switchs.play();
+						}
+					}
+				}, 20);
+			
+
+				
+				function add_light(window_number){
+					position = open_windows.indexOf(window_number);
+					if( position == -1 ){
+						open_windows.push(window_number)
+						$("#w_"+window_number).addClass("open_window");
+						switchs.pause();
+						switchs.currentTime = 0;
+						switchs.play();
+					}
+				}
+
+			</script>
+			
+			<div id="type_vehicule_show" style="height:3vh;font-size:3vh;top:85vh;margin-left:1vh;position:absolute;color:white;"></div>
+			<div id="mod_score_show" style="display:none;height:3vh;font-size:3vh;top:89vh;margin-left:1vh;position:absolute;color:white;"><span id="score_mod"></span> points</div>
+		
+		</div>
+
+		<div id="final_container" style="position:absolute;left:0;top:0;width:100%;height:100%;background-color:rgb(240,240,240);z-index:999;display:none;">
+			
+			 <div style="position:absolute;top:5vh;left:5vw;width:80vw;text-align:left;height:auto;color:black;font-size:3.2vh;font-family: Arial, Helvetica, sans-serif;">
+				Je ne suis pas fier de toi. Les usines de mes amis ont manqué d'électricité pendant <b><span style="color:red;" id="nb_seconds"></span></b> secondes. J'espère que tu feras mieux la prochaine fois.
+			</div>
+
+			<img src="assets/img/fitz2.png" style="position:fixed;top:50vh;left:-5vw;height:50vh;width:130vw;">
+
+			<div id="recommencer" style="display:none;" >
+				<div  onclick="location.reload();" class="vehicule" style="background-color:#eef52a;top:30vh;left:5vw;padding:5px;position:absolute;height:5vh;font-size:5vh;color:black;border: solid 1px black;font-family: Arial, Helvetica, sans-serif;" ><b>RECOMMENCER</b></div>
+				<div  onclick="window.open('https://tripli.ca/3elien/', '_blank').focus();" class="vehicule" style="background-color:#eef52a;top:37vh;left:5vw;padding:5px;position:absolute;height:3vh;font-size:3vh;color:black;border: solid 1px black;font-family: Arial, Helvetica, sans-serif;" ><b>Jouez à 3e lien, LE jeu</b></div>
+				<div  onclick="window.open('https://tripli.ca/martine/', '_blank').focus();" class="vehicule" style="background-color:#eef52a;top:42vh;left:5vw;padding:5px;position:absolute;height:3vh;font-size:3vh;color:black;border: solid 1px black;font-family: Arial, Helvetica, sans-serif;" ><b>Jouez à Martine dans le traffic</b></div>
+				<img class="logo" src="assets/img/avtlogo.PNG" onclick="window.open('https://tripli.ca/avt/', '_blank').focus();" style="position:absolute;top:50vh;height:5vh;left:80vw;width:auto;">
+			</div>
+			
+
+		</div>
+
+
+	</body>
+	
+	<script>
+	
+		var score = 0;
+		
+		var stun = new Audio('assets/sounds/stun.wav');
+		var electricity = new Audio('assets/sounds/electricity.wav');
+		var switchs = new Audio('assets/sounds/switch.wav');
+		var failure = new Audio('assets/sounds/failure.wav');
+
+
+
+
+
+
+		var count_call = 0
+		var open_windows = [];
+		var currently_open = true;
+		var count_failure = 0
+		var not_finished = true;
+		
+		
+		setInterval(function () {
+			
+			count_call = count_call + 1
+			
+			console.log(count_call);
+			
+			window_number = Math.floor(Math.random() * 29);
+			
+			// Open light... peut-être
+			if( (count_call >= 50) && (count_call <= 750) ){
+				
+				// Open window
+				if(Math.floor(Math.random() * 90) == 0){				
+					add_light(window_number);
+				}
+				
+			}
+			else if ( (count_call >= 3400)  ){
+				$("#recommencer").show();
+			}
+			else if( (count_call >= 3200)  ){
+				if (not_finished){
+					not_finished = false;
+					$("#princ_container").hide();
+					$("#final_container").show();
+					
+					failure.pause();
+					failure.currentTime = 0;
+					failure.play();
+					
+					nb_seconds = count_failure*20e-3
+					$("#nb_seconds").html(Math.ceil(nb_seconds));
+				}
+			}
+			else if( (count_call >= 3000)  ){
+				
+					add_light(window_number);
+				
+			}
+			else if( (count_call >= 2750)  ){
+				
+				if(Math.floor(Math.random() * 25) == 0){				
+					add_light(window_number);
+				}
+				
+			}
+			else if( (count_call >= 2225)  ){
+				
+				if(Math.floor(Math.random() * 40) == 0){				
+					add_light(window_number);
+				}
+				
+			}
+			else if( (count_call >= 1500)  ){
+				
+				if(Math.floor(Math.random() * 50) == 0){				
+					add_light(window_number);
+				}
+				
+			}
+			else if( (count_call >= 750) ){
+				
+				if(Math.floor(Math.random() * 65) == 0){				
+					add_light(window_number);
+				}
+				
+			}
+			
+			
+
+			
+
+			
+			
+			
+			if( open_windows.length == 0 ){
+				$("#factory").removeClass("interruption");
+				$("#fumee_container").show();
+				if( currently_open == false ){
+					currently_open = true;
+					// jouer le son
+					electricity.pause();
+					electricity.currentTime = 0;
+					electricity.play();
+				}
+			}
+			else{
+				count_failure = count_failure + 1;
+				if(currently_open){
+					currently_open = false;
+					$("#factory").addClass("interruption");
+					$("#fumee_container").hide();
+					stun.pause();
+					stun.currentTime = 0;
+					stun.play();
+				}
+			}
+			
+		}, 20);
+
+
+
+	</script>
+
+</html>
