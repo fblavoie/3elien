@@ -902,11 +902,13 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			else if(current_state == 1){
 				if(total_count<4000){
 					m = 100
+					l = 100
 				}
 				else{
 					m = 50
+					l = 0
 				}
-				in_pause = m + Math.floor( Math.random()*m );
+				in_pause = l + Math.floor( Math.random()*m );
 				in_wind = true;
 				current_state = 0;
 				change_wind_direction(0,0);
