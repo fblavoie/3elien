@@ -872,14 +872,41 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				change_wind_direction(0,wind_direction);
 			}
 			else if(current_state == 0){
-				wind_direction = wind_direction*-1;
-				in_move = Math.floor( Math.random()*150 );
-				in_wind = false;
+				if(total_count<4000){
+					wind_direction = wind_direction*-1;
+				}
+				else{
+					wind_direction = Math.random();
+					if(wind_direction < 0.5){
+						wind_direction = -1;
+					}
+					else{
+						wind_direction = 1;
+					}
+				}
+				
+				if(total_count<4000){
+					m = 150
+				}
+				else{
+					m = 75
+				}
+				
+				in_move = Math.floor( Math.random()*m );
+				if(total_count<6000){
+					in_wind = false;
+				}
 				current_state = 1;
 				change_wind_direction(0,wind_direction);
 			}
 			else if(current_state == 1){
-				in_pause = 100 + Math.floor( Math.random()*100 );
+				if(total_count<4000){
+					m = 100
+				}
+				else{
+					m = 50
+				}
+				in_pause = m + Math.floor( Math.random()*m );
 				in_wind = true;
 				current_state = 0;
 				change_wind_direction(0,0);
@@ -955,9 +982,9 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 	
 	function change_direction(delta_x,delta_y,car=-1){
 		
-		truck_pos = truck_pos + delta_y;
+		truck_pos = truck_pos + delta_y*wind_mul;
 		if(truck_pos < -180){
-			truck_pos = 180;
+			truck_pos = -180;
 		}
 		if(truck_pos > 180){
 			truck_pos = 180;
