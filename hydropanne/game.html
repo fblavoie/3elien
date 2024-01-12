@@ -1,0 +1,1088 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  <link rel="preconnect" href="https://fonts.googleapis.com">
+		  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+		  
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+		  
+		  <style>
+		  
+			body{
+				background-color:black;
+				font-family: 'Arial';
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+
+			}
+			
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+			div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+			img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+				pointer-events: none; 
+			}
+			
+			.window{
+				background: rgb(2,0,36);
+				background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(39,39,42,1) 35%, rgba(49,64,68,1) 100%);
+			}
+			
+			.window:hover{
+				cursor:pointer;
+			}
+			
+			.open_window{
+				background: rgb(246,255,15);
+				background: linear-gradient(180deg, rgba(246,255,15,1) 0%, rgba(160,173,23,1) 35%, rgba(98,99,57,1) 100%);
+
+			}
+
+			.flipped {
+				-moz-transform: scaleX(-1);
+				-o-transform: scaleX(-1);
+				-webkit-transform: scaleX(-1);
+				transform: scaleX(-1);
+				filter: FlipH;
+				-ms-filter: "FlipH";
+			}
+			
+			.interruption{
+				filter: brightness(50%);
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+			
+			.tile{
+				width:9.2vw;
+				height:9.2vw;
+				position:fixed;
+			}
+
+			.big{
+				width:18.4vw;
+				height:18.4vw;
+				position:fixed;
+				z-index:99;
+				margin-top:-0.2vw;
+				margin-left:-0.2vw;
+			}
+			
+
+			.road{
+				background-color:rgb(200,200,200);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			.oneway{
+				background: url(assets/img/tile_oneway.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.block{
+				background: url(assets/img/tile_block.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.resto{
+				background: url(assets/img/tile_resto.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.costco{
+				background: url(assets/img/tile_costco.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.clinic{
+				background: url(assets/img/tile_medical.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.house{
+				background: url(assets/img/tile_house.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.videotron{
+				background: url(assets/img/tile_videotron.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.green{
+				background: url(assets/img/tile_green.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+	
+			.gate{
+				background: url(assets/img/gate.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+	
+			.gold{
+				background: url(assets/img/tile_gold.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.gold_des{
+				background: url(assets/img/tile_des.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.vomit{
+				background: url(assets/img/tile_vomit.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.ice{
+				background: url(assets/img/tile_ice.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.finished{
+				background: url(assets/img/tile_finished.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.x_0{
+				top:5vw;
+			}
+			
+			.x_1{
+				top:14vw;
+			}
+			
+			.x_2{
+				top:23vw;
+			}
+			
+			.x_3{
+				top:32vw;
+			}
+			
+			.x_4{
+				top:41vw;
+			}
+			
+			.x_5{
+				top:50vw;
+			}
+			
+			.x_6{
+				top:59vw;
+			}
+			
+			.x_7{
+				top:68vw;
+			}
+			
+			.x_8{
+				top:77vw;
+			}
+			
+			.x_9{
+				top:86vw;
+			}
+			
+			.y_0{
+				left:5vw;
+			}
+			
+			.y_1{
+				left:14vw;
+			}
+			
+			.y_2{
+				left:23vw;
+			}
+			
+			.y_3{
+				left:32vw;
+			}
+		  
+			.y_4{
+				left:41vw;
+			}
+			
+			.y_5{
+				left:50vw;
+			}
+			
+			.y_6{
+				left:59vw;
+			}
+			
+			.y_7{
+				left:68vw;
+			}
+			
+			.y_8{
+				left:77vw;
+			}
+			
+			.y_9{
+				left:86vw;
+			}
+			
+			.hero{
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+			}
+			
+			.pizza{
+				background: url(assets/img/pizza.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:500;
+			}
+			
+			.arrow{
+				background: url(assets/img/arrow.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			.talk{
+				background: url(assets/img/talk.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.fire{
+				background: url(assets/img/bruler.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.suite{
+				background: url(assets/img/suite.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.arrow:hover{
+				cursor:pointer;
+			}
+			
+			.car_yellow{
+				background: url(assets/img/car_yellow.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				transform: rotate(90deg);
+			}
+			
+			.car_blue{
+				background: url(assets/img/car_patient.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				transform: rotate(90deg);
+			}
+			
+			.car_green{
+				background: url(assets/img/car_green.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				transform: rotate(90deg);
+			}
+			
+			.car_moveblock{
+				background: url(assets/img/moveblock.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.trash{
+				background: url(assets/img/trash.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.dup.dleft{
+				transform: rotate(180deg);
+			}
+			
+			.ddown.dleft{
+				transform: rotate(90deg);
+			}
+			
+			.dup.dright{
+				transform: rotate(270deg);
+			}
+			
+		
+
+			.car_cone{
+				background: url(assets/img/cone.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.reversed{
+				transform: rotate(225deg);
+			}
+
+			.right{
+				transform: rotate(180deg);
+			}
+
+			.left{
+				transform: rotate(0deg);
+			}	
+
+			.down{
+				transform: rotate(270deg);
+			}	
+
+			.up{
+				transform: rotate(90deg);
+			}
+			
+			.moveblock{
+
+			}
+			
+			.block1{
+			}
+
+			.hero_right{
+				background: url(assets/img/left1.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+				    transform: scaleX(-1);
+
+			}
+
+			.hero_left{
+				background: url(assets/img/left1.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+			}	
+
+			.hero_down{
+				background: url(assets/img/down1.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+			}	
+
+			.hero_up{
+				background: url(assets/img/up1.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+			}				
+
+			.btn:hover{
+				cursor:pointer;
+			}
+			
+			.state1{
+				background:url('assets/img/state1.png')  rgb(200,200,200); 
+				background-size:cover;
+			}
+			
+			.state2{
+				background:url('assets/img/state2.png')  rgb(200,200,200); 
+				background-size:cover;
+			}
+			
+			.state3{
+				background:url('assets/img/state3.png')  rgb(200,200,200); 
+				background-size:cover;
+			}
+			
+			.state4{
+				background:url('assets/img/state4.png')  rgb(200,200,200); 
+				background-size:cover;
+			}
+		  </style>
+	</head>
+	
+	<body id="bodygame" scroll="no" style="  overflow: hidden; width:100%;">
+
+
+		<img id="cloud" style="z-index:100;position:absolute;left:42.5vw;top:10vw;width:15vw;height:auto;" src="assets/img/bourrasque.png">
+		<img id="truck" style="z-index:100;position:absolute;left:42.5vw;top:75vw;width:15vw;height:auto;" src="assets/img/truck.png">
+
+		<div id="wind_wrap">
+			<div id="wind" style="z-index:100;position:absolute;width:10vw;height:50vw;top:25vw;left:45vw;background:url('assets/img/wind1.png');background-size:contain;">	
+			</div>
+			<div id="wind2" style="z-index:100;position:absolute;width:10vw;height:50vw;top:25vw;left:45vw;background:url('assets/img/wind2.png');background-size:contain;">	
+			</div>
+		</div>
+		
+		<div style="z-index:10;position:absolute;left:5vw;top:80vw;width:90.2vw;height:8vw;background-color:rgb(130,130,130)" ></div>
+
+		
+		<script>
+			var posw = true;
+			setInterval(function() {
+				
+				if(posw){
+					posw = false;
+					$("#wind2").show()
+					$("#wind").hide()
+				}
+				else{
+					posw = true;
+					$("#wind").show()
+					$("#wind2").hide()
+				}
+				
+			},200);
+		</script>
+	
+		<div id="princ_container" style="width:100%;height: 100%;">
+			
+			<div style="width:90vw;top:5vw;left:5vw;height:height:90vw;background-color:rgb(200,200,200);"></div>
+			
+			
+			<div id="scene" class="state1" style="position:absolute;width:90.2vw;height:15vw;top:95vw;left:5vw;">
+			
+
+			
+			<div id="tile_0_0" class="tile road x_0 y_0"></div>
+			<div id="tile_0_1" class="tile road x_0 y_1"></div>
+			<div id="tile_0_2" class="tile road x_0 y_2"></div>
+			<div id="tile_0_3" class="tile road x_0 y_3"></div>
+			<div id="tile_0_4" class="tile road x_0 y_4"></div>
+			<div id="tile_0_5" class="tile road x_0 y_5"></div>
+			<div id="tile_0_6" class="tile road x_0 y_6"></div>
+			<div id="tile_0_7" class="tile road x_0 y_7"></div>
+			<div id="tile_0_8" class="tile road x_0 y_8"></div>
+			<div id="tile_0_9" class="tile road x_0 y_9"></div>
+			<div id="tile_1_0" class="tile road x_1 y_0"></div>
+			<div id="tile_1_1" class="tile road x_1 y_1"></div>
+			<div id="tile_1_2" class="tile road x_1 y_2"></div>
+			<div id="tile_1_3" class="tile road x_1 y_3"></div>
+			<div id="tile_1_4" class="tile road x_1 y_4"></div>
+			<div id="tile_1_5" class="tile road x_1 y_5"></div>
+			<div id="tile_1_6" class="tile road x_1 y_6"></div>
+			<div id="tile_1_7" class="tile road x_1 y_7"></div>
+			<div id="tile_1_8" class="tile road x_1 y_8"></div>
+			<div id="tile_1_9" class="tile road x_1 y_9"></div>
+			<div id="tile_2_0" class="tile road x_2 y_0"></div>
+			<div id="tile_2_1" class="tile road x_2 y_1"></div>
+			<div id="tile_2_2" class="tile road x_2 y_2"></div>
+			<div id="tile_2_3" class="tile road x_2 y_3"></div>
+			<div id="tile_2_4" class="tile road x_2 y_4"></div>
+			<div id="tile_2_5" class="tile road x_2 y_5"></div>
+			<div id="tile_2_6" class="tile road x_2 y_6"></div>
+			<div id="tile_2_7" class="tile road x_2 y_7"></div>
+			<div id="tile_2_8" class="tile road x_2 y_8"></div>
+			<div id="tile_2_9" class="tile road x_2 y_9"></div>
+			<div id="tile_3_0" class="tile road x_3 y_0"></div>
+			<div id="tile_3_1" class="tile road x_3 y_1"></div>
+			<div id="tile_3_2" class="tile road x_3 y_2"></div>
+			<div id="tile_3_3" class="tile road x_3 y_3"></div>
+			<div id="tile_3_4" class="tile road x_3 y_4"></div>
+			<div id="tile_3_5" class="tile road x_3 y_5"></div>
+			<div id="tile_3_6" class="tile road x_3 y_6"></div>
+			<div id="tile_3_7" class="tile road x_3 y_7"></div>
+			<div id="tile_3_8" class="tile road x_3 y_8"></div>
+			<div id="tile_3_9" class="tile road x_3 y_9"></div>
+			<div id="tile_4_0" class="tile road x_4 y_0"></div>
+			<div id="tile_4_1" class="tile road x_4 y_1"></div>
+			<div id="tile_4_2" class="tile road x_4 y_2"></div>
+			<div id="tile_4_3" class="tile road x_4 y_3"></div>
+			<div id="tile_4_4" class="tile road x_4 y_4"></div>
+			<div id="tile_4_5" class="tile road x_4 y_5"></div>
+			<div id="tile_4_6" class="tile road x_4 y_6"></div>
+			<div id="tile_4_7" class="tile road x_4 y_7"></div>
+			<div id="tile_4_8" class="tile road x_4 y_8"></div>
+			<div id="tile_4_9" class="tile road x_4 y_9"></div>
+			<div id="tile_5_0" class="tile road x_5 y_0"></div>
+			<div id="tile_5_1" class="tile road x_5 y_1"></div>
+			<div id="tile_5_2" class="tile road x_5 y_2"></div>
+			<div id="tile_5_3" class="tile road x_5 y_3"></div>
+			<div id="tile_5_4" class="tile road x_5 y_4"></div>
+			<div id="tile_5_5" class="tile road x_5 y_5"></div>
+			<div id="tile_5_6" class="tile road x_5 y_6"></div>
+			<div id="tile_5_7" class="tile road x_5 y_7"></div>
+			<div id="tile_5_8" class="tile road x_5 y_8"></div>
+			<div id="tile_5_9" class="tile road x_5 y_9"></div>
+			<div id="tile_6_0" class="tile road x_6 y_0"></div>
+			<div id="tile_6_1" class="tile road x_6 y_1"></div>
+			<div id="tile_6_2" class="tile road x_6 y_2"></div>
+			<div id="tile_6_3" class="tile road x_6 y_3"></div>
+			<div id="tile_6_4" class="tile road x_6 y_4"></div>
+			<div id="tile_6_5" class="tile road x_6 y_5"></div>
+			<div id="tile_6_6" class="tile road x_6 y_6"></div>
+			<div id="tile_6_7" class="tile road x_6 y_7"></div>
+			<div id="tile_6_8" class="tile road x_6 y_8"></div>
+			<div id="tile_6_9" class="tile road x_6 y_9"></div>
+			<div id="tile_7_0" class="tile road x_7 y_0"></div>
+			<div id="tile_7_1" class="tile road x_7 y_1"></div>
+			<div id="tile_7_2" class="tile road x_7 y_2"></div>
+			<div id="tile_7_3" class="tile road x_7 y_3"></div>
+			<div id="tile_7_4" class="tile road x_7 y_4"></div>
+			<div id="tile_7_5" class="tile road x_7 y_5"></div>
+			<div id="tile_7_6" class="tile road x_7 y_6"></div>
+			<div id="tile_7_7" class="tile road x_7 y_7"></div>
+			<div id="tile_7_8" class="tile road x_7 y_8"></div>
+			<div id="tile_7_9" class="tile road x_7 y_9"></div>
+			<div id="tile_8_0" class="tile road x_8 y_0"></div>
+			<div id="tile_8_1" class="tile road x_8 y_1"></div>
+			<div id="tile_8_2" class="tile road x_8 y_2"></div>
+			<div id="tile_8_3" class="tile road x_8 y_3"></div>
+			<div id="tile_8_4" class="tile road x_8 y_4"></div>
+			<div id="tile_8_5" class="tile road x_8 y_5"></div>
+			<div id="tile_8_6" class="tile road x_8 y_6"></div>
+			<div id="tile_8_7" class="tile road x_8 y_7"></div>
+			<div id="tile_8_8" class="tile road x_8 y_8"></div>
+			<div id="tile_8_9" class="tile road x_8 y_9"></div>
+			<div id="tile_9_0" class="tile road x_9 y_0"></div>
+			<div id="tile_9_1" class="tile road x_9 y_1"></div>
+			<div id="tile_9_2" class="tile road x_9 y_2"></div>
+			<div id="tile_9_3" class="tile road x_9 y_3"></div>
+			<div id="tile_9_4" class="tile road x_9 y_4"></div>
+			<div id="tile_9_5" class="tile road x_9 y_5"></div>
+			<div id="tile_9_6" class="tile road x_9 y_6"></div>
+			<div id="tile_9_7" class="tile road x_9 y_7"></div>
+			<div id="tile_9_8" class="tile road x_9 y_8"></div>
+			<div id="tile_9_9" class="tile road x_9 y_9"></div>
+
+			
+			<div onclick="location.reload();" class="btn" style="position:fixed;top:135vw;left:5vw;font-size:2vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>RECOMMENCER</b></div>
+
+			<div style="position:fixed;top:98.25vh;font-size:1.5vh;width:100%;text-align: center;color:rgb(240,240,240)">Sur un ordinateur, vous pouvez jouer avec les flèches du clavier.</div>
+			
+		</div>
+
+		<div id="final_container" style="position:absolute;left:0;top:0;width:100%;height:100%;background-color:rgb(240,240,240);z-index:999;display:none;">
+			
+			 <div style="position:absolute;top:5vh;left:5vw;width:80vw;text-align:left;height:auto;color:black;font-size:3.2vh;font-family: Arial, Helvetica, sans-serif;">
+				Je ne suis pas fier de toi. Les usines de mes amis ont manqué d'électricité pendant <b><span style="color:red;" id="nb_seconds"></span></b> secondes. J'espère que tu feras mieux la prochaine fois.
+			</div>
+
+			<img src="assets/img/fitz2.png" style="position:fixed;top:50vh;left:-5vw;height:50vh;width:130vw;">
+
+			<div id="recommencer" style="display:none;" >
+				<div  onclick="location.reload();" class="vehicule" style="background-color:#eef52a;top:30vh;left:5vw;padding:5px;position:absolute;height:5vh;font-size:5vh;color:black;border: solid 1px black;font-family: Arial, Helvetica, sans-serif;" ><b>RECOMMENCER</b></div>
+				<div  onclick="window.open('https://tripli.ca/3elien/', '_blank').focus();" class="vehicule" style="background-color:#eef52a;top:37vh;left:5vw;padding:5px;position:absolute;height:3vh;font-size:3vh;color:black;border: solid 1px black;" ><b>Jouez à 3e lien, LE jeu</b></div>
+				<div  onclick="window.open('https://tripli.ca/martine/', '_blank').focus();" class="vehicule" style="background-color:#eef52a;top:42vh;left:5vw;padding:5px;position:absolute;height:3vh;font-size:3vh;color:black;border: solid 1px black;" ><b>Jouez à Martine dans le traffic</b></div>
+				<img class="logo" src="assets/img/avtlogo.PNG" onclick="window.open('https://tripli.ca/avt/', '_blank').focus();" style="position:absolute;top:50vh;height:5vh;left:80vw;width:auto;">
+			</div>
+			
+		</div>
+		
+		<div>
+			
+			<div id="arrow_menu">
+				<div id="left_div"><div style="position:fixed;top:148vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow right" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div></div>
+				<div id="right_div"><div style="position:fixed;top:148vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow left" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div></div>
+				<div style="position:fixed;top:123vw;left:37.5vw;width:25vw;height:25vw;display:none;"  class="arrow talk" onclick="direction='talk'"  ></div>
+				<div style="position:fixed;top:123vw;left:37.5vw;width:25vw;height:25vw;display:none;"  class="arrow fire" onclick="direction='talk'"  ></div>
+
+			</div>
+
+			<img src="assets/img/eclair.png" style="width:100vw;height:95vw;display:none;position:fixed;left:0;top:0;z-index:500;" id="explosion">
+			
+			<div style="position:fixed;top:110vw;left:5vw;width:90vw;color:rgb(230,230,230);font-size:3vh;">
+				<p  id="green_trigger"></p>
+				<p style="display:none;" id="success_trigger"></p>
+				<div id="next_level" onclick="next_level()" class="btn" style="position:fixed;top:160vw;left:5vw;font-size:3.5vh;background-color:yellow;color:black;padding-left:1vw;padding-right:1vw;display:none;"><b>ALLER À LA ZONE SUIVANTE</b></div>
+
+			</div>
+		
+			<div id="dialogs_wrapper">
+				<div id="dialogs" style="position:fixed;top:110vw;left:5vw;width:90vw;color:rgb(230,230,230);font-size:2.3vh;display:none;">
+					<p id="dialog_name">:</p>
+					<p id="dialog_text"></p>
+					<div id="suite_d"><div style="position:fixed;top:148vw;left:68vw;width:25vw;height:25vw;" class="arrow suite" disabled="disabled" onclick="direction='talk'"  ></div></div>
+				</div>
+			</div>
+		
+		</div>
+
+
+	</body>
+	
+	<script>
+
+	function getRandomInt(max) {
+	  return Math.floor(Math.random() * max);
+	}
+
+	function unpress(pb){
+		rnd = getRandomInt(9999999999);
+		direction = "no";
+		if(pb.localeCompare("up")==0){
+			$("#up_div").html(`<div style="position:fixed;top:98vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow down r`+rnd+`" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="unpress('up');" ontouchend="unpress('up')" ></div>`);
+		}
+		if(pb.localeCompare("down")==0){
+			$("#down_div").html(`<div style="position:fixed;top:148vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow up r`+rnd+`" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="unpress('down');" ontouchend="unpress('down')"  ></div>`);
+		}
+		if(pb.localeCompare("left")==0){
+			$("#left_div").html(`<div style="position:fixed;top:148vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow right r`+rnd+`" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div>`);
+		}
+		if(pb.localeCompare("right")==0){
+			$("#right_div").html(`<div style="position:fixed;top:148vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow left r`+rnd+`" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div>`);
+		}
+
+	}
+
+
+
+	const queryString = window.location;
+	console.log(queryString.search)
+	params = queryString.search.replace("?level=","")
+	params = parseInt(params)
+	console.log(params)
+
+
+	var hero_x = null;
+	var hero_y = null;
+
+	var sprites = [];
+	
+	
+
+	$.getScript( "level"+params+".js", function(  ) {
+
+		for (i=0;i<water_tiles.length;i++){
+			$('#tile_'+water_tiles[i][0]+'_'+water_tiles[i][1]).addClass("water");
+			$('#tile_'+water_tiles[i][0]+'_'+water_tiles[i][1]).css("background-image", "url('assets/img/water.png')");
+		}
+
+		sprites = sprites_l;
+		for (i=0;i<sprites.length;i++){
+			$('#tile_'+sprites[i][0]+'_'+sprites[i][1]).addClass("block1");
+			$('#tile_'+sprites[i][0]+'_'+sprites[i][1]).css("background-image", "url('assets/img/"+sprites[i][2]+"')");
+		}
+		
+		$("#success_trigger").html(succes_sentence);
+
+		for (i=0;i<ot_cars.length;i++){
+			html = `<div id="car_${i}" class="x_${ot_cars[i][0]} y_${ot_cars[i][1]} hero ${ot_cars[i][2]}"></div>`;
+			console.log(html)
+			if(ot_cars[i].length == 5){
+				$("#other_cars").append( `<div id="car_${i}" class="tile x_${ot_cars[i][0]} y_${ot_cars[i][1]} car_${ot_cars[i][3]} ${ot_cars[i][2]}"></div>` )
+			}
+			else if(ot_cars[i].length == 7){
+				$("#other_cars").append( `<div id="car_${i}" class="tile x_${ot_cars[i][0]} y_${ot_cars[i][1]} car_${ot_cars[i][3]} ${ot_cars[i][2]} ${ot_cars[i][5]} ${ot_cars[i][6]} moveblock"></div>` )
+			}
+			
+		}
+		nb_cars = ot_cars.length
+		
+		$("#hero").addClass("x_"+pos_begginning[0]);
+		$("#hero").addClass("y_"+pos_begginning[1]);
+		
+		for(i=0;i<tiles.length;i++){
+			$("#tile_"+tiles[i][1]+"_"+tiles[i][2]).removeClass("road");
+			$("#tile_"+tiles[i][1]+"_"+tiles[i][2]).addClass(tiles[i][0]);
+			if(tiles[i][0]=="oneway"){
+				$("#tile_"+tiles[i][1]+"_"+tiles[i][2]).addClass(tiles[i][3]);
+			}
+		}
+		
+		$("#tile_"+finished[0]+"_"+finished[1]).addClass("finished");
+	
+		
+		 hero_x = pos_begginning[0];
+		 hero_y = pos_begginning[1];
+		
+
+		$("#hero").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+
+		// Block appearance change
+		for (i=0;i<change_tile.length;i++){
+			$('#tile_'+change_tile[i][0]+'_'+change_tile[i][1]).css("background-image", "url('assets/img/"+change_tile[i][2]+"')");
+		}
+
+		// Trees
+		trees = trees_l;
+		nb_fire = nb_fire_l;
+		for (i=0;i<trees.length;i++){
+			$("#tile_"+trees[i][0]+"_"+trees[i][1]).removeClass("road");
+			$("#tile_"+trees[i][0]+"_"+trees[i][1]).addClass("block");
+			$("#tile_"+trees[i][0]+"_"+trees[i][1]).css("background-image", "url('assets/img/tree.png')");
+		}
+		
+		
+
+	});
+	
+	
+
+
+	
+	var can_move = true;
+	var direction = "no";
+	
+	$( "body" ).keydown(function( event ) {
+		if ( event.which == 37 ) {
+			direction="left";
+		}
+		else if ( event.which == 38 ) {
+			direction="up";
+		}
+		else if ( event.which == 40 ) {
+			direction="down";
+		}
+		else if ( event.which == 39 ) {
+			direction="right";
+		}
+		else if ( event.which == 32 ) {
+			direction="talk";
+		}
+
+	});
+			
+	document.addEventListener('keyup', function() {
+		direction="no"
+	});
+	
+	var reserve = "no";
+	function pressbutton(pb){
+		if(direction.localeCompare("no") == 0){
+			reserve = pb
+			direction = pb;
+		}
+	}
+	
+	var stun = new Audio('assets/sounds/explosion.wav');
+	var electricity = new Audio('assets/sounds/electricity.wav');
+	
+	function getRndInteger(min, max) {
+	  return Math.floor(Math.random() * (max - min) ) + min;
+	}
+	
+	var truck_pos = 0
+	var cloud_pos = 0
+	var total_count = 0
+	var touch_cloud = 0
+	
+	var in_wind = true;
+	var in_pause = 100;
+	var in_move = 0;
+	var current_state = 0;
+	var wind_mul = 1
+	
+	
+	var wind_direction = Math.random();
+	if(wind_direction < 0.5){
+		wind_direction = -1;
+	}
+	else{
+		wind_direction = 1;
+	}
+	
+	
+	function change_wind_direction(delta_x,delta_y,car=-1){
+		
+		cloud_pos = cloud_pos + delta_y*wind_mul;
+		if(cloud_pos < -180){
+			cloud_pos = -180;
+			wind_direction = wind_direction*-1
+		}
+		if(cloud_pos > 180){
+			cloud_pos = 180;
+			wind_direction = wind_direction*-1
+		}
+		
+		$("#cloud").css("left",(42.5+cloud_pos*.2)+"vw")
+		$("#wind").css("left",(45+cloud_pos*.2)+"vw")
+		$("#wind2").css("left",(45+cloud_pos*.2)+"vw")
+		
+		if(delta_y<0){
+			$("#cloud").addClass("flipped");
+		}
+		else if(delta_y>0){
+			$("#cloud").removeClass("flipped");
+		}
+		
+		setTimeout(function() {
+			if(in_pause>0){
+				in_pause = in_pause - 1;
+				in_wind = true;
+				change_wind_direction(0,0);
+			}
+			else if(in_move > 0){
+				in_move = in_move - 1;
+				change_wind_direction(0,wind_direction);
+			}
+			else if(current_state == 0){
+				wind_direction = wind_direction*-1;
+				in_move = Math.floor( Math.random()*150 );
+				in_wind = false;
+				current_state = 1;
+				change_wind_direction(0,wind_direction);
+			}
+			else if(current_state == 1){
+				in_pause = 100 + Math.floor( Math.random()*100 );
+				in_wind = true;
+				current_state = 0;
+				change_wind_direction(0,0);
+			}
+		},10);
+		
+			
+		
+		if(in_wind){
+			if(Math.abs(truck_pos - cloud_pos)>30){
+				$("#wind").css("height","85vw")
+				$("#wind2").css("height","85vw")
+				touch_cloud = touch_cloud + 1
+			}
+			else{
+				$("#wind").css("height","50vw")
+				$("#wind2").css("height","50vw")
+			}
+		
+			if(touch_cloud == 900){
+				$("#scene").removeClass("state3")
+				$("#scene").addClass("state4")
+				can_move = false
+				final_score = Math.floor( total_count/100 );
+				$("#green_trigger").html("Bravo! Grâce à vous, le réseau est resté "+final_score+" secondes sans panne.")
+				$("#scene").effect("pulsate", { times:10 }, 500);
+				stun.pause();
+				stun.currentTime = 0;
+				stun.play();
+			}
+			if(touch_cloud == 600){
+				$("#scene").removeClass("state2")
+				$("#scene").addClass("state3")
+				electricity.pause();
+				electricity.currentTime = 0;
+				electricity.play();
+			}
+			if(touch_cloud == 300){
+				$("#scene").removeClass("state1")
+				$("#scene").addClass("state2")
+				electricity.pause();
+				electricity.currentTime = 0;
+				electricity.play();
+			}
+		}
+
+		
+		if(in_wind){
+			$("#wind_wrap").show();
+		}
+		else{
+			$("#wind_wrap").hide();
+		}
+		
+		total_count = total_count + 1
+		
+		if(total_count == 1000){
+			wind_mul = 1.5;
+		}
+		if(total_count == 3000){
+			wind_mul = 2.25;
+		}
+		if(total_count == 5000){
+			wind_mul = 3;
+		}
+		if(total_count == 7000){
+			wind_mul = 3.75;
+		}
+		
+	}
+	change_wind_direction(0,0);
+	
+	
+	function change_direction(delta_x,delta_y,car=-1){
+		
+		truck_pos = truck_pos + delta_y;
+		if(truck_pos < -180){
+			truck_pos = 180;
+		}
+		if(truck_pos > 180){
+			truck_pos = 180;
+		}
+		
+		console.log(truck_pos);
+		$("#truck").css("left",(42.5+truck_pos*.2)+"vw")
+		
+		if(delta_y<0){
+			$("#truck").addClass("flipped");
+		}
+		else if(delta_y>0){
+			$("#truck").removeClass("flipped");
+		}
+		
+		
+		
+	}
+
+
+
+
+	
+	function interdef() {
+
+
+		if (reserve.localeCompare("no")!=0 ){
+			direction_ori = direction;
+			direction = reserve;
+		}
+		
+
+		if(can_move){
+		
+			if(direction.localeCompare("right") == 0){
+				$("#hero").removeClass("hero_left");
+				$("#hero").removeClass("hero_up");
+				$("#hero").removeClass("hero_down");
+				$("#hero").addClass("hero_right");
+				can_move = true;
+				change_direction(0,1);
+				diff_y = 1;
+				diff_x = 0;
+			}
+			
+			if(direction.localeCompare("left") == 0){
+				$("#hero").removeClass("hero_right");
+				$("#hero").removeClass("hero_up");
+				$("#hero").removeClass("hero_down");
+				$("#hero").addClass("hero_left");
+				can_move = true;
+				change_direction(0,-1);
+				diff_y = -1;
+				diff_x = 0;
+			}
+			
+			if(direction.localeCompare("up") == 0){
+				$("#hero").removeClass("hero_left");
+				$("#hero").removeClass("hero_up");
+				$("#hero").removeClass("hero_down");
+				$("#hero").addClass("hero_up");
+				can_move = true;
+				change_direction(-1,0);
+				diff_y = 0;
+				diff_x = -1;
+			}
+			
+			if(direction.localeCompare("down") == 0){
+				$("#hero").removeClass("hero_left");
+				$("#hero").removeClass("hero_up");
+				$("#hero").removeClass("hero_right");
+				$("#hero").addClass("hero_down");
+				can_move = true;
+				change_direction(+1,0);
+				diff_y = 0;
+				diff_x = 1;
+			}
+			
+		
+
+		}
+
+		if (reserve.localeCompare("no")!=0 ){
+			direction = direction_ori;
+			reserve = "no";
+		}
+		
+		if (direction.localeCompare("talk")==0 ){
+			direction = "no"
+		}
+		
+		
+		
+		setTimeout(function() {
+			interdef();
+		},10);
+		
+	}
+	interdef();
+	
+	
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+		console.log("MOBILE")
+	}else{
+		console.log("DESKTOP")
+		document.addEventListener('contextmenu', event => {
+			event.preventDefault();
+			//event.stopPropagation();
+		});
+	}
+	
+	//document.querySelector(".arrow").addEventListener("touchstart", (e) =>
+	//{
+	//	e.preventDefault();
+	//	e.stopPropagation();
+	//});
+	
+	//document.querySelector(".arrow").addEventListener("touchend", (e) =>
+	//{
+	//	e.preventDefault();
+	//	e.stopPropagation();
+	//});
+	
+	var audio = new Audio('assets/sounds/a.wav');
+
+	</script>
+
+</html>
