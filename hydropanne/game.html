@@ -893,9 +893,8 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				}
 				
 				in_move = Math.floor( Math.random()*m );
-				if(total_count<6000){
-					in_wind = false;
-				}
+				in_wind = false;
+				
 				current_state = 1;
 				change_wind_direction(0,wind_direction);
 			}
@@ -982,6 +981,12 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		}
 		if(total_count == 11000){
 			wind_mul = 5.25;
+		}
+		if(total_count == 13000){
+			wind_mul = 6;
+		}
+		if(total_count == 15000){
+			wind_mul = 6.75;
 		}
 		
 	}
