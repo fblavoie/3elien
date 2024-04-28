@@ -1,0 +1,215 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  <link rel="preconnect" href="https://fonts.googleapis.com">
+		  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+		  
+		  <style>
+		  
+			body{
+				background: url("assets/img/decor.png");
+				background-repeat: no-repeat;
+				background-size: 100vw 100vh;
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+			div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+			img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			
+			.interruption{
+				filter: brightness(50%);
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+			
+
+		  
+		  </style>
+	</head>
+	
+	<body id="bodygame" scroll="no" style="  overflow: hidden; width:100%;">
+	
+		<div id="beginning" style="position:absolute;top:0;left:0;z-index:999;width:100%;height: 100%;background:rgb(230,230,230);text-align:center;font-size:20vh;padding-top:30vh;">
+			3
+		</div>
+		
+		
+	
+		<div id="princ_container" style="position:absolute;top:0;left:0;width:100%;height: 100%;">
+
+			<img src="assets/img/avtlogo.PNG" style="position:absolute;top:93vh;height:5vh;left:80vw;width:auto;">
+
+			<div id="tous_les_panneaux"></div>
+			
+			<div style="position:absolute;top:93vh;left:2vw;font-size:2.5vh;width:80vw;" >
+				Appuyez sur les <b><span id="remaining">5</span></b> panneaux associés au transport en commun.
+			</div>
+			
+				
+			
+			<script>
+				function getRandomInt(min, max) {
+					min = Math.ceil(min);
+					max = Math.floor(max);
+					return Math.floor(Math.random() * (max - min + 1)) + min;
+				}
+			
+				// Tous les panneaux
+				for (j=0;j<13;j++){
+					for(i=0;i<8;i++){
+						pnumber = getRandomInt(1, 36);
+						$("#tous_les_panneaux").append( "<div  class='wrong vehicule' id='p_"+j+"_"+i+"' style='height:12.5vw;width:12.5vw;position:absolute;top:"+(j*12.5)+"vw;left:" + (i*12.5) + "vw'><img onclick='c("+j+","+i+","+pnumber+")' src='assets/img/no/"+pnumber+".png' style='width:100%;height:100%'></div>" )
+					}
+				}
+				
+				
+				for (k=0;k<5;k++){
+					t = true;
+					while (t){
+						j = getRandomInt(0, 12);
+						i = getRandomInt(0, 7);
+						if($("#p_"+j+"_"+i).hasClass("wrong")){
+							$("#p_"+j+"_"+i).removeClass("wrong");4
+							$("#p_"+j+"_"+i).addClass("right");
+							pnumber = getRandomInt(1, 11);
+							$("#p_"+j+"_"+i).html("<img onclick='c("+j+","+i+","+pnumber+")' src='assets/img/yes/"+pnumber+".png' style='width:100%;height:100%'>");
+							t = false;
+						}
+					}
+				}
+				
+				function c(j,i,pnumber){
+					div = $("#p_"+j+"_"+i);
+					
+					if(div.hasClass("wrong")){
+						$("#end_image").html("<img style='width:100%;height:100%' src='assets/img/no/"+pnumber+".png'>");
+						$("#end_text").html("Cr*** d'incompétent! Cr*** de péquiste! Tu vois bien que ce panneau n'est aucunement lié au transport en commun.")
+						$("#final_container").show();
+						wrong.pause();
+						wrong.currentTime = 0;
+						wrong.play();
+					}
+					
+					if(div.hasClass("right")){
+						success.pause();
+						success.currentTime = 0;
+						success.play();
+						found = found+1
+						div.removeClass("right");
+						div.html("<img  src='assets/img/nobus2.png' style='width:100%;height:100%'>");
+						$("#remaining").html(5-found);
+						if(found >= 5){
+							started = false;
+							$("#nb_seconds").html(Math.ceil(temps_ecoule/1000));
+							$("#final_container").show();
+						}
+					}
+				}
+				
+
+			</script>
+			
+		</div>
+
+		<div id="final_container" style="position:absolute;left:0;top:0;width:100%;height:100%;background-color:rgb(240,240,240);z-index:999;display:none;">
+			
+			 <div id="end_image" style="position:absolute;top:15vh;left:40vw;width:20vw;height:20vw;text-align:left;height:auto;color:black;font-size:3.2vh;font-family: Arial, Helvetica, sans-serif;">
+				<img style="width:100%;height:100%" src="assets/img/nobus2.png">
+			 </div>
+			
+			 <div id="end_text" style="position:absolute;top:30vh;left:5vw;width:90vw;text-align:left;height:auto;color:black;font-size:3.2vh;font-family: Arial, Helvetica, sans-serif;text-align:center;">
+				Tu aurais pu faire mieux. Remplacer les 5 panneaux de transport en commun t'a pris beaucoup de temps, soit exactement <b><span style="color:red;" id="nb_seconds"></span></b> secondes. J'espère que tu feras mieux la prochaine fois.
+			</div>
+
+			<img src="assets/img/genevieve1.png" style="position:fixed;top:60vh;left:0vw;height:auto;width:100vw;">
+
+			<div  onclick="location.reload();" class="vehicule" style="background-color:#eef52a;top:0vh;left:0vw;padding:5px;position:absolute;width:100%;height:5vh;font-size:5vh;color:black;border: solid 1px black;font-family: Arial, Helvetica, sans-serif;text-align:center;" ><b>RECOMMENCER</b></div>
+
+
+
+		</div>
+
+
+	</body>
+	
+	<script>
+	
+		var score = 0;
+		
+		var trumpet = new Audio('assets/sounds/trumpet.wav');
+		var success = new Audio('assets/sounds/success2.mp3');
+		var wrong = new Audio('assets/sounds/wrong.wav');
+
+
+
+
+
+
+		var beginning = 3000;
+		var temps_ecoule = 0;
+		var started = false;
+		var found = 0;
+		
+		setInterval(function () {
+		
+			if(beginning>0){
+				beginning = beginning -20
+				$("#beginning").html(Math.ceil(beginning/1000));
+			}
+			else if(beginning == 0){
+				beginning = beginning - 20;
+				$("#beginning").hide();
+				started = true;
+				trumpet.pause();
+				trumpet.currentTime = 0;
+				trumpet.play();
+			}
+			else if(started){
+				temps_ecoule = temps_ecoule+20;
+			}
+			
+			
+		}, 20);
+
+
+
+	</script>
+
+</html>
