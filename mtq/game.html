@@ -128,11 +128,21 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 					}
 					
 					if(div.hasClass("right")){
-						success.pause();
-						success.currentTime = 0;
-						success.play();
+					
 						found = found+1
 						div.removeClass("right");
+						
+						if(found < 5){
+							success.pause();
+							success.currentTime = 0;
+							success.play();
+						}
+						else{
+							endings.pause();
+							endings.currentTime = 0;
+							endings.play();
+						}
+						
 						div.html("<img  src='assets/img/nobus2.png' style='width:100%;height:100%'>");
 						$("#remaining").html(5-found);
 						if(found==4){
@@ -179,6 +189,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		var trumpet = new Audio('assets/sounds/trumpet.wav');
 		var success = new Audio('assets/sounds/success2.mp3');
 		var wrong = new Audio('assets/sounds/wrong.wav');
+		var endings = new Audio('assets/sounds/ending.mp3');
 
 
 
