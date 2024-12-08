@@ -554,9 +554,11 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 
 		if(truck_pos<0){
 			truck_pos = 0
+			navigator.vibrate(100); 
 		}
 		else if(truck_pos>4){
 			truck_pos = 4
+			navigator.vibrate(100); 
 		}
 		$("#truck").css("top",(10+truck_pos*7.5)+"vh")
 
