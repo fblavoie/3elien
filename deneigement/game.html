@@ -365,6 +365,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 
 		<div id="all_obstacles">
 			<img id="o2394934" left="80" t="0" class="obstacle h_2" src="assets/img/lights.png" style="left:80vw;" points="1s">
+			<div id="o2394934_pt"  class="h_2" style="left:18.5vw;font-size:3vh;color:black;display:none;z-index:900;position:absolute;">+1</div>
 		</div>
 
 		<div style="position:absolute;top:57vh;left:4vw;font-size:5vh;z-index:500;color:rgb(230,230,230)">Points: <span id="total_points">0</span>
@@ -635,6 +636,11 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			if( elementsOverlap(document.getElementById("truck"), document.getElementById(this.id)) && (t==0) ){
 				$("#"+this.id).attr("t","1")
 				console.log("COLLISION")
+				
+				$("#"+this.id+"_pt").show()
+				$("#"+this.id+"_pt").fadeOut(2000)
+
+				
 				collision_anim(this.id)
 				$("#"+this.id).animate({"top":"+40vh"},2500,"linear")
 
@@ -664,6 +670,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 
 			if(left_pos<-25){
 				$("#"+this.id).remove()
+				$("#"+this.id+"_pt").remove()
 			}
 
 
@@ -684,8 +691,20 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				last_pos[sel_pos]=25
 				new_id = getRandomInt(1000000000)
 				element_nb = getRandomInt(13)
+				
+				if(elements_library[element_nb][0]>0){
+					pt_text  = "+"+elements_library[element_nb][0]
+				}
+				else if(elements_library[element_nb][0]<0){
+					pt_text  = ""+elements_library[element_nb][0]
+				}
+				else{
+					pt_text = ""
+				}
 
 				$("#all_obstacles").append('<img id="o'+new_id+'" points="'+elements_library[element_nb][0]+'" left="100" t="0" class="obstacle h_'+sel_pos+'" src="assets/img/'+elements_library[element_nb][1]+'" style="left:100vw;">')
+				$("#all_obstacles").append('<div id="o'+new_id+'_pt"  class=" h_'+sel_pos+'" style="left:18.5vw;font-size:3vh;color:black;display:none;z-index:900;position:absolute;">'+pt_text+'</div>')
+
 			}
 		}
 		console.log(last_pos)
@@ -714,7 +733,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		if(truck_speed<10){
 			truck_speed = truck_speed+.5
 		}
-	}, 7500);
+	}, 10000);
 
 	var tv = 1
 	setInterval(function () {
