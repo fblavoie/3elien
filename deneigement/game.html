@@ -378,7 +378,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			<div style="width:90vw;top:5vw;left:5vw;height:height:90vw;background-color:rgb(200,200,200);"></div>			
 
 			
-			<div class="end_game" onclick="location.reload();" class="btn" style="display:none;position:fixed;top:145vw;left:4vw;font-size:5vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>RECOMMENCER</b></div>
+			<div class="end_game2" onclick="location.reload();" class="btn" style="display:none;position:fixed;top:145vw;left:4vw;font-size:5vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>RECOMMENCER</b></div>
 
 			<div style="position:absolute;left:0;top:98.25vh;font-size:1.5vh;width:100vw;text-align: center;color:rgb(240,240,240)">Sur un ordinateur, vous pouvez jouer avec les flèches du clavier.</div>
 			
@@ -722,6 +722,11 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			police.pause();
 			police.currentTime = 0;
 			police.play();
+			
+			const myTimeout = setTimeout(function(){
+				$(".end_game2").show();
+			}, 2000);
+
 		}
 		
 	}
