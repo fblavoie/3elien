@@ -1,0 +1,761 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  <link rel="preconnect" href="https://fonts.googleapis.com">
+		  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+		  
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+		  
+		  <style>
+		  
+			body{
+				background-color:black;
+				font-family: 'Arial';
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+
+			}
+			
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+			div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+			img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+				pointer-events: none; 
+			}
+			
+			.window{
+				background: rgb(2,0,36);
+				background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(39,39,42,1) 35%, rgba(49,64,68,1) 100%);
+			}
+			
+			.window:hover{
+				cursor:pointer;
+			}
+			
+			.open_window{
+				background: rgb(246,255,15);
+				background: linear-gradient(180deg, rgba(246,255,15,1) 0%, rgba(160,173,23,1) 35%, rgba(98,99,57,1) 100%);
+
+			}
+
+			.flipped {
+				-moz-transform: scaleX(-1);
+				-o-transform: scaleX(-1);
+				-webkit-transform: scaleX(-1);
+				transform: scaleX(-1);
+				filter: FlipH;
+				-ms-filter: "FlipH";
+			}
+			
+			.interruption{
+				filter: brightness(50%);
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+			
+			.tile{
+				width:9.2vw;
+				height:9.2vw;
+				position:fixed;
+			}
+
+			.big{
+				width:18.4vw;
+				height:18.4vw;
+				position:fixed;
+				z-index:99;
+				margin-top:-0.2vw;
+				margin-left:-0.2vw;
+			}
+			
+
+			.road{
+				background-color:rgb(200,200,200);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			.oneway{
+				background: url(assets/img/tile_oneway.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.block{
+				background: url(assets/img/tile_block.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			
+			.hero{
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+			}
+			
+			.pizza{
+				background: url(assets/img/pizza.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:500;
+			}
+			
+			.arrow{
+				background: url(assets/img/arrow.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			.talk{
+				background: url(assets/img/talk.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.fire{
+				background: url(assets/img/bruler.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.suite{
+				background: url(assets/img/suite.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.arrow:hover{
+				cursor:pointer;
+			}
+			
+			.car_yellow{
+				background: url(assets/img/car_yellow.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				transform: rotate(90deg);
+			}
+			
+			.car_blue{
+				background: url(assets/img/car_patient.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				transform: rotate(90deg);
+			}
+			
+			.car_green{
+				background: url(assets/img/car_green.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				transform: rotate(90deg);
+			}
+			
+			.car_moveblock{
+				background: url(assets/img/moveblock.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.trash{
+				background: url(assets/img/trash.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.dup.dleft{
+				transform: rotate(180deg);
+			}
+			
+			.ddown.dleft{
+				transform: rotate(90deg);
+			}
+			
+			.dup.dright{
+				transform: rotate(270deg);
+			}
+			
+		
+
+			.car_cone{
+				background: url(assets/img/cone.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.reversed{
+				transform: rotate(225deg);
+			}
+
+			.right{
+				transform: rotate(180deg);
+			}
+
+			.left{
+				transform: rotate(0deg);
+			}	
+
+			.down{
+				transform: rotate(270deg);
+			}	
+
+			.up{
+				transform: rotate(90deg);
+			}
+			
+			.moveblock{
+
+			}
+			
+			.block1{
+			}
+
+			.hero_right{
+				background: url(assets/img/left1.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+				    transform: scaleX(-1);
+
+			}
+
+			.hero_left{
+				background: url(assets/img/left1.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+			}	
+
+			.hero_down{
+				background: url(assets/img/down1.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+			}	
+
+			.hero_up{
+				background: url(assets/img/up1.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index:200;
+			}				
+
+			.btn:hover{
+				cursor:pointer;
+			}
+			
+			.state1{
+				background:url('assets/img/state1.png')  rgb(200,200,200); 
+				background-size:cover;
+			}
+			
+			.state2{
+				background:url('assets/img/state2.png')  rgb(200,200,200); 
+				background-size:cover;
+			}
+			
+			.state3{
+				background:url('assets/img/state3.png')  rgb(200,200,200); 
+				background-size:cover;
+			}
+			
+			.state4{
+				background:url('assets/img/state4.png')  rgb(200,200,200); 
+				background-size:cover;
+			}
+
+			.dotted_line{
+				position:absolute;
+				width:125vw;	
+				height:1vh;
+				z-index:99;
+			}
+
+			.obstacle{
+				position:absolute;
+				z-index:100;
+				height:7.2vh;
+				width:auto;
+			}
+
+			.h_0{
+				top:10.15vh;
+			}
+
+			.h_1{
+				top:17.65vh;
+			}
+
+			.h_2{
+				top:25.15vh;
+			}
+
+			.h_3{
+				top:32.65vh;
+			}
+
+			.h_4{
+				top:40.15vh;
+			}
+
+		  </style>
+	</head>
+	
+	<body id="bodygame" scroll="no" style="  overflow: hidden; width:100%;">
+
+		<div style="position:absolute;top:0;left:0;width:100vw;height:10vh;background: rgb(15,183,255);background: linear-gradient(180deg, rgba(15,183,255,1) 0%, rgba(174,175,162,1) 100%);"></div>
+		<div style="position:absolute;top:47.5vh;left:0;width:100vw;height:3vh;background: rgb(93, 108, 114);"></div>
+
+		<img id="truck" style="z-index:100;position:absolute;left:0vw;top:25vh;width:auto;height:7.5vh;" src="assets/img/truck1.png">
+		<img class="dotted_line" src="assets/img/dotted_line.png" style="top:17vh;">
+		<img class="dotted_line" src="assets/img/dotted_line.png" style="top:24.5vh;">
+		<img class="dotted_line" src="assets/img/dotted_line.png" style="top:32vh;">
+		<img class="dotted_line" src="assets/img/dotted_line.png" style="top:39.5vh;">
+		
+		<div style="z-index:10;position:absolute;left:0vw;top:10vh;width:100vw;height:37.5vh;background-color:rgb(130,130,130)" ></div>
+
+		<div id="all_obstacles">
+			<img id="o2394934" left="80" t="0" class="obstacle h_2" src="assets/img/lights.png" style="left:80vw;" points="1s">
+		</div>
+
+		<div style="position:absolute;top:57vh;left:4vw;font-size:5vh;z-index:500;color:rgb(230,230,230)">Points: <span id="total_points">0</span>
+		</div>
+		<div id="police_detect" class="end_game" style="display:none;position:absolute;top:67vh;left:4vw;width:96vw;font-size:3vh;z-index:500;color:rgb(230,230,230)">La police vous intercepte et met fin à votre carrière de déneigeur.</span>
+		</div>
+	
+		<div id="princ_container" style="width:100%;height: 100%;">
+			
+			<div style="width:90vw;top:5vw;left:5vw;height:height:90vw;background-color:rgb(200,200,200);"></div>			
+
+			
+			<div class="end_game" onclick="location.reload();" class="btn" style="display:none;position:fixed;top:145vw;left:4vw;font-size:5vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>RECOMMENCER</b></div>
+
+			<div style="position:absolute;left:0;top:98.25vh;font-size:1.5vh;width:100vw;text-align: center;color:rgb(240,240,240)">Sur un ordinateur, vous pouvez jouer avec les flèches du clavier.</div>
+			
+		</div>
+
+		<div id="final_container" style="position:absolute;left:0;top:0;width:100%;height:100%;background-color:rgb(240,240,240);z-index:999;display:none;">
+			
+			 <div style="position:absolute;top:5vh;left:5vw;width:80vw;text-align:left;height:auto;color:black;font-size:3.2vh;font-family: Arial, Helvetica, sans-serif;">
+				Je ne suis pas fier de toi. Les usines de mes amis ont manqué d'électricité pendant <b><span style="color:red;" id="nb_seconds"></span></b> secondes. J'espère que tu feras mieux la prochaine fois.
+			</div>
+
+			<img src="assets/img/fitz2.png" style="position:fixed;top:50vh;left:-5vw;height:50vh;width:130vw;">
+
+			<div id="recommencer" style="display:none;" >
+				<div  onclick="location.reload();" class="vehicule" style="background-color:#eef52a;top:30vh;left:5vw;padding:5px;position:absolute;height:10vh;font-size:10vh;color:black;border: solid 1px black;font-family: Arial, Helvetica, sans-serif;" ><b>RECOMMENCER</b></div>
+				<div  onclick="window.open('https://tripli.ca/3elien/', '_blank').focus();" class="vehicule" style="background-color:#eef52a;top:37vh;left:5vw;padding:5px;position:absolute;height:3vh;font-size:3vh;color:black;border: solid 1px black;" ><b>Jouez à 3e lien, LE jeu</b></div>
+				<div  onclick="window.open('https://tripli.ca/martine/', '_blank').focus();" class="vehicule" style="background-color:#eef52a;top:42vh;left:5vw;padding:5px;position:absolute;height:3vh;font-size:3vh;color:black;border: solid 1px black;" ><b>Jouez à Martine dans le traffic</b></div>
+				<img class="logo" src="assets/img/avtlogo.PNG" onclick="window.open('https://tripli.ca/avt/', '_blank').focus();" style="position:absolute;top:50vh;height:5vh;left:80vw;width:auto;">
+			</div>
+			
+		</div>
+		<div id="arrow_menu">
+			<div id="left_div"><div style="position:absolute;top:78vh;left:12.5vw;width:25vw;height:25vw;"  class="arrow down" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div></div>
+			<div id="right_div"><div style="position:absolute;top:78vh;left:62.5vw;width:25vw;height:25vw;"  class="arrow up" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div></div>
+
+		</div>
+		<div>
+			
+		
+
+			<img src="assets/img/eclair.png" style="width:100vw;height:95vw;display:none;position:fixed;left:0;top:0;z-index:500;" id="explosion">
+			
+			<div style="position:fixed;top:110vw;left:5vw;width:90vw;color:rgb(230,230,230);font-size:3vh;">
+				<p  id="green_trigger"></p>
+				<p style="display:none;" id="success_trigger"></p>
+				<div id="next_level" onclick="next_level()" class="btn" style="position:fixed;top:160vw;left:5vw;font-size:3.5vh;background-color:yellow;color:black;padding-left:1vw;padding-right:1vw;display:none;"><b>ALLER À LA ZONE SUIVANTE</b></div>
+
+			</div>
+		
+			<div id="dialogs_wrapper">
+				<div id="dialogs" style="position:fixed;top:110vw;left:5vw;width:90vw;color:rgb(230,230,230);font-size:2.3vh;display:none;">
+					<p id="dialog_name">:</p>
+					<p id="dialog_text"></p>
+					<div id="suite_d"><div style="position:fixed;top:148vw;left:68vw;width:25vw;height:25vw;" class="arrow suite" disabled="disabled" onclick="direction='talk'"  ></div></div>
+				</div>
+			</div>
+		
+		</div>
+
+
+	</body>
+	
+	<script>
+
+	function getRandomInt(max) {
+	  return Math.floor(Math.random() * max);
+	}
+
+	function unpress(pb){
+		rnd = getRandomInt(9999999999);
+		direction = "no";
+		//if(pb.localeCompare("up")==0){
+		//	$("#up_div").html(`<div style="position:fixed;top:98vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow down r`+rnd+`" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="unpress('up');" ontouchend="unpress('up')" ></div>`);
+		//}
+		//if(pb.localeCompare("down")==0){
+		//	$("#down_div").html(`<div style="position:fixed;top:148vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow up r`+rnd+`" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="unpress('down');" ontouchend="unpress('down')"  ></div>`);
+		//}
+		//if(pb.localeCompare("left")==0){
+		//	$("#left_div").html(`<div style="position:fixed;top:148vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow right r`+rnd+`" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div>`);
+		//}
+		//if(pb.localeCompare("right")==0){
+		//	$("#right_div").html(`<div style="position:fixed;top:148vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow left r`+rnd+`" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div>`);
+		//}
+		can_move = true
+	}
+
+
+
+	const queryString = window.location;
+	console.log(queryString.search)
+	params = queryString.search.replace("?level=","")
+	params = parseInt(params)
+	console.log(params)
+
+
+	var hero_x = null;
+	var hero_y = null;
+
+	var sprites = [];
+	
+	
+	
+
+
+	
+	var can_move = true;
+	var direction = "no";
+	
+	$( "body" ).keydown(function( event ) {
+		if ( event.which == 38 ) {
+			direction="left";
+			change_direction(0,-1)
+			can_move = false;
+		}
+		else if ( event.which == 40 ) {
+			direction="right";
+			change_direction(0,1)
+			can_move = false;
+		}
+	});
+	$( "body" ).keyup(function( event ) {
+		if ( event.which == 38 ) {
+			can_move = true;
+		}
+		else if ( event.which == 40 ) {
+			can_move = true;
+		}
+	});
+					
+
+	document.addEventListener('keyup', function() {
+		direction="no"
+	});
+	
+	var reserve = "no";
+	function pressbutton(pb){
+		if(direction.localeCompare("no") == 0){
+			if (can_move){
+				if(pb.localeCompare("left")==0){
+					change_direction(0,-1)
+				}
+				else if(pb.localeCompare("right")==0){
+					change_direction(0,1)
+				}
+				can_move = false;
+			}
+		}
+	}
+	
+	var stun = new Audio('assets/sounds/explosion.wav');
+	var electricity = new Audio('assets/sounds/electricity.wav');
+	
+
+	for (var i=1e6, lookupTable=[]; i--;) {
+		lookupTable.push(Math.random()*101|0);
+	}
+	function lookup() {
+		return ++i >= lookupTable.length ? lookupTable[i=0] : lookupTable[i];
+	}
+	function getRndInteger(min, max) {
+	  return lookup() * (max - min) + min;
+	}
+	
+
+	var truck_pos = 2
+	var total_count = 0
+	var touch_cloud = 0
+	
+	var in_pause = 100;
+	var in_move = 0;
+	var current_state = 0;
+	var line_pos = 0
+	var truck_speed = 1
+
+	
+	var total_points = 0
+	
+	
+	
+	function change_direction(delta_x,delta_y,car=-1){
+		
+		truck_pos = truck_pos + delta_y;
+
+		if(truck_pos<0){
+			truck_pos = 0
+		}
+		else if(truck_pos>4){
+			truck_pos = 4
+		}
+		$("#truck").css("top",(10+truck_pos*7.5)+"vh")
+
+	}
+
+
+
+	function elementsOverlap(el1, el2) {
+		const domRect1 = el1.getBoundingClientRect();
+		const domRect2 = el2.getBoundingClientRect();
+
+		return !(
+		domRect1.top > domRect2.bottom ||
+		domRect1.right < domRect2.left ||
+		domRect1.bottom < domRect2.top ||
+		domRect1.left > domRect2.right
+		);
+	}
+
+	function collision_anim(obstacle_id,rot=0){
+		rot = rot + 5;
+		$("#"+obstacle_id).css("transform","rotate(+"+rot+"deg)");
+		if(rot<1500){ 
+			setTimeout(function(){ 
+				collision_anim(obstacle_id,rot); 
+			},  10);
+		}
+		else{
+			$("#"+obstacle_id).remove();
+		}
+	}
+
+	sp_div = 5
+
+
+	var last_pos = [0,0,25,0,0]
+
+	var elements_library=[ [-3,"snowman.png"], [-3,"snowman1.png"], [-3,"snowman2.png"], [1,"lights.png"], [1,"mail.png"], [0,"police_car.png"],[0,"police_car.png"],[1,"cat.png"], [1,"car_red.png"],[1,"car_blue.png"],[1,"firtree.png"],[1,"turkey.png"] ,[1,"bear.png"] ]
+
+
+	function getRandomInt(max) {
+		return Math.floor(Math.random() * max);
+	}
+
+
+	var wait_time = 10
+
+	function interdef() {
+
+		on_continue = true
+
+		// Modify dotted_lines
+		line_pos = line_pos + truck_speed/sp_div
+		if(line_pos>25){
+			line_pos = line_pos-25
+		}
+		$(".dotted_line").css("left",0-line_pos+"vw")
+		
+
+		$('.obstacle').each(function(){
+			//if statement here 
+			// use $(this) to reference the current div in the loop
+			//you can try something like...
+
+
+			t = parseFloat(($("#"+this.id).attr("t")))
+			left_pos = parseFloat(($("#"+this.id).attr("left")))
+
+
+			left_pos = left_pos - truck_speed/sp_div
+			$("#"+this.id).attr("left",left_pos)
+			$("#"+this.id).css("left",left_pos+"vw")
+
+			
+
+			// COLLISION
+			if( elementsOverlap(document.getElementById("truck"), document.getElementById(this.id)) && (t==0) ){
+				$("#"+this.id).attr("t","1")
+				console.log("COLLISION")
+				collision_anim(this.id)
+				$("#"+this.id).animate({"top":"+40vh"},2500,"linear")
+
+				total_points = total_points + parseInt($("#"+this.id).attr("points"))
+
+				if(parseInt($("#"+this.id).attr("points"))>0){
+					jump.pause();
+					jump.currentTime = 0;
+					jump.play();
+				}
+				else if(parseInt($("#"+this.id).attr("points"))<0){
+					failure.pause();
+					failure.currentTime = 0;
+					failure.play();
+				}
+
+				if(total_points<0){
+					total_points = 0;
+				}
+				$("#total_points").html(total_points)
+
+				if($("#"+this.id).attr("src").localeCompare("assets/img/police_car.png")==0){
+					on_continue = false
+				}
+
+			}
+
+			if(left_pos<-25){
+				$("#"+this.id).remove()
+			}
+
+
+
+		});
+
+		
+
+		// ELEMENT GENERATOR
+		for(i=0;i<5;i++){
+			last_pos[i] = last_pos[i] - truck_speed/sp_div
+		}
+
+		sel_pos = getRandomInt(parseInt(200/truck_speed));
+		if(sel_pos<5){
+			if(last_pos[sel_pos]<=0){
+				// NEW ELEMENT
+				last_pos[sel_pos]=25
+				new_id = getRandomInt(1000000000)
+				element_nb = getRandomInt(13)
+
+				$("#all_obstacles").append('<img id="o'+new_id+'" points="'+elements_library[element_nb][0]+'" left="100" t="0" class="obstacle h_'+sel_pos+'" src="assets/img/'+elements_library[element_nb][1]+'" style="left:100vw;">')
+			}
+		}
+		console.log(last_pos)
+
+
+		console.log(wait_time)
+		if(on_continue){
+			setTimeout(function() {
+				interdef();
+			},wait_time);
+		}
+		else{
+			$(".end_game").show();
+			$("#arrow_menu").hide();
+			police.pause();
+			police.currentTime = 0;
+			police.play();
+		}
+		
+	}
+	interdef();
+	
+	
+
+	setInterval(function () {
+		if(truck_speed<10){
+			truck_speed = truck_speed+.5
+		}
+	}, 7500);
+
+	var tv = 1
+	setInterval(function () {
+		if(tv==1){
+			tv=2;
+			$("#truck").attr("src","assets/img/truck1.png")
+		}
+		else if(tv==2){
+			tv=1;
+			$("#truck").attr("src","assets/img/truck2.png")
+		}
+
+	}, 250);
+
+	
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+		console.log("MOBILE")
+	}else{
+		console.log("DESKTOP")
+		document.addEventListener('contextmenu', event => {
+			event.preventDefault();
+			//event.stopPropagation();
+		});
+	}
+	
+	//document.querySelector(".arrow").addEventListener("touchstart", (e) =>
+	//{
+	//	e.preventDefault();
+	//	e.stopPropagation();
+	//});
+	
+	//document.querySelector(".arrow").addEventListener("touchend", (e) =>
+	//{
+	//	e.preventDefault();
+	//	e.stopPropagation();
+	//});
+	
+	var jump = new Audio('assets/sounds/jump.wav');
+	var police = new Audio('assets/sounds/police.wav');
+	var failure = new Audio('assets/sounds/failure.wav');
+
+	</script>
+
+</html>

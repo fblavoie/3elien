@@ -1,0 +1,83 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+
+
+          <style>
+		  
+			body{
+				background: #000c54;
+				background-size: 100vw 100vh;
+                font-family: 'Courgette', cursive;
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+            div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+            img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+		  
+		  </style>
+	</head>
+	
+	<body scroll="no" style="  overflow: hidden; width:100%;">
+	
+
+		<div style="position:absolute;top:2vh;left:15vw;width:70vw;text-align:left;height:auto;color:white;font-size:4vh;font-family: Arial, Helvetica, sans-serif;text-align:center;">
+            DÉNEIGEMENT<br>
+			LE jeu
+        </div>
+		
+
+		<img style="position:absolute;top:15vh;height:20vh;width:auto;" src="assets/img/builder.png">
+
+        <div style="position:absolute;top:37vh;left:3vw;width:90vw;text-align:left;height:auto;color:white;font-size:2.5vh;font-family: Arial, Helvetica, sans-serif;">
+			Bonjour! Je suis Gérard, déneigeur.<br><br>Grosse journée en perspective! Il faut déneiger le quartier. C'est pas trop compliqué... tu ramasses tout ce qui traîne sur la route.<br><br>Par contre, si c'est de la neige, comme un bonhomme de neige, tu perds trois points... en tant que déneigeur, on ramasse pas ça de la neige.<br><br>Et aussi! Fais gaffe aux polices...
+        </div>
+
+        <div class="vehicule" onclick="document.location.href = 'game.html';" style="background-color:#eef52a;top:80vh;left:15vw;padding:5px;position:absolute;height:10vh;font-size:10vh;color:black;border: solid 1px black;font-family: Arial, Helvetica, sans-serif;"><b>JOUER</b></div>
+
+
+	</body>
+
+
+</html>
