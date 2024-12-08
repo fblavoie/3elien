@@ -551,14 +551,13 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 	function change_direction(delta_x,delta_y,car=-1){
 		
 		truck_pos = truck_pos + delta_y;
+			navigator.vibrate(10); 
 
 		if(truck_pos<0){
 			truck_pos = 0
-			navigator.vibrate(100); 
 		}
 		else if(truck_pos>4){
 			truck_pos = 4
-			navigator.vibrate(100); 
 		}
 		$("#truck").css("top",(10+truck_pos*7.5)+"vh")
 
