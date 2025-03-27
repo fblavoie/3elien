@@ -250,7 +250,81 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 
 				
 				
-			
+
+
+				
+				function joins_tile_state(tile,state){
+				
+					
+					if( tile == 0 ){ // Straight
+						if(state == 0){
+							dir1 = [-1,0]
+							dir2 = [1,0]
+						}
+						else if(state == 1){
+							dir1 = [0,-1]
+							dir2 = [0,1]
+						}
+					}
+					else if( tile == 1 ){ // Common top
+						if(state == 0){
+							dir1 = [0,-1]
+							dir2 = [1,0]
+						}
+						else if(state == 1){
+							dir1 = [0,-1]
+							dir2 = [-1,0]
+						}
+					}
+					else if( tile == 2 ){ // Common right
+						if(state == 0){
+							dir1 = [1,0]
+							dir2 = [0,1]
+						}
+						else if(state == 1){
+							dir1 = [1,0]
+							dir2 = [0,-1]
+						}
+					}
+					else if( tile == 3 ){ // Common bottom
+						console.log("tile 3")
+						if(state == 0){
+							dir1 = [0,1]
+							dir2 = [-1,0]
+						}
+						else if(state == 1){
+							dir1 = [0,1]
+							dir2 = [1,0]
+						}
+					}
+					else if( tile == 4 ){ // Common left
+						if(state == 0){
+							dir1 = [-1,0]
+							dir2 = [0,-1]
+						}
+						else if(state == 1){
+							dir1 = [-1,0]
+							dir2 = [0,1]
+						}
+					}
+					
+					return [dir1, dir2]
+				
+				}
+				
+				
+				
+				
+				function joins(x,y){
+					
+					info = map[x][y]
+					tile = info[0]
+					state = info[1]
+					
+					return joins_tile_state(tile,state)
+					
+				}
+				
 			
 			
 				function getRandomInt(min, max) {
@@ -261,10 +335,79 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			
 			
 			
-
-			
+				// Create solution ==========================================================================
+				change_pos = [ [0,-1],[0,-1],[0,-1],[0,1],[0,1],[0,1],[-1,0],[-1,0],[-1,0],[1,0],[1,0],[1,0] ]
+				not_found = true
+				while(not_found){
+					x_begin = getRandomInt(0, 5)
+					
+					positions = [ [x_begin, -1],[x_begin,0] ]
+					current_pos = [x_begin,0]
+					
+					trial = 0
+					while( (current_pos[1]<6) && (trial < 100)){
+						
+						change = change_pos[ getRandomInt(0, change_pos.length - 1) ]
+						new_pos = [ current_pos[0]+change[0], current_pos[1]+change[1]  ]
+						
+						if( (new_pos[0]>=0)&&(new_pos[0]<=5)&&(new_pos[1]>=0)&&(new_pos[1]<=6) ){
+							// Check if already used path
+							ok = true
+							for (i=0;i<positions.length;i++){
+								if( (new_pos[0]==positions[i][0])&&(new_pos[1]==positions[i][1]) ){
+									ok = false
+								}
+							}
+							if( ok ){
+								positions.push(new_pos)
+								current_pos = [new_pos[0],new_pos[1]]
+							}
+						}
+						
+						trial = trial+1
+					}
+					if(current_pos[1]==6){
+						not_found = false
+					}
+				}
+				t = positions
 				
-				nb_sol =  getRandomInt(0, all_sols.length-1)
+				proposed_sol = []
+				for(pos=1;pos<(t.length-1);pos++){
+					previous = t[pos-1]
+					current = t[pos]
+					next = t[pos+1]
+					
+					dir1q = [previous[0]-current[0],  previous[1]-current[1]]
+					dir2q = [next[0]-current[0],      next[1]-current[1]]
+					
+					not_ok = true
+					while(not_ok){
+					
+						tile = getRandomInt(0,4)
+						state = getRandomInt(0,1)
+						dirs = joins_tile_state(tile,state)
+						
+						dirA = dirs[0]
+						dirB = dirs[1]
+						
+						if( ( dirA[0] == dir1q[0] ) && ( dirA[1] == dir1q[1] ) && ( dirB[0] == dir2q[0] ) && ( dirB[1] == dir2q[1] ) ){
+							not_ok = false
+							console.log(current,"previous",previous,"current",current,"next",next,"dir1",dir1,"dir2",dir2,"dirA",dirA,"dirB",dirB)
+						}
+						if( ( dirB[0] == dir1q[0] ) && ( dirB[1] == dir1q[1] ) && ( dirA[0] == dir2q[0] ) && ( dirA[1] == dir2q[1] ) ){
+							not_ok = false
+							console.log(current,"previous",previous,"current",current,"next",next,"dir1",dir1,"dir2",dir2,"dirA",dirA,"dirB",dirB)
+						}
+						
+					}
+					
+					proposed_sol.push([current[0],current[1],[tile,state]])
+				}
+				all_sols = [proposed_sol]
+				nb_sol =  0
+				// =============================================================================================
+				
 				
 				
 				
@@ -431,79 +574,6 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 
 				console.log(JSON.stringify(map))
 
-
-				
-				function joins_tile_state(tile,state){
-				
-					
-					if( tile == 0 ){ // Straight
-						if(state == 0){
-							dir1 = [-1,0]
-							dir2 = [1,0]
-						}
-						else if(state == 1){
-							dir1 = [0,-1]
-							dir2 = [0,1]
-						}
-					}
-					else if( tile == 1 ){ // Common top
-						if(state == 0){
-							dir1 = [0,-1]
-							dir2 = [1,0]
-						}
-						else if(state == 1){
-							dir1 = [0,-1]
-							dir2 = [-1,0]
-						}
-					}
-					else if( tile == 2 ){ // Common right
-						if(state == 0){
-							dir1 = [1,0]
-							dir2 = [0,1]
-						}
-						else if(state == 1){
-							dir1 = [1,0]
-							dir2 = [0,-1]
-						}
-					}
-					else if( tile == 3 ){ // Common bottom
-						console.log("tile 3")
-						if(state == 0){
-							dir1 = [0,1]
-							dir2 = [-1,0]
-						}
-						else if(state == 1){
-							dir1 = [0,1]
-							dir2 = [1,0]
-						}
-					}
-					else if( tile == 4 ){ // Common left
-						if(state == 0){
-							dir1 = [-1,0]
-							dir2 = [0,-1]
-						}
-						else if(state == 1){
-							dir1 = [-1,0]
-							dir2 = [0,1]
-						}
-					}
-					
-					return [dir1, dir2]
-				
-				}
-				
-				
-				
-				
-				function joins(x,y){
-					
-					info = map[x][y]
-					tile = info[0]
-					state = info[1]
-					
-					return joins_tile_state(tile,state)
-					
-				}
 				
 				
 				
@@ -601,43 +671,6 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				}
 				
 				
-				
-				t = [[5,-1],[5,0],[4,0],[3,0],[2,0],[1,0],[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6]]
-				
-				proposed_sol = []
-				for(pos=1;pos<(t.length-1);pos++){
-					previous = t[pos-1]
-					current = t[pos]
-					next = t[pos+1]
-					
-					dir1q = [previous[0]-current[0],  previous[1]-current[1]]
-					dir2q = [next[0]-current[0],      next[1]-current[1]]
-					
-					not_ok = true
-					while(not_ok){
-					
-						tile = getRandomInt(0,4)
-						state = getRandomInt(0,1)
-						dirs = joins_tile_state(tile,state)
-						
-						dirA = dirs[0]
-						dirB = dirs[1]
-						
-						if( ( dirA[0] == dir1q[0] ) && ( dirA[1] == dir1q[1] ) && ( dirB[0] == dir2q[0] ) && ( dirB[1] == dir2q[1] ) ){
-							not_ok = false
-							console.log(current,"previous",previous,"current",current,"next",next,"dir1",dir1,"dir2",dir2,"dirA",dirA,"dirB",dirB)
-						}
-						if( ( dirB[0] == dir1q[0] ) && ( dirB[1] == dir1q[1] ) && ( dirA[0] == dir2q[0] ) && ( dirA[1] == dir2q[1] ) ){
-							not_ok = false
-							console.log(current,"previous",previous,"current",current,"next",next,"dir1",dir1,"dir2",dir2,"dirA",dirA,"dirB",dirB)
-						}
-						
-					}
-					
-					proposed_sol.push([current[0],current[1],[tile,state]])
-				}
-			
-				console.log("proposed_sol", JSON.stringify(proposed_sol) )
 				
 
 			</script>
