@@ -21,6 +21,8 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 		  
 		  <style>
+			
+			--nb_tiles: 6
 		  
 			body{
 				background: url("assets/img/decor.png");
@@ -62,8 +64,6 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			
 			.tile{
 				position:absolute;
-				width:15.5vw;
-				height:auto;
 				border: solid 0.5vw rgb(90,90,90)
 			}
 			
@@ -71,60 +71,6 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				cursor:pointer;
 			}
 
-			.x_0{
-				position:absolute;
-				left:2vw;
-			}
-			.x_1{
-				position:absolute;
-				left:18vw;
-			}
-			.x_2{
-				position:absolute;
-				left:34vw;
-			}
-			.x_3{
-				position:absolute;
-				left:50vw;
-			}
-			.x_4{
-				position:absolute;
-				left:66vw;
-			}
-			.x_5{
-				position:absolute;
-				left:82vw;
-			}
-			
-			.y_0{
-				position:absolute;
-				top:35vw;
-			}
-		  
-            .y_1{
-				position:absolute;
-				top:51vw;
-			}
-		  
-            .y_2{
-				position:absolute;
-				top:67vw;
-			}
-		  
-            .y_3{
-				position:absolute;
-				top:83vw;
-			}
-			
-			.y_4{
-				position:absolute;
-				top:99vw;
-			}
-			
-			.y_5{
-				position:absolute;
-				top:115vw;
-			}
 			
 			
 			.horizontal{
@@ -202,11 +148,32 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			</div>
 			
 			<script>
-				for (x=0;x<6;x++){
-					for (y=0;y<6;y++){
-						$("#tous_les_panneaux").append('<img src="assets/img/tile_straight.png" id="t_'+x+'_'+y+'" onclick="ct('+x+','+y+')" class="tile x_'+x+' y_'+y+'" >')
+			
+				let params = new URLSearchParams(document.location.search);
+				
+				console.log("params",params)
+				
+				nb_tiles = params.get("nb_tiles");
+				min_tiles = params.get("min_tiles");
+
+
+
+				for (x=0;x<nb_tiles;x++){
+					for (y=0;y<nb_tiles;y++){
+						$("#tous_les_panneaux").append('<img src="" id="t_'+x+'_'+y+'" onclick="ct('+x+','+y+')" class="tile x_'+x+' y_'+y+'" >')
 					}
 				}
+				
+				for (x=0;x<nb_tiles;x++){
+					$(".x_"+x).css("position","absolute")
+					$(".y_"+x).css("position","absolute")
+					$(".x_"+x).css("left",(2+96/nb_tiles*x)+"vw")
+					$(".y_"+x).css("top",(35+96/nb_tiles*x)+"vw")
+				}
+				
+				$(".tile").css("width",(96/nb_tiles-0.5)+"vw")
+				$(".tile").css("height",(96/nb_tiles-0.5)+"vw")
+
 			</script>
 			
 			
@@ -218,6 +185,8 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				
 			
 			<script>
+			
+						
 			
 				all_sols = [
 				
@@ -345,12 +314,12 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 					current_pos = [x_begin,0]
 					
 					trial = 0
-					while( (current_pos[1]<6) && (trial < 100)){
+					while( (current_pos[1]<nb_tiles) && (trial < 100)){
 						
 						change = change_pos[ getRandomInt(0, change_pos.length - 1) ]
 						new_pos = [ current_pos[0]+change[0], current_pos[1]+change[1]  ]
 						
-						if( (new_pos[0]>=0)&&(new_pos[0]<=5)&&(new_pos[1]>=0)&&(new_pos[1]<=6) ){
+						if( (new_pos[0]>=0)&&(new_pos[0]<=(nb_tiles-1))&&(new_pos[1]>=0)&&(new_pos[1]<=nb_tiles) ){
 							// Check if already used path
 							ok = true
 							for (i=0;i<positions.length;i++){
@@ -366,7 +335,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 						
 						trial = trial+1
 					}
-					if( (current_pos[1]==6) && (positions.length>=12) ){
+					if( (current_pos[1]==nb_tiles) && (positions.length>=min_tiles) ){
 						not_found = false
 					}
 				}
@@ -476,10 +445,10 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				
 				
 				choices = [0,0,1,2,3,4]
-				for(x=0;x<6;x++){
+				for(x=0;x<nb_tiles;x++){
 					row = []
 				
-					for(y=0;y<6;y++){
+					for(y=0;y<nb_tiles;y++){
 						
 						if(random_map){
 							sel = choices[getRandomInt(0,5)]
@@ -505,6 +474,8 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				sol = []
 				sol = all_sols[nb_sol]
 				
+				changing = [1,1,1,1,0]
+				
 				console.log("sol",sol)
 				for(i=0;i<sol.length;i++){
 					sel = sol[i]
@@ -512,7 +483,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 					y = sel[1]
 					a = sel[2][0]
 					state = sel[2][1]
-					modify_init(x,y,a,Math.abs(state-1))
+					modify_init(x,y,a,Math.abs(state-1*changing[getRandomInt(0,changing.length-1)]))
 					map[x][y] = [a,state]
 					ct(x,y)
 				}
@@ -586,7 +557,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 					success = false;
 				
 					possibilities = []
-					for(x=0;x<6;x++){ // 4 places to begin
+					for(x=0;x<nb_tiles;x++){ // 4 places to begin
 						
 						console.log("beginning ",x)
 						
@@ -598,7 +569,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 						trial = 0;
 						
 						path = []
-						while(  (trial < 25) && (success==false) ){
+						while(  (trial < 100) && (success==false) ){
 						
 							// Try 4 modifications
 							no_change = true
@@ -623,7 +594,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 								
 								if(no_change){
 									new_pos = [current_pos[0]+mods[p][0], current_pos[1]+mods[p][1]]
-									if( (new_pos[0]>=0) && (new_pos[0]<=5) && (new_pos[1]>=0) && (new_pos[1]<=5) ){
+									if( (new_pos[0]>=0) && (new_pos[0]<=(nb_tiles-1)) && (new_pos[1]>=0) && (new_pos[1]<=(nb_tiles-1)) ){
 										directions = joins(new_pos[0],new_pos[1])
 										if(no_change){
 											if( ( directions[0][0]*-1 == direction[0] ) && ( directions[0][1]*-1== direction[1] ) ){
@@ -643,7 +614,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 										}
 									}
 									
-									if(current_pos[1]==5){
+									if(current_pos[1]==(nb_tiles-1)){
 										if(direction[1]==1){
 											success = true
 										}
