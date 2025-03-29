@@ -154,7 +154,8 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				console.log("params",params)
 				
 				nb_tiles = params.get("nb_tiles");
-				min_tiles = params.get("min_tiles");
+				min_tiles = parseInt( params.get("min_tiles") );
+				max_tiles = parseInt( params.get("max_tiles") );
 
 
 
@@ -308,7 +309,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				change_pos = [ [0,-1],[0,-1],[0,-1],[0,1],[0,1],[0,1],[-1,0],[-1,0],[-1,0],[1,0],[1,0],[1,0] ]
 				not_found = true
 				while(not_found){
-					x_begin = getRandomInt(0, 5)
+					x_begin = getRandomInt(0, (nb_tiles-1))
 					
 					positions = [ [x_begin, -1],[x_begin,0] ]
 					current_pos = [x_begin,0]
@@ -335,7 +336,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 						
 						trial = trial+1
 					}
-					if( (current_pos[1]==nb_tiles) && (positions.length>=min_tiles) ){
+					if( (current_pos[1]==nb_tiles) && (positions.length>=min_tiles) && (positions.length<=max_tiles) ){
 						not_found = false
 					}
 				}
