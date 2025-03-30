@@ -198,9 +198,6 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 
 					
 			
-				all_sols = [
-				
-					]
 
 				
 				
@@ -289,77 +286,95 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			
 			
 			
-				// Create solution ==========================================================================
+				// Create solution(s) ==========================================================================
+				all_sols = []
 				change_pos = [ [0,-1],[0,-1],[0,-1],[0,1],[0,1],[0,1],[-1,0],[-1,0],[-1,0],[1,0],[1,0],[1,0] ]
-				not_found = true
-				while(not_found){
-					x_begin = getRandomInt(0, (nb_tiles-1))
+				
+				if( min_tiles_winning>0 ){
+					nb_proposals = 11
+				}
+				else{
+					nb_proposals = 1
+				}
+				
+				for(ii=0;ii<nb_proposals;ii++){
 					
-					positions = [ [x_begin, -1],[x_begin,0] ]
-					current_pos = [x_begin,0]
-					
-					trial = 0
-					while( (current_pos[1]<nb_tiles) && (trial < 100)){
+					if(ii==(nb_proposals-1)){
+						min_tiles_t = min_tiles
+					}
+					else{
+						min_tiles_t = min_tiles-20
+					}
+				
+					not_found = true
+					while(not_found){
+						x_begin = getRandomInt(0, (nb_tiles-1))
 						
-						change = change_pos[ getRandomInt(0, change_pos.length - 1) ]
-						new_pos = [ current_pos[0]+change[0], current_pos[1]+change[1]  ]
+						positions = [ [x_begin, -1],[x_begin,0] ]
+						current_pos = [x_begin,0]
 						
-						if( (new_pos[0]>=0)&&(new_pos[0]<=(nb_tiles-1))&&(new_pos[1]>=0)&&(new_pos[1]<=nb_tiles) ){
-							// Check if already used path
-							ok = true
-							for (i=0;i<positions.length;i++){
-								if( (new_pos[0]==positions[i][0])&&(new_pos[1]==positions[i][1]) ){
-									ok = false
+						trial = 0
+						while( (current_pos[1]<nb_tiles) && (trial < 100)){
+							
+							change = change_pos[ getRandomInt(0, change_pos.length - 1) ]
+							new_pos = [ current_pos[0]+change[0], current_pos[1]+change[1]  ]
+							
+							if( (new_pos[0]>=0)&&(new_pos[0]<=(nb_tiles-1))&&(new_pos[1]>=0)&&(new_pos[1]<=nb_tiles) ){
+								// Check if already used path
+								ok = true
+								for (i=0;i<positions.length;i++){
+									if( (new_pos[0]==positions[i][0])&&(new_pos[1]==positions[i][1]) ){
+										ok = false
+									}
+								}
+								if( ok ){
+									positions.push(new_pos)
+									current_pos = [new_pos[0],new_pos[1]]
 								}
 							}
-							if( ok ){
-								positions.push(new_pos)
-								current_pos = [new_pos[0],new_pos[1]]
+							
+							trial = trial+1
+						}
+						if( (current_pos[1]==nb_tiles) && (positions.length>=min_tiles_t) && (positions.length<=max_tiles) ){
+							not_found = false
+						}
+					}
+					t = positions
+					
+					proposed_sol = []
+					for(pos=1;pos<(t.length-1);pos++){
+						previous = t[pos-1]
+						current = t[pos]
+						next = t[pos+1]
+						
+						dir1q = [previous[0]-current[0],  previous[1]-current[1]]
+						dir2q = [next[0]-current[0],      next[1]-current[1]]
+						
+						not_ok = true
+						while(not_ok){
+						
+							tile = getRandomInt(0,4)
+							state = getRandomInt(0,1)
+							dirs = joins_tile_state(tile,state)
+							
+							dirA = dirs[0]
+							dirB = dirs[1]
+							
+							if( ( dirA[0] == dir1q[0] ) && ( dirA[1] == dir1q[1] ) && ( dirB[0] == dir2q[0] ) && ( dirB[1] == dir2q[1] ) ){
+								not_ok = false
+								console.log(current,"previous",previous,"current",current,"next",next,"dir1",dir1,"dir2",dir2,"dirA",dirA,"dirB",dirB)
 							}
+							if( ( dirB[0] == dir1q[0] ) && ( dirB[1] == dir1q[1] ) && ( dirA[0] == dir2q[0] ) && ( dirA[1] == dir2q[1] ) ){
+								not_ok = false
+								console.log(current,"previous",previous,"current",current,"next",next,"dir1",dir1,"dir2",dir2,"dirA",dirA,"dirB",dirB)
+							}
+							
 						}
 						
-						trial = trial+1
+						proposed_sol.push([current[0],current[1],[tile,state]])
 					}
-					if( (current_pos[1]==nb_tiles) && (positions.length>=min_tiles) && (positions.length<=max_tiles) ){
-						not_found = false
-					}
+					all_sols.push( proposed_sol )					
 				}
-				t = positions
-				
-				proposed_sol = []
-				for(pos=1;pos<(t.length-1);pos++){
-					previous = t[pos-1]
-					current = t[pos]
-					next = t[pos+1]
-					
-					dir1q = [previous[0]-current[0],  previous[1]-current[1]]
-					dir2q = [next[0]-current[0],      next[1]-current[1]]
-					
-					not_ok = true
-					while(not_ok){
-					
-						tile = getRandomInt(0,4)
-						state = getRandomInt(0,1)
-						dirs = joins_tile_state(tile,state)
-						
-						dirA = dirs[0]
-						dirB = dirs[1]
-						
-						if( ( dirA[0] == dir1q[0] ) && ( dirA[1] == dir1q[1] ) && ( dirB[0] == dir2q[0] ) && ( dirB[1] == dir2q[1] ) ){
-							not_ok = false
-							console.log(current,"previous",previous,"current",current,"next",next,"dir1",dir1,"dir2",dir2,"dirA",dirA,"dirB",dirB)
-						}
-						if( ( dirB[0] == dir1q[0] ) && ( dirB[1] == dir1q[1] ) && ( dirA[0] == dir2q[0] ) && ( dirA[1] == dir2q[1] ) ){
-							not_ok = false
-							console.log(current,"previous",previous,"current",current,"next",next,"dir1",dir1,"dir2",dir2,"dirA",dirA,"dirB",dirB)
-						}
-						
-					}
-					
-					proposed_sol.push([current[0],current[1],[tile,state]])
-				}
-				all_sols = [proposed_sol]
-				nb_sol =  0
 				// =============================================================================================
 				
 				
@@ -428,7 +443,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				
 				
 				
-				
+				// Generate random map
 				choices = [0,0,1,2,3,4]
 				choices_top = [0,0,1,2,4,0,0,1,2,4,3]
 				choices_bottom = [0,0,2,3,4,0,0,2,3,4,1]
@@ -466,21 +481,27 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				}
 				
 				
-				sol = []
-				sol = all_sols[nb_sol]
+				// Generate solution on the map
+				console.log("generating solutions")
+				console.log("all_sols",all_sols.length)
+				for(nb_sol=0;nb_sol<(all_sols.length);nb_sol++){
+					console.log("creating sol ",nb_sol)
 				
-				changing = [1,1,1,1,0]
-				
-				console.log("sol",sol)
-				for(i=0;i<sol.length;i++){
-					sel = sol[i]
-					x = sel[0]
-					y = sel[1]
-					a = sel[2][0]
-					state = sel[2][1]
-					modify_init(x,y,a,Math.abs(state-1*changing[getRandomInt(0,changing.length-1)]))
-					map[x][y] = [a,state]
-					ct(x,y)
+					sol = all_sols[nb_sol]
+					
+					changing = [1,1,1,1,0]
+					
+					console.log("sol",sol)
+					for(i=0;i<sol.length;i++){
+						sel = sol[i]
+						x = sel[0]
+						y = sel[1]
+						a = sel[2][0]
+						state = sel[2][1]
+						modify_init(x,y,a,Math.abs(state-1*changing[getRandomInt(0,changing.length-1)]))
+						map[x][y] = [a,state]
+						ct(x,y)
+					}
 				}
 				
 				
