@@ -156,8 +156,11 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				nb_tiles = params.get("nb_tiles");
 				min_tiles = parseInt( params.get("min_tiles") );
 				max_tiles = parseInt( params.get("max_tiles") );
-
-
+				
+				min_tiles_winning = parseInt( params.get("min_tiles_winning") );
+				if(isNaN(min_tiles_winning)){
+					min_tiles_winning = 0;
+				}
 
 				for (x=0;x<nb_tiles;x++){
 					for (y=0;y<nb_tiles;y++){
@@ -187,7 +190,13 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			
 			<script>
 			
-						
+				
+				if(min_tiles_winning>0){
+					$("#bottom_message").html("Le nouveau tracé doit être d'une longueur d'au moins <b>"+min_tiles_winning+" tuiles</b>.")
+					$("#bottom_message").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
+				}
+
+					
 			
 				all_sols = [
 				
@@ -421,13 +430,23 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				
 				
 				choices = [0,0,1,2,3,4]
+				choices_top = [0,0,1,2,4,0,0,1,2,4,3]
+				choices_bottom = [0,0,2,3,4,0,0,2,3,4,1]
 				for(x=0;x<nb_tiles;x++){
 					row = []
 				
 					for(y=0;y<nb_tiles;y++){
 						
 						if(random_map){
-							sel = choices[getRandomInt(0,5)]
+							if(y==0){
+								sel = choices_top[getRandomInt(0,10)]
+							}
+							else if(y==(nb_tiles-1)){
+								sel = choices_bottom[getRandomInt(0,10)]
+							}
+							else{
+								sel = choices[getRandomInt(0,5)]
+							}
 							state = getRandomInt(0,1)
 						}
 						else{
@@ -545,7 +564,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 						trial = 0;
 						
 						path = []
-						while(  (trial < 100) && (success==false) ){
+						while(  (trial < (nb_tiles*nb_tiles+5)) && (success==false) ){
 						
 							// Try 4 modifications
 							no_change = true
@@ -591,8 +610,14 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 									}
 									
 									if(current_pos[1]==(nb_tiles-1)){
-										if(direction[1]==1){
-											success = true
+										if( (direction[1]==1) ){
+											if( (path.length)>=min_tiles_winning ){
+												success = true
+											}
+											else if(success == false){ // Minimum tiles not reached
+												$("#bottom_message").html("Vous avez trouvé un tracé de "+ (path.length) +" tuiles, mais celui-ci ne respecte pas la longueur minimale de " + min_tiles_winning + " tuiles.")
+
+											}
 										}
 									}
 								}
