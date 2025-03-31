@@ -299,12 +299,20 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				
 				for(ii=0;ii<nb_proposals;ii++){
 					
+					min_dir_changes = 0 // Minimum direction changes
 					if(ii==(nb_proposals-1)){
 						min_tiles_t = min_tiles
+						if(min_tiles > 45){
+							min_dir_changes = 30 // Super pro level
+						}
 					}
 					else{
 						min_tiles_t = min_tiles-20
 					}
+					
+					
+				
+					
 				
 					not_found = true
 					while(not_found){
@@ -312,6 +320,9 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 						
 						positions = [ [x_begin, -1],[x_begin,0] ]
 						current_pos = [x_begin,0]
+						
+						current_dir = [0,1]
+						nb_change_dir = 0 
 						
 						trial = 0
 						while( (current_pos[1]<nb_tiles) && (trial < 100)){
@@ -328,6 +339,13 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 									}
 								}
 								if( ok ){
+									
+									if( (current_dir[0]!=change[0]) || (current_dir[1]!=change[1]) ){
+										nb_change_dir = nb_change_dir + 1;
+									}
+									
+									current_dir = [change[0],change[1]]
+								
 									positions.push(new_pos)
 									current_pos = [new_pos[0],new_pos[1]]
 								}
@@ -335,7 +353,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 							
 							trial = trial+1
 						}
-						if( (current_pos[1]==nb_tiles) && (positions.length>=min_tiles_t) && (positions.length<=max_tiles) ){
+						if( (current_pos[1]==nb_tiles) && (positions.length>=min_tiles_t) && (positions.length<=max_tiles) && (nb_change_dir >= min_dir_changes) ){
 							not_found = false
 						}
 					}
