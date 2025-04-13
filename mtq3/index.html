@@ -1,0 +1,89 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <link rel="icon" type="image/x-icon" href="assets/img/fl_icon.png">
+
+        <title>Nouveau tracé, LE JEU</title>
+        <script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous">
+        </script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WDH17LWT8"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            gtag('config', 'G-3WDH17LWT8');
+        </script>
+    </head>
+
+    <body scroll="no" style="margin:0;padding:0;background-color: black;overflow: hidden">
+        <img src="assets/img/game10.png" style="width:0px;height:0px;z-index:0">
+		<div style="position:absolute;width:100%;height:100vh;z-index:999;text-align:center;">
+		
+		<iframe id="iframe1" src="intro.html" frameBorder="0" style="aspect-ratio: auto 16 / 9;width:100%;padding:0;margin:0">
+            </iframe>
+        </div>
+    </body>
+
+    <script>
+        function change_size(){
+            height = $(window).height();
+            console.log(height)
+            width  = $(window).width();
+            console.log(width)
+
+            if( (height/width) < (16/9)){
+                console.log(1)
+                $("#iframe1").css("height","100%");
+                $("#iframe1").css("width","calc(9/16 * 100vh)");
+            }
+            else{
+                console.log(2)
+                $("#iframe1").css("height","calc(16/9 * 100vw)");
+                $("#iframe1").css("width","100%");
+            }
+			setTimeout(function(){
+				// This hides the address bar:
+				window.scrollTo(0, 1);
+			}, 0);
+        }
+
+        $(window).bind('resize', function(e)
+        {
+            change_size();
+			   setTimeout(function(){
+				// This hides the address bar:
+				window.scrollTo(0, 1);
+			}, 0);
+        });
+
+        $( document ).ready(function() {
+            change_size();
+            //$(document).scrollTop($(document).height());
+        });
+		
+		window.addEventListener("load",function() {
+			setTimeout(function(){
+				// This hides the address bar:
+				window.scrollTo(0, 1);
+			}, 0);
+			
+
+		});
+		
+		
+
+    </script>
+
+</html>
