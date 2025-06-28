@@ -1,0 +1,88 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+
+
+          <style>
+		  
+			body{
+				background: #757575;
+				background-size: 100vw 100vh;
+				background: linear-gradient(180deg, rgba(30,146,194,1) 0%, rgba(30,146,194,1) 13%, rgba(95,94,94,1) 14%, rgba(131,127,127,1) 46%, rgba(29,177,71,1) 90%);
+
+                font-family: 'Courgette', cursive;
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+            div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+            img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+		  
+		  </style>
+	</head>
+	
+	<body scroll="no" style="  overflow: hidden; width:100%;">
+	
+		<img src="assets/img/lehouiller.png" style="position:fixed;top:34vh;left:-5vw;height:80vh;width:auto;z-index:995">
+		<img src="assets/img/marchand.png" style="position:fixed;top:42vh;left:62vw;height:50vh;width:auto;-webkit-transform: scaleX(-1);transform: scaleX(-1);">
+
+		<div style="position:absolute;top:2vh;left:3vw;width:60vw;text-align:left;height:auto;color:white;font-size:4vh;font-family: Arial, Helvetica, sans-serif;">
+            <b>Nouveau tracé<br>LE jeu</b><br>
+        </div>
+		
+		<img class="logo" src="assets/img/avtlogo.PNG" style="position:absolute;top:2vh;height:8vh;left:70vw;width:auto;" onclick="window.open('https://fblavoie.github.io/3elien/', '_blank').focus();">
+
+        <div style="position:absolute;top:15.5vh;left:5vw;width:90vw;text-align:left;height:auto;color:white;font-size:2.5vh;font-family: Arial, Helvetica, sans-serif;text-align:right;">
+			<b>Salut! Je suis Gilles Lehouiller, maire de Lévis et amateur de voirie. STP, aide-moi à définir le nouveau tracé du troisième lien. J'aimerais bien le voir passer devant ma mairie... Je pourrais l'admirer à la place de regarder les citoyens pendant le conseil municipal.</b>
+        </div>
+
+        <div class="vehicule" onclick="document.location.href = 'game.html?nb_tiles=4&min_tiles=4&max_tiles=8';" style="background-color:rgb(30,30,30);top:78vh;height:23.5vh;z-index:997;left:-0.5vw;padding:5px;width:49vw;text-align:center;position:absolute;height:16vh;font-size:4.5vh;color:white;border: solid 0.5vw white;font-family: Arial, Helvetica, sans-serif;"><b>JOUER</b><br><span style="font-size:3vh">débutant</span></div>
+        <div class="vehicule" onclick="document.location.href = 'game.html?nb_tiles=6&min_tiles=12&max_tiles=9999';" style="background-color:rgb(30,30,30);top:78vh;height:23.5vh;z-index:998;left:50vw;padding:5px;width:49vw;text-align:center;position:absolute;height:16vh;font-size:4.5vh;color:white;border: solid 0.5vw white;font-family: Arial, Helvetica, sans-serif;"><b>JOUER</b> <br><span style="font-size:3vh">intermédiaire</span></div>
+        <div class="vehicule" onclick="document.location.href = 'game.html?nb_tiles=8&min_tiles=35&max_tiles=9999';" style="background-color:rgb(30,30,30);top:89vh;height:16vh;z-index:999;left:-0.5vw;padding:5px;width:49vw;text-align:center;position:absolute;height:16vh;font-size:4.5vh;color:white;border: solid 0.5vw white;font-family: Arial, Helvetica, sans-serif;"><b>JOUER</b> <br><span style="font-size:3vh">expert</span></div>
+        <div class="vehicule" onclick="document.location.href = 'game.html?nb_tiles=9&min_tiles=77&max_tiles=9999&min_tiles_winning=75';" style="background-color:rgb(30,30,30);top:89vh;height:23.5vh;z-index:999;left:50vw;padding:5px;width:49vw;text-align:center;position:absolute;height:16vh;font-size:4.5vh;color:white;border: solid 0.5vw white;font-family: Arial, Helvetica, sans-serif;"><b>JOUER</b> <br><span style="font-size:3vh">super pro</span></div>
+
+
+	</body>
+
+
+</html>

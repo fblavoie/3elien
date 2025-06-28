@@ -1,0 +1,647 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  <link rel="preconnect" href="https://fonts.googleapis.com">
+		  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+		  
+		  <style>
+			
+			--nb_tiles: 6
+		  
+			body{
+				background: url("assets/img/decor.png");
+				background-repeat: no-repeat;
+				background-size: 100vw 100vh;
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+			div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+			img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			
+			.interruption{
+				filter: brightness(50%);
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+			
+			
+			.tile{
+				position:absolute;
+				border: solid 0.5vw rgb(90,90,90)
+				background-color: rgb(30,30,30);
+			}
+			
+			.clickable:hover{
+				cursor:pointer;
+			}
+
+			
+			
+			
+		
+		  </style>
+	</head>
+	
+	<body id="bodygame" scroll="no" style="  overflow: hidden; width:100%;">
+	
+
+	
+		<div id="princ_container" style="position:absolute;top:0;left:0;width:100%;height: 100%;">
+
+			<img src="assets/img/avtlogo.PNG" style="position:absolute;top:93vh;height:5vh;left:80vw;width:auto;">
+
+
+			<div style="position:absolute;width:100vw;height:10vw;background: rgb(70,236,54);background: linear-gradient(180deg, rgba(208, 226, 244,1) 0%,  rgba(208, 226, 244,1) 35%, rgba(94, 156, 45,1) 100%">
+			</div>
+			<div style="position:absolute;top:10vw;width:100vw;height:95vh;background-color:rgb(21, 96, 130)">
+			</div>
+			<div style="position:absolute;top:96vh;width:100vw;height:30vh;background-color:rgb(0, 186, 56);background:  linear-gradient(180deg, rgba(94, 156, 45,1) 0%, rgba(94, 156, 45,1) 50%, rgba(129, 166, 119,1) 96%);">
+			</div>
+			
+			
+
+
+
+			<div id="tous_les_panneaux" style="z-index:10">
+			</div>
+			
+			<script>
+			
+				let params = new URLSearchParams(document.location.search);
+				
+				console.log("params",params)
+				
+				nb_tiles = parseInt(params.get("nb_tiles"));
+				nb_tiles_y = 13
+				min_tiles = parseInt( params.get("min_tiles") );
+				max_tiles = parseInt( params.get("max_tiles") );
+				
+				min_tiles_winning = parseInt( params.get("min_tiles_winning") );
+				if(isNaN(min_tiles_winning)){
+					min_tiles_winning = 0;
+				}
+
+				for (x=0;x<nb_tiles;x++){
+					for (y=0;y<nb_tiles_y;y++){
+						$("#tous_les_panneaux").append('<div  id="t_'+x+'_'+y+'" onclick="ct('+x+','+y+')" class="tile x_'+x+' y_'+y+'" status=-10 ></div>')
+					}
+				}
+				
+				for (x=0;x<nb_tiles_y;x++){
+					$(".x_"+x).css("position","absolute")
+					$(".y_"+x).css("position","absolute")
+					$(".x_"+x).css("left",(2+96/nb_tiles*x)+"vw")
+					$(".y_"+x).css("top",(10+96/nb_tiles*x)+"vw")
+				}
+				
+				
+				
+				$(".tile").css("width",(96/nb_tiles-0.5)+"vw")
+				$(".tile").css("height",(96/nb_tiles-0.5)+"vw")
+
+			</script>
+			
+			
+			
+			<div style="position:absolute;top:97vh;left:5vw;font-size:2vh;width:90vw;text-align:center;color:white;" id="bottom_message" >
+				Appuie sur les tuiles afin de créer un tracé entre Québec et Lévis, soit du haut de l'écran vers le bas.
+			</div>
+			
+				
+			
+			<script>
+			
+				
+				if(min_tiles_winning>0){
+					$("#bottom_message").html("Le nouveau tracé doit être d'une longueur d'au moins <b>"+min_tiles_winning+" tuiles</b>.")
+					$("#bottom_message").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
+				}
+
+					
+			
+
+				
+				
+				
+				
+			
+			
+				function getRandomInt(min, max) {
+					min = Math.ceil(min);
+					max = Math.floor(max);
+					return Math.floor(Math.random() * (max - min + 1)) + min;
+				}
+			
+			
+				
+				function change_color(x,y,init=false) {
+					 if(init){
+						$( '#t_'+x+'_'+y ).attr("status",1)
+						$( '#t_'+x+'_'+y ).attr("onclick","cross_change("+x+","+y+")")
+						$( '#t_'+x+'_'+y ).addClass("clickable")
+
+						$( '#t_'+x+'_'+y ).css("background-color","rgb(210,210,210)")
+					 }
+					 else{
+						new_status =  Math.abs($( '#t_'+x+'_'+y ).attr("status")-1)
+						$( '#t_'+x+'_'+y ).attr("status",new_status)
+						if(new_status == 0){
+							$( '#t_'+x+'_'+y ).css("background-color","rgb(30,30,30)")
+						}
+						else{
+							$( '#t_'+x+'_'+y ).css("background-color","rgb(210,210,210)")
+						}
+					 }
+				}
+				
+				
+				
+				// Create map -----------------------------------------------
+				all_coord = [[4,6]]
+				change_color(4,6,true)
+				changes = [ [-1,0], [1,0], [0,-1], [0,1] ]
+				
+				for(i=0;i<25;i++){
+					not_found = true
+					
+					while(not_found){
+				
+						pos = all_coord[getRandomInt(0,all_coord.length-1)]
+						change = changes[getRandomInt(0,3)]
+						console.log(pos)
+						x_new = pos[0]+change[0]
+						y_new = pos[1]+change[1]
+						
+						if( (x_new>=0) && (y_new>=0) && (x_new<nb_tiles) && (y_new<nb_tiles_y) ){
+							not_in = true
+							for(j=0;j<all_coord.length;j++){
+								if( (all_coord[j][0]==x_new) && (all_coord[j][1]==y_new) ){
+									not_in = false
+								}
+							}
+							
+							if(not_in){
+								all_coord.push([x_new,y_new])
+								change_color(x_new,y_new,true)
+								not_found = false
+							}
+							
+						}
+						
+					}
+				}
+			
+			
+				function cross_change(x_sel,y_sel){
+					
+					change_color(x_sel,y_sel)
+					
+					for(i=0;i<changes.length;i++){
+						x_new = x_sel+changes[i][0]
+						y_new = y_sel+changes[i][1]
+						for(jj=0;jj<all_coord.length;jj++){
+							if( (x_new == all_coord[jj][0]) && (y_new == all_coord[jj][1]) ){
+								change_color(x_new,y_new)
+							}
+						}
+					}
+					
+				}
+			
+			
+				// Change colors
+				all_click_sol = []
+				for(f = 0; f < 5; f++){
+					pos = all_coord[getRandomInt(0,all_coord.length-1)]
+					not_found = true
+					while(not_found){
+						pos = all_coord[getRandomInt(0,all_coord.length-1)]
+						not_found = false
+						for (p=0;p<all_click_sol.length;p++){
+							if( (pos[0]==all_click_sol[p][0]) && (pos[1]==all_click_sol[p][1]) ){
+								not_found = true
+							}
+						}
+					}
+					cross_change(pos[0],pos[1])
+					all_click_sol.push(pos)
+				}
+			
+				
+				
+				
+				
+				
+				
+				
+				// Create map
+				var map = [[[2,0],[3,1],[0,1],[3,1]],[[2,1],[3,1],[0,0],[0,0]],[[3,1],[1,0],[3,1],[3,1]],[[1,0],[2,1],[0,1],[1,0]]]
+
+				
+				random_map = true
+				
+				if(random_map){
+					map = []
+				}
+				
+				
+				function modify_init(x,y,sel,state){
+					$("#t_"+x+"_"+y).removeClass("horizontal")
+					$("#t_"+x+"_"+y).removeClass("vertical")
+					$("#t_"+x+"_"+y).removeClass("main_top")
+					$("#t_"+x+"_"+y).removeClass("main_right")
+					$("#t_"+x+"_"+y).removeClass("main_bottom")
+					$("#t_"+x+"_"+y).removeClass("main_left")
+					$("#t_"+x+"_"+y).removeClass("angle_reverse_hor")
+					$("#t_"+x+"_"+y).removeClass("angle_reverse_ver")
+					$("#t_"+x+"_"+y).removeClass("rotate180")
+
+					if(sel == 0){
+						$("#t_"+x+"_"+y).attr("src","assets/img/tile_straight.png")
+						if(state == 0){
+							$("#t_"+x+"_"+y).addClass("horizontal")
+						}
+						else{
+							$("#t_"+x+"_"+y).addClass("vertical")
+						}
+					}
+					else{
+						$("#t_"+x+"_"+y).attr("src","assets/img/tile_angle.png")
+						if(sel == 1){
+							$("#t_"+x+"_"+y).addClass("main_top")
+							if(state == 1){
+								$("#t_"+x+"_"+y).addClass("angle_reverse_hor")
+							}
+						}
+						else if(sel == 2){
+							$("#t_"+x+"_"+y).addClass("main_right")
+							if(state == 1){
+								$("#t_"+x+"_"+y).attr("src","assets/img/tile_angle_flip.png")
+							}
+						}
+						else if(sel == 3){
+							$("#t_"+x+"_"+y).addClass("main_bottom")
+							if(state == 1){
+								$("#t_"+x+"_"+y).addClass("angle_reverse_ver")
+							}
+						}
+						else if(sel == 4){
+							$("#t_"+x+"_"+y).addClass("main_left")
+							if(state == 1){
+								$("#t_"+x+"_"+y).attr("src","assets/img/tile_angle_flip.png")
+							}
+						}
+						else if(sel == 5){
+							$("#t_"+x+"_"+y).attr("src","assets/img/tile_corner.png")
+							$("#t_"+x+"_"+y).addClass("corner")
+							if(state == 1){
+								$("#t_"+x+"_"+y).addClass("rotate180")
+							}
+						}
+						else if(sel == 6){
+							$("#t_"+x+"_"+y).attr("src","assets/img/tile_corner_flip.png")
+							$("#t_"+x+"_"+y).addClass("corner_flip")
+							if(state == 1){
+								$("#t_"+x+"_"+y).addClass("rotate180")
+							}
+						}
+					}
+				}
+				
+				
+				
+				
+				
+				// Generate random map
+				choices = [0,0,1,2,3,4,5,6]
+				choices_top = [0,0,1,2,4,0,0,1,2,4,3]
+				choices_bottom = [0,0,2,3,4,0,0,2,3,4,1]
+				for(x=0;x<nb_tiles;x++){
+					row = []
+				
+					for(y=0;y<nb_tiles;y++){
+						
+						if(random_map){
+							if(y==0){
+								sel = choices_top[getRandomInt(0,10)]
+							}
+							else if(y==(nb_tiles-1)){
+								sel = choices_bottom[getRandomInt(0,10)]
+							}
+							else{
+								sel = choices[getRandomInt(0,7)]
+							}
+							state = getRandomInt(0,1)
+						}
+						else{
+							sel = map[x][y][0]
+							state = map[x][y][1]
+						}
+						
+						modify_init(x,y,sel,state)
+						console.log(x,y,sel,state)
+						
+						row.push([sel,state])
+					}
+					
+					if(random_map){
+						map.push(row);
+					}
+				}
+				
+				
+				// Generate solution on the map
+				console.log("generating solutions")
+				console.log("all_sols",all_sols.length)
+				for(nb_sol=0;nb_sol<(all_sols.length);nb_sol++){
+					console.log("creating sol ",nb_sol)
+				
+					sol = all_sols[nb_sol]
+					
+					changing = [1,1,1,1,0]
+					
+					console.log("sol",sol)
+					for(i=0;i<sol.length;i++){
+						sel = sol[i]
+						x = sel[0]
+						y = sel[1]
+						a = sel[2][0]
+						state = sel[2][1]
+						modify_init(x,y,a,Math.abs(state-1*changing[getRandomInt(0,changing.length-1)]))
+						map[x][y] = [a,state]
+						ct(x,y)
+					}
+				}
+				
+				
+
+				
+				
+				function ct(x,y){
+					info = map[x][y]
+					tile = info[0]
+					state = info[1]
+					
+					new_state = Math.abs(state-1)
+					map[x][y][1] = new_state;
+					console.log(x,y,map[x][y])
+					
+					if(tile == 0){
+						if(new_state == 0){
+							$("#t_"+x+"_"+y).addClass("horizontal")
+							$("#t_"+x+"_"+y).removeClass("vertical")
+						}
+						if(new_state == 1){
+							$("#t_"+x+"_"+y).removeClass("horizontal")
+							$("#t_"+x+"_"+y).addClass("vertical")
+						}
+					}
+					else if( (tile == 1) ){
+						if(new_state == 0){
+							$("#t_"+x+"_"+y).removeClass("angle_reverse_hor")
+						}
+						if(new_state == 1){
+							$("#t_"+x+"_"+y).addClass("angle_reverse_hor")
+						}
+					}
+					else if( (tile == 3)  ){
+						if(new_state == 0){
+							$("#t_"+x+"_"+y).removeClass("angle_reverse_ver")
+						}
+						if(new_state == 1){
+							$("#t_"+x+"_"+y).addClass("angle_reverse_ver")
+						}
+					}
+					else if( (tile == 2) || (tile == 4) ){
+						if(new_state == 0){
+							$("#t_"+x+"_"+y).attr("src","assets/img/tile_angle.png")
+						}
+						if(new_state == 1){
+							$("#t_"+x+"_"+y).attr("src","assets/img/tile_angle_flip.png")
+						}
+					}
+					else if( (tile == 5) || (tile == 6) ){
+						if(new_state == 0){
+							$("#t_"+x+"_"+y).removeClass("rotate180")
+						}
+						if(new_state == 1){
+							$("#t_"+x+"_"+y).addClass("rotate180")
+						}
+					}
+					
+					setTimeout(function()
+					{
+						check_winning()
+					},200);
+				}
+
+
+				console.log(JSON.stringify(map))
+
+				
+				
+				
+				
+				function check_winning(){
+					
+					mods_y = [[0,1],[0,-1]]
+					mods_x = [[1,0],[-1,0]]
+					
+					success = false;
+				
+					possibilities = []
+					for(x=0;x<nb_tiles;x++){ // 4 places to begin
+						
+						console.log("beginning ",x)
+						
+						// Initialize position and direction
+						current_pos = [x,-1]
+						direction = [0,1]
+					
+						not_blocked = true
+						trial = 0;
+						
+						path = []
+						while(  (trial < (nb_tiles_y*nb_tiles+5)) && (success==false) ){
+						
+							// Try 4 modifications
+							no_change = true
+							for(p=0;p<=0;p++){
+								
+								if(Math.abs(direction[0])==1){
+									if(direction[0] == -1){
+										mods = [[-1,0]]
+									}
+									else{
+										mods = [[1,0]]
+									}
+								}
+								else{
+									if(direction[1] == -1){
+										mods = [[0,-1]]
+									}
+									else{
+										mods = [[0,1]]
+									}
+								}
+								
+								if(no_change){
+									new_pos = [current_pos[0]+mods[p][0], current_pos[1]+mods[p][1]]
+									if( (new_pos[0]>=0) && (new_pos[0]<=(nb_tiles-1)) && (new_pos[1]>=0) && (new_pos[1]<=(nb_tiles_y-1)) ){
+										directions = joins(new_pos[0],new_pos[1])
+										if(no_change){
+											if( ( directions[0][0]*-1 == direction[0] ) && ( directions[0][1]*-1== direction[1] ) ){
+												current_pos = [new_pos[0],new_pos[1]]
+												path.push([new_pos[0],new_pos[1],map[new_pos[0]][new_pos[1]]])
+												direction = directions[1]
+												no_change = false
+												console.log("pass",mods[p],"new_pos",new_pos,"direction",direction)
+											}
+											else if( ( directions[1][0]*-1== direction[0] ) && ( directions[1][1]*-1== direction[1] ) ){
+												current_pos = [new_pos[0],new_pos[1]]
+												path.push([new_pos[0],new_pos[1],map[new_pos[0]][new_pos[1]]])
+												direction = directions[0]
+												no_change = false
+												console.log("pass",mods[p],"new_pos",new_pos,"direction",direction)
+											}
+										}
+									}
+									
+									if(current_pos[1]==(nb_tiles_y-1)){
+										if( (direction[1]==1) ){
+											if( (path.length)>=min_tiles_winning ){
+												success = true
+											}
+											else if(success == false){ // Minimum tiles not reached
+												$("#bottom_message").html("Tracé de "+ (path.length) +" tuiles trouvé. Le minimum requis est de " + min_tiles_winning + " tuiles.")
+
+											}
+										}
+									}
+								}
+							}
+							
+							trial = trial + 1
+						}
+						
+						if(success){
+							console.log("path",JSON.stringify(path))
+						}
+					
+					}
+					
+					if(success){
+						console.log("success")
+						$("#final_container").show()
+					}
+					else{
+						console.log("no win")
+					}
+					
+				}
+				
+				
+				
+
+			</script>
+			
+		</div>
+
+		<div id="final_container" style="position:absolute;left:0;top:0;width:100%;height:100%;z-index:999;display:none;">
+
+
+			 <div id="end_text" style="position:absolute;top:95vh;left:0vw;width:100vw;text-align:left;height:5vh;color:black;background-color:white;font-size:2.5vh;font-family: Arial, Helvetica, sans-serif;text-align:center;padding:0vw;">
+				Tu es le sauveur de la banlieue de Québec. 
+			</div>
+
+			<div  onclick="location.reload();" class="vehicule" style="background-color:#eef52a;top:0vh;left:-0.5vw;padding:0.5vw;position:absolute;width:100vw;height:5vh;font-size:4vh;color:black;border: solid 1px black;font-family: Arial, Helvetica, sans-serif;text-align:center;" ><b>Créer un nouveau tracé</b></div>
+
+
+
+		</div>
+
+
+	</body>
+	
+	<script>
+	
+		var score = 0;
+		
+		var trumpet = new Audio('assets/sounds/trumpet.wav');
+		var success = new Audio('assets/sounds/success2.mp3');
+		var wrong = new Audio('assets/sounds/wrong.wav');
+		var endings = new Audio('assets/sounds/ending.mp3');
+
+
+
+
+
+
+		var beginning = 3000;
+		var temps_ecoule = 0;
+		var started = false;
+		var found = 0;
+		
+		setInterval(function () {
+		
+			if(beginning>0){
+				beginning = beginning -20
+				$("#beginning").html(Math.ceil(beginning/1000));
+			}
+			else if(beginning == 0){
+				beginning = beginning - 20;
+				$("#beginning").hide();
+				started = true;
+				//trumpet.pause();
+				//trumpet.currentTime = 0;
+				//trumpet.play();
+			}
+			else if(started){
+				temps_ecoule = temps_ecoule+20;
+			}
+			
+			
+		}, 20);
+
+
+
+	</script>
+
+</html>

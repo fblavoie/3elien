@@ -1,0 +1,566 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  <link rel="preconnect" href="https://fonts.googleapis.com">
+		  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+		  
+		  <style>
+		  
+			body{
+				background: url("assets/img/decor.png");
+				background-repeat: no-repeat;
+				background-size: 100vw 100vh;
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+			div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+			img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+		  
+		  </style>
+		  
+		  
+		  <script>
+			
+			start_positions = [ [-3,31], [-3, 55] ]
+			
+		  </script>
+		  
+	</head>
+	
+	<body id="bodygame" style="  overflow: hidden; width:100%;">
+	
+		<div id="princ_container" style="width:100%;height: auto;aspect-ratio: 16/9;">
+
+			
+			
+			<span id="vehicules_container">
+				
+				<img id="tramway1" src="assets/img/vehicules/tramway.png" style="width:4vw;height:auto;left:15.5vw;top:-38.5vh;position:absolute;">
+				<img id="tramway2" src="assets/img/vehicules/tramway.png" style="width:4vw;height:auto;left:32.5vw;top:100vh;position:absolute;">
+				<img id="tramway3" src="assets/img/vehicules/tramway.png" style="width:4vw;height:auto;left:49.5vw;top:-38.5vh;position:absolute;">
+				<img id="tramway4" src="assets/img/vehicules/tramway.png" style="width:4vw;height:auto;left:54.9vw;top:100vh;position:absolute;">
+				<img id="tramway5" src="assets/img/vehicules/tramway.png" style="width:4vw;height:auto;left:69.5vw;top:-38.5vh;position:absolute;">
+				<img id="tramway6" src="assets/img/vehicules/tramway.png" style="width:4vw;height:auto;left:84vw;top:100vh;position:absolute;">
+				<img id="martinecarimage" src="" style="width:9vw;height:auto;position:absolute;">
+				<img id="martinecarimage2" src="" style="width:9vw;height:auto;position:absolute;">
+
+			</span>
+			
+			<div id="winner" style="display:none;position:absolute;top:46vh;left:20vw;font-size:10vh;color:black;font-family: Arial, Helvetica, sans-serif;color;white;text-shadow: 0 0 20px #ffffff; /* horizontal-offset vertical-offset 'blur' colour */-moz-text-shadow: 0 0 20px #ffffff;-webkit-text-shadow: 0 0 20px #fffff;">
+			CAQUISTE 1 GAGNE
+			</div>
+				
+			</div>
+			
+			<script>
+				$("#martinecarimage").css("left",start_positions[0][0]+"vw");
+				$("#martinecarimage").css("top",start_positions[0][1]+"vh");
+				$("#martinecarimage2").css("left",start_positions[1][0]+"vw");
+				$("#martinecarimage2").css("top",start_positions[1][1]+"vh");
+				
+				const queryString = window.location.search;
+				console.log(queryString);
+				const urlParams = new URLSearchParams(queryString);
+				
+				$("#martinecarimage").attr("src","assets/img/vehicules/car"+urlParams.get('p1')+".png");
+				$("#martinecarimage2").attr("src","assets/img/vehicules/car"+urlParams.get('p2')+".png");
+
+
+				
+			</script>
+			
+
+			
+			<script>
+			
+					
+					function restart(c){
+
+						if (c==1){
+							gameover = false;
+							moving = false;
+						}
+						else if (c==2){
+							gameover2 = false;
+							moving2 = false;
+						}
+						carstart.pause();
+						carstart.currentTime = 0;
+						carstart.play();
+					}
+			
+					var mult=0.7
+					
+					// 
+					function tramway1(){
+						$("#tramway1").animate({"top":"100vw"},mult*7000,"linear",function(data){
+							$("#tramway1").css("top","-38.5vh");
+							setTimeout(function(){ tramway1(); },  Math.floor(Math.random() * 10)*100+1000);
+						});
+					}
+					tramway1()
+					
+					function tramway2(){
+						$("#tramway2").animate({"top":"-38.5vw"},mult*6000,"linear",function(data){
+							$("#tramway2").css("top","100vh");
+							setTimeout(function(){ tramway2(); },  Math.floor(Math.random() * 10)*80+500);
+						});
+					}
+					tramway2()
+					
+					function tramway3(){
+						$("#tramway3").animate({"top":"100vw"},mult*5000,"linear",function(data){
+							$("#tramway3").css("top","-38.5vh");
+							setTimeout(function(){ tramway3(); },  Math.floor(Math.random() * 10)*80+100);
+						});
+					}
+					tramway3()
+					
+					function tramway4(){
+						$("#tramway4").animate({"top":"-38.5vw"},mult*4500,"linear",function(data){
+							$("#tramway4").css("top","100vh");
+							setTimeout(function(){ tramway4(); },  Math.floor(Math.random() * 10)*80+0);
+						});
+					}
+					tramway4()	
+
+					function tramway5(){
+						$("#tramway5").animate({"top":"100vw"},mult*4000,"linear",function(data){
+							$("#tramway5").css("top","-38.5vh");
+							setTimeout(function(){ tramway5(); },  Math.floor(Math.random() * 10)*100+20);
+						});
+					}
+					tramway5()					
+					
+					function tramway6(){
+						$("#tramway6").animate({"top":"-38.5vw"},mult*3500,"linear",function(data){
+							$("#tramway6").css("top","100vh");
+							setTimeout(function(){ tramway6(); },  0);
+						});
+					}
+					tramway6();	
+					
+					
+					
+					
+					var moving = false;
+					var moving2 = false;
+					
+					var moving_backward = false;
+					var moving_backward2 = false;
+			
+			
+					function move_car(){
+						if ( (gameover == false) && (winner_not_exists) ){
+							if (moving){
+								$("#martinecarimage").animate({"left":"+=0.2vw"},1,"linear",function(data){
+									if( moving ){
+										move_car();
+									}
+								});
+							}
+							else if(moving_backward){
+								$("#martinecarimage").animate({"left":"+=-0.2vw"},1,"linear",function(data){
+									if( moving_backward ){
+										move_car();
+									}
+								});
+							}
+						}
+						else{
+							if( moving || moving_backward ){
+								setTimeout(function(){
+									move_car();
+								},  10);
+							}
+						}
+					}
+					
+					function move_car2(){
+						if ( (gameover2 == false) && (winner_not_exists) ){
+							if (moving2){
+								$("#martinecarimage2").animate({"left":"+=0.2vw"},1,"linear",function(data){
+									if( moving2 ){
+										move_car2();
+									}
+								});
+							}
+							else if(moving_backward2){
+								$("#martinecarimage2").animate({"left":"+=-0.2vw"},1,"linear",function(data){
+									if( moving_backward2 ){
+										move_car2();
+									}
+								});
+							}
+						}
+						else{
+							if( moving2 || moving_backward2 ){
+								setTimeout(function(){
+									move_car2();
+								},  10);
+							}
+						}
+					}
+					
+					
+					var rot = 0
+					function gameover_anim(){
+						
+					
+						rot = rot + 5;
+						$("#martinecarimage").css("transform","rotate(+"+rot+"deg)");
+						setTimeout(function(){ 
+							if(gameover){ gameover_anim(); }
+							else{
+								$("#martinecarimage").css("transform","rotate(+0deg)");
+							} 
+						},  10);
+					}
+					
+					var rot2 = 0
+					function gameover_anim2(){
+											
+						rot2 = rot2 + 5;
+						$("#martinecarimage2").css("transform","rotate(+"+rot2+"deg)");
+						setTimeout(function(){ 
+							if(gameover2){ gameover_anim2(); }
+							else{
+								$("#martinecarimage2").css("transform","rotate(+0deg)");
+							} 
+						},  10);
+					}
+					
+					function change_action(){
+						if( moving){
+							moving = false;
+							jump1.pause();
+							jump1.currentTime = 0;
+							jump1.play();
+						}
+						else{
+							moving = true;
+							move_car();
+							jump2.pause();
+							jump2.currentTime = 0;
+							jump2.play();
+						}
+					}
+					
+					function elementsOverlap(el1, el2) {
+					  const domRect1 = el1.getBoundingClientRect();
+					  const domRect2 = el2.getBoundingClientRect();
+
+					  return !(
+						domRect1.top > domRect2.bottom ||
+						domRect1.right < domRect2.left ||
+						domRect1.bottom < domRect2.top ||
+						domRect1.left > domRect2.right
+					  );
+					}
+					
+					var gameover = false;
+					var gameover2 = false;
+					
+					function check_accident(){
+
+						for(i=1;i<=6;i++){ // for each tramway
+							
+							for(c=1;c<3;c++){ // for each player
+							
+								if(c==1){
+									car = document.getElementById("martinecarimage");
+									jquery_var = $("#martinecarimage");
+									gameover_var = gameover
+								}
+								else if(c==2){
+									car = document.getElementById("martinecarimage2");
+									jquery_var = $("#martinecarimage2");
+									gameover_var = gameover2
+								}
+								
+								if( elementsOverlap(car, document.getElementById("tramway"+i)) ){
+									console.log("HIT")
+									if(c==1){
+										moving = false;
+									}
+									else if(c==2){
+										moving2 = false;
+									}
+									if(gameover_var == false){
+									
+										// Play sounds
+										explosion.pause();
+										explosion.currentTime = 0;
+										explosion.play();
+										
+										failure.pause();
+										failure.currentTime = 0;
+										failure.play();
+										
+										if (c==1){
+											gameover = true
+										}
+										else if(c==2){
+											gameover2 = true
+										}
+										
+										// Start animations
+										if(c==1){
+											gameover_anim();
+											setTimeout(function(){ 
+												$("#martinecarimage").animate({"left":start_positions[0][0]+"vw",
+																	"top":start_positions[0][1]+"vh"},3000,"linear",function(data){
+													$("#reload_button").show();
+													restart(1);
+												});
+											},  0);
+										}
+										else if(c==2){
+											gameover_anim2();
+											setTimeout(function(){
+												$("#martinecarimage2").animate({"left":start_positions[1][0]+"vw",
+																	"top":start_positions[1][1]+"vh"},3000,"linear",function(data){
+													$("#reload_button").show();
+													restart(2);
+												});
+											},  0);
+										}
+										
+									}
+								}
+								
+							}
+						
+						}
+						
+					}
+					
+					var winner_not_exists = true;
+					
+					setInterval(function () {
+						// Check winner
+						if (winner_not_exists ){
+							if( ( $("#martinecarimage").position().left/$(document).width() >= 0.9  ) ){
+								$("#winner").html("<b>CAQUISTE 1 GAGNE</b>")
+								winner_not_exists = false;
+								gameover = true;
+								gameover2 = true;
+								$("#winner").show()
+								success.pause();
+								success.currentTime = 0;
+								success.play();
+							}
+							else if( ( $("#martinecarimage2").position().left/$(document).width() >= 0.9  ) ){
+								$("#winner").html("<b>CAQUISTE 2 GAGNE</b>")
+								winner_not_exists = false;
+								gameover = true;
+								gameover2 = true;
+								$("#winner").show()
+								success.pause();
+								success.currentTime = 0;
+								success.play();
+							}
+						}
+					
+						if(winner_not_exists){
+							check_accident();
+						}
+					}, 10);
+					
+					$(document).keydown(function (event) {
+						key = (event.keyCode ? event.keyCode : event.which);
+						console.log("DOWN")
+						console.log(key)
+						
+						// RESTART A NEW GAME
+						if((key==32)){
+							if(winner_not_exists == false){
+								$("#winner").html("");
+								gameover_anim();
+								setTimeout(function(){ 
+									$("#martinecarimage").animate({"left":start_positions[0][0]+"vw",
+														"top":start_positions[0][1]+"vh"},3000,"linear",function(data){
+										$("#reload_button").show();
+										restart(1);
+									});
+								},  0);
+								gameover_anim2();
+								setTimeout(function(){
+									$("#martinecarimage2").animate({"left":start_positions[1][0]+"vw",
+														"top":start_positions[1][1]+"vh"},3000,"linear",function(data){
+										$("#reload_button").show();
+										restart(2);
+										winner_not_exists = true
+									});
+								},  0);
+							}
+						}
+						
+						
+						// PLAYER 1
+						if((key==81)){
+							moving = false;
+							if(moving_backward == false){
+								back1.pause();
+								back1.currentTime = 0;
+								back1.play();
+								moving_backward = true
+								move_car()
+							}
+							moving_backward = true
+						}
+						if((key==87)){
+							moving_backward = false;
+							if(moving == false){
+								back1.pause();
+								jump2.pause();
+								jump2.currentTime = 0;
+								jump2.play();
+								moving = true
+								move_car()
+							}
+							moving = true
+						}
+						
+						// PLAYER 2
+						if((key==79)){
+							moving2 = false;
+							if(moving_backward2 == false){
+								back2.pause();
+								back2.currentTime = 0;
+								back2.play();
+								moving_backward2 = true
+								move_car2()
+							}
+							moving_backward2 = true
+						}
+						if((key==80)){
+							moving_backward2 = false;
+							if(moving2 == false){
+								back2.pause();
+								jump22.pause();
+								jump22.currentTime = 0;
+								jump22.play();
+								moving2 = true
+								move_car2();
+							}
+							moving2 = true
+						}
+						
+						
+					});
+					
+					$(document).keyup(function (event) {
+						key = (event.keyCode ? event.keyCode : event.which);
+						console.log("UP")
+						console.log(key)
+						
+						// PLAYER 1
+						if((key==81)){
+							jump1.pause();
+							jump1.currentTime = 0;
+							jump1.play();
+							moving_backward = false;
+						}
+						if((key==87)){
+							jump1.pause();
+							jump1.currentTime = 0;
+							jump1.play();
+							moving = false;
+						}
+						
+						// PLAYER 2
+						if((key==79)){
+							jump12.pause();
+							jump12.currentTime = 0;
+							jump12.play();
+							moving_backward2 = false;
+						}
+						if((key==80)){
+							jump12.pause();
+							jump12.currentTime = 0;
+							jump12.play();
+							moving2 = false;
+						}
+						
+					});
+
+
+			</script>
+			
+			<div id="type_vehicule_show" style="height:3vh;font-size:3vh;top:85vh;margin-left:1vh;position:absolute;color:white;"></div>
+			<div id="mod_score_show" style="display:none;height:3vh;font-size:3vh;top:89vh;margin-left:1vh;position:absolute;color:white;"><span id="score_mod"></span> points</div>
+		
+		</div>
+
+		<div id="final_container" style="display:none;width:100%;">
+			
+			<div style="top:48.5vh;margin:auto;left:20vw;position:absolute;height:5vh;font-size:5vh;color:white;font-family: 'Press Start 2P', cursive;"><b>SCORE FINAL: <span id="final_score"></span> points</b></div>
+			<div class="vehicule" onclick="location.reload();" style="background-color:#eef52a;top:85vh;left:20vw;padding:5px;position:absolute;height:5vh;font-size:5vh;color:black;border: solid 1px black;"><b>RECOMMENCER</b></div>
+
+
+		</div>
+
+
+	</body>
+	
+	<script>
+	
+		var score = 0;
+		
+		var explosion = new Audio('assets/sounds/explosion.wav');
+		var failure = new Audio('assets/sounds/failure.wav');
+		var carstart = new Audio('assets/sounds/carstart.wav');
+		var jump1 = new Audio('assets/sounds/jump1.wav');
+		var jump2 = new Audio('assets/sounds/jump2.wav');
+		var jump12 = new Audio('assets/sounds/jump1.wav');
+		var jump22 = new Audio('assets/sounds/jump2.wav');
+		var success = new Audio('assets/sounds/success.mp3');
+		var back1 = new Audio('assets/sounds/back.mp3');
+		var back2 = new Audio('assets/sounds/back.mp3');
+
+
+		carstart.pause();
+		carstart.currentTime = 0;
+		carstart.play();
+
+
+
+
+	</script>
+
+</html>
