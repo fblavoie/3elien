@@ -375,7 +375,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				function reset(){
 
 					$("#top_message").html("Bernard te demande de sélectionner une des cases bleues. L'objectif est de calculer un des nombres au bas de l'écran.")
-					$("#top_message").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)								
+					$("#top_message").fadeOut(0).fadeIn(300)								
 
 				
 					$(".tile").removeClass("tile_as")
@@ -584,7 +584,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 								if(already_selected.length == 2){
 									$("#t_"+(nb_tiles-1)/2+"_"+(nb_tiles-1)/2).addClass("tile_center")
 									$("#top_message").html("Bernard te permet d'appuyer sur la case du centre pour recommencer un calcul.")
-									$("#top_message").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)								
+									$("#top_message").fadeOut(0).fadeIn(300)								
 								}
 								
 								console.log("choice ok")
@@ -616,7 +616,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 											
 											if(all_obj == 1){
 												$("#top_message").html("Bernard te félicite. Tu as calculé tous les nombres. Tu peux refaire une nouvelle grille en appuyant au haut de l'écran.")
-												$("#top_message").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)								
+												$("#top_message").fadeOut(0).fadeIn(300)								
 											}
 											
 										}
