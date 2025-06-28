@@ -33,6 +33,8 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			
 			#bodygame{
 				background: linear-gradient(180deg, rgba(20, 20, 20,1) 0%, rgba(40,40,40,1) 100%);
+	     	  font-family: Arial, Helvetica, sans-serif;
+
 
 			}
 
@@ -166,7 +168,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		<div id="princ_container" style="position:absolute;top:0;left:0;width:100%;height: 100%;">
 
 
-			<div class="btn" onclick="window.location.reload();" style="position:absolute;top:0.25vh;left:65vw;font-size:2.5vh;padding:0.7vh;padding-left:2vw;width:100vw;padding-right:1.5vh;color:white;background-color:rgb(100,100,100);border-radius: 0.5vh;">Nouvelle grille</div>
+			<div class="btn" onclick="window.location.reload();" style="position:absolute;top:0.25vh;left:65vw;font-size:1.75vh;padding:0.7vh;padding-left:2vw;width:100vw;padding-right:1.5vh;color:white;background-color:rgb(100,100,100);border-radius: 0.5vh;">Nouvelle grille</div>
 
 
 			
@@ -182,9 +184,9 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		
 			<div style="position:absolute;text-align:right;left:10vw;width:70vw;top:85vh;height:0.5vh;background-color:white;"></div>
 
-			<div id="top_message" style="position:absolute;text-align:right;font-size:1.8vh;width:94vw;top:61vh;left:2.5vw;color:black;height:5.0vh;background-color:white;padding:0.5vh;border-radius: 0.5vh;z-index:98;">Sélectionne une des cases sur fond bleu.</div>
+			<div id="top_message" style="position:absolute;text-align:right;font-size:2vh;width:90vw;top:59vh;left:2.5vw;color:black;height:7.4vh;background-color:white;padding:0.5vh;padding-left:2vh;padding-right:1vh;border-radius: 0.5vh;z-index:98;">Sélectionne une des cases sur fond bleu.</div>
 
-			<img src="assets/img/bernard.png" style="z-index:99;position:absolute;left:-5vw;top:66vh;height:40vh;width:auto;">
+			<img src="assets/img/bernard.png" style="z-index:99;position:absolute;left:-5vw;top:67vh;height:40vh;width:auto;">
 
 			<div class="objective_box" style="left:1vw" id="obj_0"></div>
 			<div class="objective_box" style="left:21vw" id="obj_1"></div>
@@ -229,7 +231,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 					$(".x_"+x).css("position","absolute")
 					$(".y_"+x).css("position","absolute")
 					$(".x_"+x).css("left",(2+96/nb_tiles*x)+"vw")
-					$(".y_"+x).css("top",(10+96/nb_tiles*x)+"vw")
+					$(".y_"+x).css("top",(8+96/nb_tiles*x)+"vw")
 				}
 				
 				padding_top = (96/nb_tiles-0.5)*0.225
