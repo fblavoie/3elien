@@ -265,7 +265,10 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			
 				
 				
-				
+				function new_message(message){
+					$("#top_message").html(message)
+					$("#top_message").fadeOut(0).fadeIn(300)								
+				}
 				
 
 
@@ -374,8 +377,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				
 				function reset(){
 
-					$("#top_message").html("Bernard te demande de sélectionner une des cases bleues. L'objectif est de calculer un des nombres au bas de l'écran.")
-					$("#top_message").fadeOut(0).fadeIn(300)								
+					new_message("Bernard te demande de sélectionner une des cases bleues. L'objectif est de calculer un des nombres au bas de l'écran.")
 
 				
 					$(".tile").removeClass("tile_as")
@@ -401,13 +403,14 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 					$("#result").html("")
 					
 					show_choices()
+					
 				}
 				reset()
 				
 				
 				
 				
-				// Generate random solution
+				// Generate random solutions ================================================================
 				
 				choices = [ [0,1],[0,-1],[1,0],[-1,0] ]
 				possible_numbers = []
@@ -545,6 +548,10 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				objective_reached = [false,false,false,false,false]
 
 
+
+
+
+
 				function calculate(number0,operator,number1){
 					if( operator.localeCompare("−") == 0 ){
 						r =  number0 - number1
@@ -583,8 +590,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 
 								if(already_selected.length == 2){
 									$("#t_"+(nb_tiles-1)/2+"_"+(nb_tiles-1)/2).addClass("tile_center")
-									$("#top_message").html("Bernard te permet d'appuyer sur la case du centre pour recommencer un calcul.")
-									$("#top_message").fadeOut(0).fadeIn(300)								
+									new_message("Bernard te permet d'appuyer sur la case du centre pour recommencer un calcul.")
 								}
 								
 								console.log("choice ok")
@@ -601,6 +607,10 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 
 									}
 									
+									if(current_result==0){
+										new_message("Tu as calculé le nombre zéro... zéro comme la quantité de GES émis par le troisième lien. Lâchez-moi avec les GES!")
+									}
+									
 									// Check objective
 									for(po=0;po<objective_numbers.length;po++){
 										if((objective_numbers[po]==current_result) && (objective_reached[po]==false)){
@@ -615,8 +625,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 											}
 											
 											if(all_obj == 1){
-												$("#top_message").html("Bernard te félicite. Tu as calculé tous les nombres. Tu peux refaire une nouvelle grille en appuyant au haut de l'écran.")
-												$("#top_message").fadeOut(0).fadeIn(300)								
+												new_message("Bernard te félicite. Tu as calculé tous les nombres. Tu peux refaire une nouvelle grille en appuyant au haut de l'écran.")
 											}
 											
 										}
@@ -657,106 +666,6 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				console.log(JSON.stringify(map))
 
 				
-				
-				
-				
-				function check_winning(){
-					
-					mods_y = [[0,1],[0,-1]]
-					mods_x = [[1,0],[-1,0]]
-					
-					success = false;
-				
-					possibilities = []
-					for(x=0;x<nb_tiles;x++){ // 4 places to begin
-						
-						console.log("beginning ",x)
-						
-						// Initialize position and direction
-						current_pos = [x,-1]
-						direction = [0,1]
-					
-						not_blocked = true
-						trial = 0;
-						
-						path = []
-						while(  (trial < (nb_tiles*nb_tiles+5)) && (success==false) ){
-						
-							// Try 4 modifications
-							no_change = true
-							for(p=0;p<=0;p++){
-								
-								if(Math.abs(direction[0])==1){
-									if(direction[0] == -1){
-										mods = [[-1,0]]
-									}
-									else{
-										mods = [[1,0]]
-									}
-								}
-								else{
-									if(direction[1] == -1){
-										mods = [[0,-1]]
-									}
-									else{
-										mods = [[0,1]]
-									}
-								}
-								
-								if(no_change){
-									new_pos = [current_pos[0]+mods[p][0], current_pos[1]+mods[p][1]]
-									if( (new_pos[0]>=0) && (new_pos[0]<=(nb_tiles-1)) && (new_pos[1]>=0) && (new_pos[1]<=(nb_tiles-1)) ){
-										directions = joins(new_pos[0],new_pos[1])
-										if(no_change){
-											if( ( directions[0][0]*-1 == direction[0] ) && ( directions[0][1]*-1== direction[1] ) ){
-												current_pos = [new_pos[0],new_pos[1]]
-												path.push([new_pos[0],new_pos[1],map[new_pos[0]][new_pos[1]]])
-												direction = directions[1]
-												no_change = false
-												console.log("pass",mods[p],"new_pos",new_pos,"direction",direction)
-											}
-											else if( ( directions[1][0]*-1== direction[0] ) && ( directions[1][1]*-1== direction[1] ) ){
-												current_pos = [new_pos[0],new_pos[1]]
-												path.push([new_pos[0],new_pos[1],map[new_pos[0]][new_pos[1]]])
-												direction = directions[0]
-												no_change = false
-												console.log("pass",mods[p],"new_pos",new_pos,"direction",direction)
-											}
-										}
-									}
-									
-									if(current_pos[1]==(nb_tiles-1)){
-										if( (direction[1]==1) ){
-											if( (path.length)>=min_tiles_winning ){
-												success = true
-											}
-											else if(success == false){ // Minimum tiles not reached
-												$("#bottom_message").html("Vous avez trouvé un tracé de "+ (path.length) +" tuiles, mais celui-ci ne respecte pas la longueur minimale de " + min_tiles_winning + " tuiles.")
-
-											}
-										}
-									}
-								}
-							}
-							
-							trial = trial + 1
-						}
-						
-						if(success){
-							console.log("path",JSON.stringify(path))
-						}
-					
-					}
-					
-					if(success){
-						console.log("success")
-						$("#final_container").show()
-					}
-					else{
-						console.log("no win")
-					}
-					
-				}
 				
 				
 				
