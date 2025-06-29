@@ -272,9 +272,15 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				
 
 
+
 				// Map creation =========================================================
 				
-				var map = [[[2,0],[3,1],[0,1],[3,1]],[[2,1],[3,1],[0,0],[0,0]],[[3,1],[1,0],[3,1],[3,1]],[[1,0],[2,1],[0,1],[1,0]]]
+				function isEven(n) {
+				   return n % 2 == 0;
+				}
+
+				
+				var map
 
 				random_map = true
 				
@@ -282,17 +288,12 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 					map = []
 				}
 				
-				function isEven(n) {
-				   return n % 2 == 0;
-				}
-
-				
 				start_value = 2
-				choices_numbers = [1,1,2,2,3,4,4,5,6,6,7,8,9,10]
+
 				choices_numbers = [1,1,2,2,3,4,4,5]
 
-				choices_operators = ["−","−","+","+","+","÷","÷","×","×"]
 				choices_operators = ["−","−","+","+","+","×","×"]
+
 
 				var already_selected = []
 				// Generate random map
@@ -339,7 +340,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				
 				
 				
-				// Green visual =================================================
+				// Clickable visual =================================================
 				
 				function add_green(x_t,y_t){
 					
@@ -516,21 +517,11 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				
 				}
 				
-				function median(numbers) {
-					const sorted = Array.from(numbers).sort((a, b) => a - b);
-					const middle = Math.floor(sorted.length / 2);
 
-					if (sorted.length % 2 === 0) {
-						return (sorted[middle - 1] + sorted[middle]) / 2;
-					}
-
-					return sorted[middle];
-				}
 
 				//objective_number = possible_numbers[getRandomInt(0,possible_numbers.length-1)]
 				console.log("possible_numbers",possible_numbers)
-				objective_number = median(possible_numbers)
-				console.log("NUMBER TO GET:", objective_number)
+				
 
 				no0 = (math.quantileSeq(possible_numbers, 0.3))
 				no1 = (math.quantileSeq(possible_numbers, 0.5))
