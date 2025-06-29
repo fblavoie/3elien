@@ -288,11 +288,17 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 					map = []
 				}
 				
-				start_value = 2
+				start_values_choice = [1,2,3]
 
 				choices_numbers = [1,1,2,2,3,4,4,5]
 
 				choices_operators = ["−","−","+","+","+","×","×"]
+
+				max_sol_value = 120
+
+
+				start_value = start_values_choice[getRandomInt(0,start_values_choice.length-1)]
+
 
 
 				var already_selected = []
@@ -305,6 +311,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				var number0 = 0.0
 				var number1 = start_value
 				var current_result = number1*1.0
+				
 				
 				var best_score = number1
 
@@ -509,7 +516,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 						
 						
 						
-						if(currently_ok && (n0>start_value)){
+						if(currently_ok && (n0>start_value) && (n0 <= max_sol_value)){
 							not_ok = false
 							possible_numbers.push(n0)
 						}
