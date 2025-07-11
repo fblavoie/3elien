@@ -1,0 +1,609 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  <link rel="preconnect" href="https://fonts.googleapis.com">
+		  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+		  
+		  <style>
+			
+			--nb_tiles: 6
+		  
+			body{
+				background-repeat: no-repeat;
+				background-size: 100vw 100vh;
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+			div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+			img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			
+			.interruption{
+				filter: brightness(50%);
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+			
+			
+			.tile{
+				position:absolute;
+				border: solid 0.5vw rgb(90,90,90);
+				text-align:center;
+				font-weight: bold;
+				background-color: rgb(220,220,200)
+			}
+			
+			.tile_as{
+				background-color: #6e6c64
+			}
+			
+			.tile_choice{
+				background-color: #62f56f
+			}
+			
+			.tile:hover{
+				cursor:pointer;
+			}
+
+			
+			
+			.horizontal{
+				
+			}
+		  	
+			.vertical{
+				transform:rotate(90deg);
+			}
+			
+			.main_top{
+				
+			}
+			
+			.main_right{
+				transform:rotate(90deg);
+			}
+			
+			.main_bottom{
+				transform:rotate(180deg);
+			}
+			
+			.main_left{
+				transform:rotate(270deg);
+			}
+			
+			.angle_reverse_hor{
+			  -webkit-transform: scaleX(-1);
+			  transform: scaleX(-1);
+
+			}
+			
+			.angle_reverse_ver{
+			  -webkit-transform: scaleY(-1);
+			  transform: scaleY(-1);
+
+			}
+			
+			.angle_reverse_right{
+			  transform:rotate(90deg);
+			 -webkit-transform: scaleY(-1);
+			  transform: scaleY(-1);
+			}
+			
+			.btn:hover{
+				cursor:pointer;
+			}
+			
+			
+		  
+		  </style>
+	</head>
+	
+	<body id="bodygame" scroll="no" style="  overflow: hidden; width:100%;">
+	
+
+	
+		<div id="princ_container" style="position:absolute;top:0;left:0;width:100%;height: 100%;">
+
+
+			<div class="btn" onclick="reset()" style="position:absolute;top:0.75vh;left:-2vw;font-size:2.5vh;padding:0.7vh;padding-left:5vw;padding-right:1.5vh;color:white;background-color:rgb(100,100,100);border-radius: 0.5vh;">Revenir au point de départ</div>
+			<div class="btn" onclick="window.location.reload();" style="position:absolute;top:0.75vh;left:65vw;font-size:2.5vh;padding:0.7vh;padding-left:2vw;width:100vw;padding-right:1.5vh;color:white;background-color:rgb(100,100,100);border-radius: 0.5vh;">Nouvelle grille</div>
+
+			<div style="position:absolute;text-align:center;font-size:2.1vh;width:94vw;top:6.6vh;left:3vw;color:white;">OBJECTIF: Faire gonfler la facture initiale de 0.6 M$<br>Pour ce, sélectionne une des cases sur fond vert.</div>
+
+			
+			<div id="number0" style="position:absolute;text-align:right;font-size:8vh;width:70vw;top:67vh;color:white;">0.6</div>
+			<div style="position:absolute;text-align:left;font-size:4vh;left:75vw;top:69.5vh;color:rgb(200,200,200);">M$</div>
+
+			<div id="number1" style="position:absolute;text-align:right;font-size:8vh;width:70vw;top:75vh;color:white;"></div>
+			<div id="operator" style="position:absolute;text-align:right;font-size:8vh;left:75vw;top:75vh;color:white;"></div>
+
+			<div id="result" style="position:absolute;text-align:right;font-size:8vh;width:70vw;top:86vh;color:white;"></div>
+			<div id="bottom_unit" style="position:absolute;text-align:left;font-size:4vh;left:75vw;top:88.5vh;color:rgb(200,200,200);display:none">M$</div>
+
+			<div  style="position:absolute;text-align:left;font-size:2.5vh;width:100vw;top:96.5vh;color:white;left:2vw;">Meilleur score sur cette grille: <b><span id="best_score">0.6</span> M$</b></div>
+
+			<div style="position:absolute;text-align:right;left:5vw;width:65vw;top:85vh;height:0.5vh;background-color:white;"></div>
+			
+
+			<img class="logo" src="assets/img/avtlogo.PNG" style="position:absolute;top:2vh;height:8vh;left:5vw;width:auto;display:none;" onclick="window.open('https://fblavoie.github.io/3elien/', '_blank').focus();">
+
+
+
+			<div id="tous_les_panneaux" style="z-index:10">
+			</div>
+			
+			<script>
+			
+				let params = new URLSearchParams(document.location.search);
+				
+				console.log("params",params)
+				
+				nb_tiles = params.get("nb_tiles");
+				min_tiles = parseInt( params.get("min_tiles") );
+				max_tiles = parseInt( params.get("max_tiles") );
+				
+				min_tiles_winning = parseInt( params.get("min_tiles_winning") );
+				if(isNaN(min_tiles_winning)){
+					min_tiles_winning = 0;
+				}
+
+				for (x=0;x<nb_tiles;x++){
+					for (y=0;y<nb_tiles;y++){
+						$("#tous_les_panneaux").append('<div id="t_'+x+'_'+y+'" onclick="ct('+x+','+y+')" class="tile x_'+x+' y_'+y+'" ></div>')
+					}
+				}
+				
+				for (x=0;x<nb_tiles;x++){
+					$(".x_"+x).css("position","absolute")
+					$(".y_"+x).css("position","absolute")
+					$(".x_"+x).css("left",(2+96/nb_tiles*x)+"vw")
+					$(".y_"+x).css("top",(21+96/nb_tiles*x)+"vw")
+				}
+				
+				padding_top = (96/nb_tiles-0.5)*0.225
+				$(".tile").css("width",(96/nb_tiles-0.5)+"vw")
+				$(".tile").css("height",(96/nb_tiles-0.5)-padding_top+"vw")
+				$(".tile").css("padding-top",padding_top+"vw")
+				$(".tile").css("font-size",(96/nb_tiles-0.5)*0.5+"vw")
+
+			</script>
+			
+			
+			
+			<div style="position:absolute;top:75vh;left:57vw;font-size:2.3vh;width:40vw;text-align:right;color:white;" id="bottom_message" >
+			</div>
+			
+				
+			
+			<script>
+			
+			
+
+			
+			
+				function getRandomInt(min, max) {
+					min = Math.ceil(min);
+					max = Math.floor(max);
+					return Math.floor(Math.random() * (max - min + 1)) + min;
+				}
+			
+			
+			
+				
+				
+				
+				
+
+
+				// Map creation =========================================================
+				
+				var map = [[[2,0],[3,1],[0,1],[3,1]],[[2,1],[3,1],[0,0],[0,0]],[[3,1],[1,0],[3,1],[3,1]],[[1,0],[2,1],[0,1],[1,0]]]
+
+				random_map = true
+				
+				if(random_map){
+					map = []
+				}
+				
+				function isEven(n) {
+				   return n % 2 == 0;
+				}
+
+				
+				choices_numbers = [1,1,1,2,2,2,3,3,4]
+				choices_operators = ["−","−","+","+","+","÷","÷","×","×"]
+				var already_selected = []
+				// Generate random map
+				
+				var current_x = (nb_tiles-1)/2
+				var current_y = (nb_tiles-1)/2
+
+				var current_operator = ""
+				var number0 = 0.0
+				var number1 = 0.6
+				var current_result = number1*1.0
+				
+				var best_score = number1
+
+
+				for(x=0;x<nb_tiles;x++){
+					row = []
+				
+					for(y=0;y<nb_tiles;y++){
+						
+						if( (x==current_x) && (y==current_y) ){
+							state = 0.6
+						}
+						else if(isEven(x+y)){
+							state = choices_numbers[getRandomInt(0,choices_numbers.length-1)]
+						}
+						else{
+							state = choices_operators[getRandomInt(0,choices_operators.length-1)]
+						}
+
+						// Insert information in tile
+						$("#t_"+x+"_"+y).html(state)
+						
+						console.log(x,y,state)
+						
+						row.push(state)
+					}
+					
+					if(random_map){
+						map.push(row);
+					}
+					
+				}
+				
+				
+				
+				// Green visual =================================================
+				
+				function add_green(x_t,y_t){
+					
+					if((x_t>=0)&&(x_t<nb_tiles)&&(y_t>=0)&&(y_t<nb_tiles)){
+						count = false
+						choice = x_t + "_" + y_t
+						
+						for(p=0;p<already_selected.length;p++){
+							if( choice.localeCompare(already_selected[p]) == 0 ){
+								count = true
+							}
+						}
+						
+						if (count == false) { 
+							$("#t_"+x_t+"_"+y_t).addClass("tile_choice")	
+							possible_choices.push(x_t+"_"+y_t)
+						}
+						
+					}
+				}
+				
+				
+				var possible_choices = []
+				function show_choices(){
+					possible_choices = []
+					$(".tile").removeClass("tile_choice")
+					add_green(current_x-1,current_y)					
+					add_green(current_x+1,current_y)					
+					add_green(current_x,current_y-1)					
+					add_green(current_x,current_y+1)					
+				}
+				
+				
+				
+				
+				function reset(){
+					$(".tile").removeClass("tile_as")
+					$(".tile").removeClass("tile_choice")
+
+					current_x = (nb_tiles-1)/2
+					current_y = (nb_tiles-1)/2
+
+					current_operator = ""
+					number0 = 0.0
+					number1 = 0.6
+					current_result = number1*1.0
+					
+					state = number1
+					already_selected = [current_x+"_"+current_y]
+					$("#t_"+current_x+"_"+current_y).addClass("tile_as")
+					
+					$("#bottom_unit").hide()
+					$("#number0").html(current_result)
+					$("#number1").html("")
+					$("#operator").html("")
+					$("#result").html("")
+					
+					show_choices()
+				}
+				reset()
+				
+
+				
+				function calculate(number0,operator,number1){
+					if( operator.localeCompare("−") == 0 ){
+						r =  number0 - number1
+					}
+					else if( operator.localeCompare("+") == 0 ){
+						r =  number0 + number1
+					}
+					else if( operator.localeCompare("÷") == 0 ){
+						r =  number0 / number1
+					}
+					else if( operator.localeCompare("×") == 0 ){
+						r =  number0 * number1
+					}
+					return Math.round(r*10)/10
+				}
+				
+				
+				
+				
+				function ct(x,y){
+					
+					choice = (x+"_"+y)
+					console.log(possible_choices,choice)
+					
+					for(p=0;p<possible_choices.length;p++){
+						if( choice.localeCompare(possible_choices[p]) == 0 ){
+						
+							// Add to selected
+							$("#t_"+x+"_"+y).addClass("tile_as")
+							already_selected.push(x+"_"+y)
+							
+							
+							console.log("choice ok")
+							if(isEven(x+y)){ // Number
+								number1 = parseFloat(  map[x][y] )
+								
+								// Perform calculation
+								current_result = calculate(number0,current_operator,number1)
+
+								if(current_result  > best_score){
+									best_score = current_result
+									$("#best_score").html(best_score)
+									$("#best_score").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
+
+								}
+
+								// Show information
+								$("#bottom_unit").show()
+								$("#number1").html(number1)
+								$("#result").html(current_result)
+
+								
+							}
+							else{
+								current_operator = map[x][y]
+								
+								number0 = parseFloat( current_result  )
+								
+								$("#bottom_unit").hide()
+								$("#number0").html(number0)
+								$("#number1").html("")
+								$("#operator").html(current_operator)
+								$("#result").html("")
+
+							}
+							
+							current_x = x
+							current_y = y
+							
+							// Update possible choices
+							show_choices()
+							
+						}
+					}
+					
+				}
+
+
+				console.log(JSON.stringify(map))
+
+				
+				
+				
+				
+				function check_winning(){
+					
+					mods_y = [[0,1],[0,-1]]
+					mods_x = [[1,0],[-1,0]]
+					
+					success = false;
+				
+					possibilities = []
+					for(x=0;x<nb_tiles;x++){ // 4 places to begin
+						
+						console.log("beginning ",x)
+						
+						// Initialize position and direction
+						current_pos = [x,-1]
+						direction = [0,1]
+					
+						not_blocked = true
+						trial = 0;
+						
+						path = []
+						while(  (trial < (nb_tiles*nb_tiles+5)) && (success==false) ){
+						
+							// Try 4 modifications
+							no_change = true
+							for(p=0;p<=0;p++){
+								
+								if(Math.abs(direction[0])==1){
+									if(direction[0] == -1){
+										mods = [[-1,0]]
+									}
+									else{
+										mods = [[1,0]]
+									}
+								}
+								else{
+									if(direction[1] == -1){
+										mods = [[0,-1]]
+									}
+									else{
+										mods = [[0,1]]
+									}
+								}
+								
+								if(no_change){
+									new_pos = [current_pos[0]+mods[p][0], current_pos[1]+mods[p][1]]
+									if( (new_pos[0]>=0) && (new_pos[0]<=(nb_tiles-1)) && (new_pos[1]>=0) && (new_pos[1]<=(nb_tiles-1)) ){
+										directions = joins(new_pos[0],new_pos[1])
+										if(no_change){
+											if( ( directions[0][0]*-1 == direction[0] ) && ( directions[0][1]*-1== direction[1] ) ){
+												current_pos = [new_pos[0],new_pos[1]]
+												path.push([new_pos[0],new_pos[1],map[new_pos[0]][new_pos[1]]])
+												direction = directions[1]
+												no_change = false
+												console.log("pass",mods[p],"new_pos",new_pos,"direction",direction)
+											}
+											else if( ( directions[1][0]*-1== direction[0] ) && ( directions[1][1]*-1== direction[1] ) ){
+												current_pos = [new_pos[0],new_pos[1]]
+												path.push([new_pos[0],new_pos[1],map[new_pos[0]][new_pos[1]]])
+												direction = directions[0]
+												no_change = false
+												console.log("pass",mods[p],"new_pos",new_pos,"direction",direction)
+											}
+										}
+									}
+									
+									if(current_pos[1]==(nb_tiles-1)){
+										if( (direction[1]==1) ){
+											if( (path.length)>=min_tiles_winning ){
+												success = true
+											}
+											else if(success == false){ // Minimum tiles not reached
+												$("#bottom_message").html("Vous avez trouvé un tracé de "+ (path.length) +" tuiles, mais celui-ci ne respecte pas la longueur minimale de " + min_tiles_winning + " tuiles.")
+
+											}
+										}
+									}
+								}
+							}
+							
+							trial = trial + 1
+						}
+						
+						if(success){
+							console.log("path",JSON.stringify(path))
+						}
+					
+					}
+					
+					if(success){
+						console.log("success")
+						$("#final_container").show()
+					}
+					else{
+						console.log("no win")
+					}
+					
+				}
+				
+				
+				
+
+			</script>
+			
+		</div>
+
+		<div id="final_container" style="position:absolute;left:0;top:0;width:100%;height:100%;z-index:999;display:none;">
+
+
+			 <div id="end_text" style="position:absolute;top:80vh;left:5vw;width:80vw;text-align:left;height:auto;color:black;background-color:white;font-size:3.2vh;font-family: Arial, Helvetica, sans-serif;text-align:center;padding:4vw;">
+				Tu es notre sauveur. Enfin tu libères la banlieue de Québec de la détresse du trafic.
+			</div>
+
+			<div  onclick="location.reload();" class="vehicule" style="background-color:#eef52a;top:0vh;left:-5vw;padding:5vw;position:absolute;width:100%;height:14vh;font-size:6vh;color:black;border: solid 1px black;font-family: Arial, Helvetica, sans-serif;text-align:center;" ><b>Créer un nouveau tracé</b></div>
+
+
+
+		</div>
+
+
+	</body>
+	
+	<script>
+	
+		var score = 0;
+		
+		var trumpet = new Audio('assets/sounds/trumpet.wav');
+		var success = new Audio('assets/sounds/success2.mp3');
+		var wrong = new Audio('assets/sounds/wrong.wav');
+		var endings = new Audio('assets/sounds/ending.mp3');
+
+
+
+
+
+
+		var beginning = 3000;
+		var temps_ecoule = 0;
+		var started = false;
+		var found = 0;
+		
+		setInterval(function () {
+		
+			if(beginning>0){
+				beginning = beginning -20
+				$("#beginning").html(Math.ceil(beginning/1000));
+			}
+			else if(beginning == 0){
+				beginning = beginning - 20;
+				$("#beginning").hide();
+				started = true;
+				//trumpet.pause();
+				//trumpet.currentTime = 0;
+				//trumpet.play();
+			}
+			else if(started){
+				temps_ecoule = temps_ecoule+20;
+			}
+			
+			
+		}, 20);
+
+
+
+	</script>
+
+</html>

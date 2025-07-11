@@ -1,0 +1,149 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+	     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+	  
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+
+
+          <style>
+		  
+			body{
+				background: rgb(230,230,230);
+				background-size: 100vw 100vh;
+                font-family: 'Arial';
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+            div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+            img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+			
+			.clickable{
+				color:white;
+				font-size:2vh;
+				margin-top:1vh;
+				margin-bottom:1vh;
+				width:98%;
+				padding:2vw;
+				background-color:rgb(40,40,40);
+			}
+			
+			.clickable:hover{
+				cursor:pointer;
+			}
+
+
+			/* ===== Scrollbar CSS ===== */
+			  /* Firefox */
+			  * {
+				scrollbar-width: auto;
+				scrollbar-color: #000000 #fffff;
+			  }
+
+			  /* Chrome, Edge, and Safari */
+			  *::-webkit-scrollbar {
+				width: 16px;
+			  }
+
+			  *::-webkit-scrollbar-track {
+				background: #fffff;
+			  }
+
+			  *::-webkit-scrollbar-thumb {
+				background-color: #000000;
+				border-radius: 10px;
+				border: 3px solid #bb950c;
+			  }
+		  
+		  </style>
+	</head>
+	
+	<body scroll="no" style="  overflow: hidden; width:100%;">
+	
+
+		<div style="position:absolute;top:88.5vh;left:0vw;width:100vw;background-color:#2F42F5;height:11.5vh;">
+		</div>
+		<img src="assets/img/bernard.png" style="top:3vh;left:3vw;width:40vw;height:auto;">
+		
+		<div style="position:absolute;top:5vh;left:45vw;font-size:3.5vh;width:50vw;">Cours de français avec Bernard<br>LE jeu</div>
+		
+		<img class="logo" src="assets/img/avtlogo.PNG" style="position:absolute;top:90vh;height:8vh;left:70vw;width:auto;" onclick="window.open('https://3elien.com', '_blank').focus();">
+
+		<div style="width:95vw;position:absolute;left:2.5vw;top:31.5vh;height:57vh;overflow:scroll;overflow-x:hidden;background-color:rgb(230,230,230)" id="menu">
+
+
+		</div>
+		
+		
+		<script>
+			
+			grids = ["a1","b1","c1","d1","e1","f1"]
+			
+			for (i=0;i<grids.length;i++){
+				nb_words = 0
+				t = ( Cookies.get(grids[i] + 'already_validated') );
+				console.log("t",t)
+				if (typeof(t) != "undefined"){
+					already_validated = JSON.parse(t)
+					nb_words = already_validated.length
+				}
+				
+				if(nb_words<2){
+					m = nb_words + " mot trouvé"
+				}
+				else{
+					m = nb_words + " mots trouvés"
+				}
+				
+				$("#menu").append('<div class="clickable" onclick="document.location.href = \'game.html?level='+grids[i]+'\';"><b>Grille '+grids[i].toUpperCase()+'</b><br>'+m+'</div>')
+			}
+			
+		</script>
+		
+
+
+
+	</body>
+
+
+
+</html>

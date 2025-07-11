@@ -1,0 +1,669 @@
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
+
+-->
+
+	<head>
+		<meta charset="UTF-8">
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous"></script>
+		 <script
+		  src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+		  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+		  crossorigin="anonymous"></script>
+		  <link rel="preconnect" href="https://fonts.googleapis.com">
+		  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.5.2/math.js"></script>
+		  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+		  
+		  <style>
+			
+			--nb_tiles: 6
+		  
+			body{
+				background-size: 100vw 100vh;
+				background: linear-gradient(180deg, rgba(50, 168, 82,1) 0%, rgba(50, 168, 82,1) 17.5%, rgba(230,230,230,1) 17.50001%, rgba(200,200,200,1) 46%, rgba(177,177,177,1) 90%);
+			}
+			
+			#bodygame{
+				background: linear-gradient(180deg, rgba(20, 20, 20,1) 0%, rgba(40,40,40,1) 100%);
+	     	  font-family: Arial, Helvetica, sans-serif;
+
+
+			}
+
+			.vehicule {
+				cursor:pointer;
+			}
+
+			div{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+
+			img{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
+			}
+			
+			
+			.interruption{
+				filter: brightness(50%);
+			}
+			
+			.logo:hover{
+				cursor:pointer;
+			}
+			
+			
+			.tile{
+				position:absolute;
+				border: solid 0.5vw rgb(90,90,90);
+				text-align:center;
+				font-weight: bold;
+				background-color: rgb(220,220,200)
+			}
+			
+			.tile_as{
+				background-color: #6e6c64;
+			}
+			
+			.tile_choice{
+				background-color: #18bdde;
+			}
+			
+			.tile_center{
+				background-color: #ff6d38;
+			}
+			
+			.tile:hover{
+				cursor:pointer;
+			}
+			
+			
+
+			
+			
+			.horizontal{
+				
+			}
+		  	
+			.vertical{
+				transform:rotate(90deg);
+			}
+			
+			.main_top{
+				
+			}
+			
+			.main_right{
+				transform:rotate(90deg);
+			}
+			
+			.main_bottom{
+				transform:rotate(180deg);
+			}
+			
+			.main_left{
+				transform:rotate(270deg);
+			}
+			
+			.angle_reverse_hor{
+			  -webkit-transform: scaleX(-1);
+			  transform: scaleX(-1);
+
+			}
+			
+			.angle_reverse_ver{
+			  -webkit-transform: scaleY(-1);
+			  transform: scaleY(-1);
+
+			}
+			
+			.angle_reverse_right{
+			  transform:rotate(90deg);
+			 -webkit-transform: scaleY(-1);
+			  transform: scaleY(-1);
+			}
+			
+			.btn:hover{
+				cursor:pointer;
+			}
+			
+			.objective_box{
+				position:absolute;
+				top:95vh;
+				width:18vw;
+				height:10vh;
+				background-color:rgb(230,230,230);
+				border-radius: 0.5vh;
+				text-align:center;
+				font-size:3.5vh;
+				padding-top:0.5vh;
+				z-index:100;
+			}
+			
+			.bottom_button{
+				height:30vh;
+				width:28vw;
+				position:absolute;
+				top:88vh;
+				z-index:100;
+				border-radius: 4vw;
+				padding:2vw;
+				color:white;
+				text-align:center;
+				font-size:2.5vh;
+			}
+			
+			.bottom_button:hover{
+				cursor:pointer;
+			}
+			
+			
+			
+		  
+		  </style>
+	</head>
+	
+	<body id="bodygame" scroll="no" style="  overflow: hidden; width:100%;">
+	
+
+	
+		<div id="princ_container" style="position:absolute;top:0;left:0;width:100%;height: 100%;">
+
+
+			<div class="btn" onclick="window.location.reload();" style="position:absolute;top:0.25vh;left:65vw;font-size:1.75vh;padding:0.7vh;padding-left:2vw;width:100vw;padding-right:1.5vh;color:white;background-color:rgb(100,100,100);border-radius: 0.5vh;display:none;">Nouvelle grille</div>
+
+
+			
+			
+			<div id="number0" style="position:absolute;text-align:left;font-size:8vh;left:22vw;width:80vw;top:68vh;color:white;"></div>
+
+			<div id="number1" style="position:absolute;text-align:right;font-size:8vh;left:10vw;width:70vw;top:75vh;color:white;"></div>
+			<div id="operator" style="position:absolute;text-align:right;font-size:8vh;left:85vw;top:75vh;color:white;"></div>
+
+			<div id="result" style="position:absolute;text-align:right;left:10vw;font-size:8vh;width:70vw;top:86vh;color:white;"></div>
+			<div id="bottom_unit" style="position:absolute;text-align:left;font-size:4vh;left:85vw;top:88.5vh;color:rgb(200,200,200);display:none">M$</div>
+		
+			<div style="position:absolute;text-align:right;left:20vw;width:100vw;top:77vh;height:0.5vh;background-color:white;"></div>
+
+			<div id="top_message" style="position:absolute;text-align:right;font-size:2vh;width:90vw;top:59vh;left:2.5vw;color:black;height:7.4vh;background-color:white;padding:0.5vh;padding-left:2vh;padding-right:1vh;border-radius: 0.5vh;z-index:98;">Sélectionne une des cases sur fond bleu.</div>
+
+			<img src="assets/img/bernard.png" style="z-index:99;position:absolute;left:-9vw;top:65.5vh;height:35vh;width:auto;">
+
+
+
+			<div class="bottom_button" style="left:0vw;background-color:#c2b908;" onclick="back_button()">
+				Effacer la dernière lettre
+			</div>
+
+			<div class="bottom_button" id="see_val_button" style="left:34vw;background-color:#386aba;z-index:200" onclick="see_validated()">
+				Voir les mots validés
+			</div>
+
+			<div class="bottom_button" style="left:68vw;background-color:#32a856;" onclick="validate()">
+				Soumettre le mot à Bernard
+			</div>
+
+			<div  style="position:absolute;text-align:left;font-size:2.5vh;width:100vw;top:80.5vh;color:white;left:23vw;">mots trouvés: <b><span id="best_score">0</span> / <span id="max_word"></span></b></div>
+
+			
+
+			<img class="logo" src="assets/img/avtlogo2.png" style="position:absolute;top:0vh;height:4vh;left:2vw;width:auto;z-index:250" onclick="window.open('https://fblavoie.github.io/3elien/', '_blank').focus();">
+
+
+			<div id="see_val_menu" style="position:absolute;width:100vw;height:100vh;background-color:rgb(245,245,245);z-index:150;display:none;">
+				<div style="width:90vw;position:absolute;top:6.5vh;left:5vw;font-size:2.5vh" id="found_words"></div>
+			</div>
+
+
+			<div id="tous_les_panneaux" style="z-index:10">
+			</div>
+			
+			<script>
+			
+				let params = new URLSearchParams(document.location.search);
+				
+				console.log("params",params)
+				
+				nb_tiles = 7
+				min_tiles = 0
+				max_tiles = 1
+				
+				min_tiles_winning = parseInt( params.get("min_tiles_winning") );
+				if(isNaN(min_tiles_winning)){
+					min_tiles_winning = 0;
+				}
+
+				for (x=0;x<nb_tiles;x++){
+					for (y=0;y<nb_tiles;y++){
+						$("#tous_les_panneaux").append('<div id="t_'+x+'_'+y+'" onclick="ct('+x+','+y+')" class="tile x_'+x+' y_'+y+'" ></div>')
+					}
+				}
+				
+				for (x=0;x<nb_tiles;x++){
+					$(".x_"+x).css("position","absolute")
+					$(".y_"+x).css("position","absolute")
+					$(".x_"+x).css("left",(2+96/nb_tiles*x)+"vw")
+					$(".y_"+x).css("top",(8+96/nb_tiles*x)+"vw")
+				}
+				
+				padding_top = (96/nb_tiles-0.5)*0.225
+				$(".tile").css("width",(96/nb_tiles-0.5)+"vw")
+				$(".tile").css("height",(96/nb_tiles-0.5)-padding_top+"vw")
+				$(".tile").css("padding-top",padding_top+"vw")
+				$(".tile").css("font-size",(96/nb_tiles-0.5)*0.5+"vw")
+
+			</script>
+			
+			
+			
+			<div style="position:absolute;top:75vh;left:57vw;font-size:2.3vh;width:40vw;text-align:right;color:white;" id="bottom_message" >
+			</div>
+			
+				
+			
+			<script>
+			
+			
+
+			
+			
+				function getRandomInt(min, max) {
+					min = Math.ceil(min);
+					max = Math.floor(max);
+					return Math.floor(Math.random() * (max - min + 1)) + min;
+				}
+			
+			
+			
+				
+				
+				function new_message(message){
+					$("#top_message").html(message)
+					$("#top_message").fadeOut(0).fadeIn(300)								
+				}
+				
+				
+				
+				see_val_menu = false
+				function see_validated(){
+					if(see_val_menu){
+						see_val_menu = false;
+						$("#see_val_menu").hide()
+						$("#see_val_button").html("Voir les mots validés")
+					}
+					else{
+						see_val_menu = true;
+						s = ""
+						for (i=0;i<already_validated.length;i++){
+							s = s + already_validated[i] + " "
+						}
+						$("#found_words").html(s)
+						$("#see_val_button").html("Fermer")
+						$("#see_val_menu").show()
+					}
+				}
+
+
+
+				// Map creation =========================================================
+				
+				function isEven(n) {
+				   return n % 2 == 0;
+				}
+
+				
+				var map
+
+
+
+				
+				
+				
+				// Generate random map
+				
+				var current_x = (nb_tiles-1)/2
+				var current_y = (nb_tiles-1)/2
+
+				var current_operator = ""
+				var number0 = 0.0
+				var number1 = 0.0
+				var current_result = number1*1.0
+				
+				
+				var best_score = 0
+
+			
+			
+				
+				var already_selected = []
+				var letters_choice = []
+				var already_validated = []
+				
+				
+				
+				// Get level from URL
+				const queryString = window.location.search;
+				const urlParams = new URLSearchParams(queryString);
+				level = urlParams.get('level')
+				console.log("level",level)
+
+				grid_name = level
+				
+				
+				// Load level
+				$.ajax({
+				type: "GET",
+				url: "levels/"+level+".js",
+				success: function(html_response) {
+					
+					html_response = JSON.parse(html_response)
+					console.log(html_response)
+					
+					map = html_response["map"]
+					solutions = html_response["solutions"]
+					
+					start_values_choice = map[current_x][current_y]
+					letters_choice = [start_values_choice]
+					
+					$("#max_word").html(solutions.length)
+					
+					// Create map
+					for(x=0;x<map.length;x++){
+						for(y=0;y<map.length;y++){
+							$("#t_"+x+"_"+y).html(map[x][y])
+						}
+					}
+					
+					reset()
+				
+				}});
+				
+				
+				
+				
+				// Load work
+				t = ( Cookies.get(grid_name + 'already_validated') );
+				if (typeof(t) != "undefined"){
+					already_validated = JSON.parse(t)
+					best_score = already_validated.length
+					$("#best_score").html(best_score)
+				}
+
+
+				
+				
+				
+				
+				
+				
+				function validate(){
+					console.log(letters_choice)
+					validated = true
+				
+					if(letters_choice.length >= 4){
+						console.log("passed")
+					
+						// Create string
+						s = create_string()
+						
+						good_choice = false
+						for (sol=0;sol<solutions.length;sol++){
+							if(solutions[sol].localeCompare(s)==0 ){
+								good_choice = true
+							}
+						}
+						
+						if(good_choice){
+						
+							not_found = true
+							for(sol=0;sol<already_validated.length;sol++){
+								if(already_validated[sol].localeCompare(s)==0 ){
+									not_found = false
+								}
+							}
+							
+							if(not_found){
+								best_score = best_score+1
+								already_validated.push(s)
+								
+								$("#best_score").fadeOut(0).fadeIn()
+								$("#best_score").html(best_score)
+								new_message("Bravo! Continue comme ça et tu deviendras ministre caquiste.")
+								
+								Cookies.set(grid_name + 'already_validated', JSON.stringify(already_validated) )
+
+							}
+							else{
+								new_message("Tu essaies de m'en passer une petite vite en soumettant un mot déjà validé. Tu t'approches de la retenue mon jeune.")
+
+							}
+							
+						}
+						else{
+							new_message("Tu essaies de m'en passer une petite vite en inventant un nouveau mot. Bernard n'aime pas ça.")
+						}
+					}
+					else{
+						new_message("Je ne peux pas accepter ce mot. Un mot doit avoir au moins 4 lettres.")
+					}
+				}
+				
+				
+				
+				// Clickable visual =================================================
+				
+				function add_green(x_t,y_t){
+					
+					
+					if((x_t>=0)&&(x_t<nb_tiles)&&(y_t>=0)&&(y_t<nb_tiles)){
+						count = false
+						choice = x_t + "_" + y_t
+						
+						for(p=0;p<already_selected.length;p++){
+							if( choice.localeCompare(already_selected[p]) == 0 ){
+								count = true
+							}
+						}
+						
+						if (count == false) { 
+							$("#t_"+x_t+"_"+y_t).addClass("tile_choice")	
+							possible_choices.push(x_t+"_"+y_t)
+						}
+						
+					}
+				}
+				
+				
+				var possible_choices = []
+				function show_choices(){
+					possible_choices = []
+					$(".tile").removeClass("tile_choice")
+					if(letters_choice.length<10){ // If less than 10 letters
+						add_green(current_x-1,current_y)					
+						add_green(current_x+1,current_y)					
+						add_green(current_x,current_y-1)					
+						add_green(current_x,current_y+1)					
+					}
+				}
+				
+				
+				
+				
+				function reset(){
+
+					new_message("Bernard te demande de sélectionner une des cases bleues. L'objectif est de créer des mots de 4 à 10 lettres.")
+
+				
+					$(".tile").removeClass("tile_as")
+					$(".tile").removeClass("tile_choice")
+					$(".tile").removeClass("tile_center")
+
+					current_x = (nb_tiles-1)/2
+					current_y = (nb_tiles-1)/2
+
+					current_operator = ""
+					number0 = 0.0
+					number1 = 1.0
+					current_result = number1*1.0
+					
+					state = number1
+					
+					// Reset time
+					already_selected = [ current_x+"_"+current_y ]
+					letters_choice = [ map[current_x][current_y] ]
+					
+					$("#t_"+current_x+"_"+current_y).addClass("tile_as")
+					
+					$("#bottom_unit").hide()
+					$("#number1").html("")
+					$("#operator").html("")
+					$("#result").html("")
+					
+					show_letters()
+					show_choices()
+					
+				}
+				
+				
+				
+				
+				function create_string(){
+					s = ""
+					for(i=0;i<letters_choice.length;i++){
+						s = s + letters_choice[i]
+					}
+					return s
+				}
+
+
+
+				function show_letters(){
+					s = create_string()
+					$("#number0").html(s)
+				}
+
+
+
+
+				function calculate(number0,operator,number1){
+					if( operator.localeCompare("−") == 0 ){
+						r =  number0 - number1
+					}
+					else if( operator.localeCompare("+") == 0 ){
+						r =  number0 + number1
+					}
+					else if( operator.localeCompare("÷") == 0 ){
+						r =  number0 / number1
+					}
+					else if( operator.localeCompare("×") == 0 ){
+						r =  number0 * number1
+					}
+					return Math.round(r*100)/100
+				}
+				
+				
+				
+				
+				function back_button(){
+					console.log("BACK BUTTON")
+					if( letters_choice.length > 1 ){
+						$("#t_"+current_x+"_"+current_y).removeClass("tile_as")
+					
+						console.log("passed")
+						letters_choice.pop()
+						already_selected.pop()
+						new_pos_string = already_selected[already_selected.length-1].split("_")
+						current_x = parseInt(new_pos_string[0])
+						current_y = parseInt(new_pos_string[1])
+						show_choices()
+						
+						if(letters_choice.length == 1){
+							$("#t_"+(nb_tiles-1)/2+"_"+(nb_tiles-1)/2).removeClass("tile_center")
+						}
+					}
+					show_letters();
+				}
+				
+				
+				
+				var validated = false
+				
+				function ct(x,y){
+					
+					choice = (x+"_"+y)
+					console.log(possible_choices,choice)
+					
+					if( (x==(nb_tiles-1)/2) && (y==(nb_tiles-1)/2) ){
+						reset()
+					}
+					else{
+						for(p=0;p<possible_choices.length;p++){
+							if( choice.localeCompare(possible_choices[p]) == 0 ){
+							
+								// Add to selected
+								$("#t_"+x+"_"+y).addClass("tile_as")
+								
+								already_selected.push(x+"_"+y)
+								letters_choice.push(map[x][y])
+
+								if((already_selected.length == 2) || validated){
+									$("#t_"+(nb_tiles-1)/2+"_"+(nb_tiles-1)/2).addClass("tile_center")
+									new_message("Bernard te permet d'appuyer sur la case du centre pour recommencer un mot.")
+									validated = false
+								}
+								
+								current_x = x
+								current_y = y
+								
+								show_letters()
+								
+								// Update possible choices
+								show_choices()
+								
+								
+							}
+						}
+					}
+				}
+
+
+				console.log(JSON.stringify(map))
+
+				
+				
+				
+				show_letters()
+
+			</script>
+			
+		</div>
+
+		<div id="final_container" style="position:absolute;left:0;top:0;width:100%;height:100%;z-index:999;display:none;">
+
+
+
+
+		</div>
+
+
+	</body>
+	
+
+</html>
