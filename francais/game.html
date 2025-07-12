@@ -175,6 +175,21 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			}
 			
 			
+			#t_0_0{
+				border-radius: 2vw 0 0 0; 
+			}
+			
+			#t_6_0{
+				border-radius: 0 2vw 0 0; 
+			}
+			
+			#t_0_6{
+				border-radius: 0 0 0 2vw; 
+			}
+			
+			#t_6_6{
+				border-radius: 0 0 2vw 0; 
+			}
 			
 		  
 		  </style>
@@ -187,7 +202,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		<div id="princ_container" style="position:absolute;top:0;left:0;width:100%;height: 100%;">
 
 
-			<div class="btn" onclick="window.location.reload();" style="position:absolute;top:0.25vh;left:65vw;font-size:1.75vh;padding:0.7vh;padding-left:2vw;width:100vw;padding-right:1.5vh;color:white;background-color:rgb(100,100,100);border-radius: 0.5vh;display:none;">Nouvelle grille</div>
+			<div  style="position:absolute;top:0.25vh;left:80vw;font-size:1.75vh;padding:0.7vh;padding-left:2vw;width:100vw;padding-right:1.5vh;color:white;background-color:rgb(100,100,100);border-radius: 2vh;">Grille <b><span id="grid_number_show"></span></b></div>
 
 
 			
@@ -202,7 +217,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		
 			<div style="position:absolute;text-align:right;left:20vw;width:100vw;top:77vh;height:0.5vh;background-color:white;"></div>
 
-			<div id="top_message" style="position:absolute;text-align:right;font-size:2vh;width:90vw;top:59vh;left:2.5vw;color:black;height:7.4vh;background-color:white;padding:0.5vh;padding-left:2vh;padding-right:1vh;border-radius: 0.5vh;z-index:98;">Sélectionne une des cases sur fond bleu.</div>
+			<div id="top_message" style="position:absolute;text-align:right;font-size:2vh;width:90vw;top:59vh;left:2.5vw;color:black;height:7.4vh;background-color:white;padding:0.5vh;padding-left:2vh;padding-right:1vh;border-radius: 2vw;z-index:98;">Sélectionne une des cases sur fond bleu.</div>
 
 			<img src="assets/img/bernard.png" style="z-index:99;position:absolute;left:-9vw;top:65.5vh;height:35vh;width:auto;">
 
@@ -366,6 +381,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				console.log("level",level)
 
 				grid_name = level
+				$("#grid_number_show").html(grid_name.toUpperCase())
 				
 				
 				// Load level
