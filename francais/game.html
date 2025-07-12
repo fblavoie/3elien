@@ -191,6 +191,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				border-radius: 0 0 2vw 0; 
 			}
 			
+
 		  
 		  </style>
 	</head>
@@ -220,8 +221,11 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			<div id="top_message" style="position:absolute;text-align:right;font-size:2vh;width:90vw;top:59vh;left:2.5vw;color:black;height:7.4vh;background-color:white;padding:0.5vh;padding-left:2vh;padding-right:1vh;border-radius: 2vw;z-index:98;">Sélectionne une des cases sur fond bleu.</div>
 
 			<img src="assets/img/bernard.png" style="z-index:99;position:absolute;left:-9vw;top:65.5vh;height:35vh;width:auto;">
-
-
+			<div id="angry" style="display:none;">
+				<img src="assets/img/eye_angry.png" style="z-index:100;position:absolute;left:1.4vw;top:74vh;height:4vh;width:auto;transform: rotate(-5deg);transform: scaleX(-1);">
+				<img src="assets/img/eye_angry.png" style="z-index:100;position:absolute;left:10vw;top:73.8vh;height:4vh;width:auto;transform: rotate(-5deg);">
+				<img src="assets/img/mouth_angry.png" style="z-index:100;position:absolute;left:2.5vw;top:80vh;height:6vh;width:15vw;transform: rotate(-5deg);">
+			</div>
 
 			<div class="bottom_button" style="left:68vw;background-color:#c2b908;" onclick="back_button()">
 				Effacer la dernière lettre
@@ -310,6 +314,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				
 				
 				function new_message(message){
+					$("#angry").hide()
 					$("#top_message").html(message)
 					$("#top_message").fadeOut(0).fadeIn(300)								
 				}
@@ -469,7 +474,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 							}
 							else{
 								new_message("Tu essaies de m'en passer une petite vite en soumettant un mot déjà validé. Tu t'approches de la retenue mon jeune.")
-
+								$("#angry").show()
 							}
 							
 						}
