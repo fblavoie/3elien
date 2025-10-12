@@ -4,8 +4,8 @@ sprites_l = [ [1,2,"christian.png",[ ["VOUS","Salut Christian! Comment va ta ré
 									["CHRISTIAN DUBÉ","Ça, c'est ma nouvelle technique pour améliorer mes indices de performance sur mes tableaux de bord."],
 									["CHRISTIAN DUBÉ", "En mettant les patients à l'extérieur, ils ne sont pas comptés comme à l'hôpital. Ça améliore donc mes taux d'occupation."],
 									["VOUS","C'est une très bonne idée! En même temps, si les patients ne sont pas contents, ils n'ont qu'à s'acheter leur propre hôpital."],
-									["VOUS","Tu pourrais appeler une préoposée pour pousser les civières?"],
-									["CHRISTIAN DUBÉ", "Malheureusement, je n'ai plus de préposées. Tout le budget est alloué à payer les médecins. Tu devras les pousser toi-même."],
+									["VOUS","Tu pourrais appeler une préposée pour pousser les civières?"],
+									["CHRISTIAN DUBÉ", "Malheureusement, je n'ai plus de préposées. Tout le budget est alloué à payer mes <i>top guns</i>. Tu devras les pousser toi-même."],
 
 									]
 			],
@@ -13,7 +13,7 @@ sprites_l = [ [1,2,"christian.png",[ ["VOUS","Salut Christian! Comment va ta ré
 			
 			];
 
-succes_sentence = "Heureusement, vous réussissez de franchir tout ce chaos sans être infectée.";
+succes_sentence = "Heureusement, vous réussissez à franchir tout ce chaos sans être infectée.";
 ot_cars = [
 				[3,1,"up","blue",true],
 				[6,0,"left","blue",true],

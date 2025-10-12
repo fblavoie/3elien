@@ -4,7 +4,7 @@ sprites_l = [ [8,2,"genevieve.png",[ ["VOUS","Salut Geneviève! C'est quoi tous 
 									 ["GENEVIÈVE GUILBAULT","Ah! Ne t'inquiète pas. Le Code de la sécurité routière, c'est fait pour ne pas être respecté. Tu n'as qu'à botter les cônes pour suivre ton chemin."]
 			]],
 			
-			[2,9,"eric.png",[ ["VOUS","Salut Éric! Toujours en train de rien faire?"],
+			[2,9,"eric2.png",[ ["VOUS","Salut Éric! Toujours en train de rien faire?"],
 							["ÉRIC CAIRE","Je ne ferai rien tant et aussi longtemps que le 3e lien ne sera pas construit."],
 							["VOUS","Et l'autobus renversé derrière toi, c'est Gabriel Nadeau-Dubois qui a fait ça? Cela me paraît étrange."],
 							["ÉRIC CAIRE","Non. Ça c'est moi et mes fidèles électeurs qui avons fait ça quand notre chef François 1er a décrété la fin du transport en commun."],
