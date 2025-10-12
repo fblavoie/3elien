@@ -91,14 +91,16 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			}
 			
 			.tile{
-				width:9.2vw;
-				height:9.2vw;
+				width:10.2vw;
+				height:10.2vw;
+				margin-left:-0.1vw;
+				margin-right:-0.1vw;
 				position:fixed;
 			}
 
 			.big{
-				width:18.4vw;
-				height:18.4vw;
+				width:20.4vw;
+				height:20.4vw;
 				position:fixed;
 				z-index:99;
 				margin-top:-0.2vw;
@@ -193,26 +195,27 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				background: url(assets/img/tile_finished.png);
 				background-repeat: no-repeat;
 				background-size: cover;
+				background-color: rgb(133,133,133);
 			}
 			
 			.x_0{
-				top:5vw;
+				top:0vw;
 			}
 			
 			.x_1{
-				top:14vw;
+				top:10vw;
 			}
 			
 			.x_2{
-				top:23vw;
+				top:20vw;
 			}
 			
 			.x_3{
-				top:32vw;
+				top:30vw;
 			}
 			
 			.x_4{
-				top:41vw;
+				top:40vw;
 			}
 			
 			.x_5{
@@ -220,39 +223,39 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			}
 			
 			.x_6{
-				top:59vw;
+				top:60vw;
 			}
 			
 			.x_7{
-				top:68vw;
+				top:70vw;
 			}
 			
 			.x_8{
-				top:77vw;
+				top:80vw;
 			}
 			
 			.x_9{
-				top:86vw;
+				top:90vw;
 			}
 			
 			.y_0{
-				left:5vw;
+				left:0vw;
 			}
 			
 			.y_1{
-				left:14vw;
+				left:10vw;
 			}
 			
 			.y_2{
-				left:23vw;
+				left:20vw;
 			}
 			
 			.y_3{
-				left:32vw;
+				left:30vw;
 			}
 		  
 			.y_4{
-				left:41vw;
+				left:40vw;
 			}
 			
 			.y_5{
@@ -260,19 +263,19 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			}
 			
 			.y_6{
-				left:59vw;
+				left:60vw;
 			}
 			
 			.y_7{
-				left:68vw;
+				left:70vw;
 			}
 			
 			.y_8{
-				left:77vw;
+				left:80vw;
 			}
 			
 			.y_9{
-				left:86vw;
+				left:90vw;
 			}
 			
 			.hero{
@@ -435,6 +438,12 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				cursor:pointer;
 			}
 			
+			.added_element{
+				width:10vw;
+				height:10vw;
+				z-index:2;
+			}
+			
 		  </style>
 	</head>
 	
@@ -442,7 +451,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 	
 		<div id="princ_container" style="width:100%;height: 100%;">
 			
-			<div style="width:90vw;top:5vw;left:5vw;height:height:90vw;background-color:rgb(133,133,133);"></div>
+			<div style="width:100vw;top:0vw;left:0vw;height:height:100vw;background-color:rgb(133,133,133);z-index:-1"></div>
 			<div id="tile_0_0" class="tile road x_0 y_0"></div>
 			<div id="tile_0_1" class="tile road x_0 y_1"></div>
 			<div id="tile_0_2" class="tile road x_0 y_2"></div>
@@ -598,7 +607,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 										finp = true;
 									}
 									else{
-										$("#pizza").animate({"top":(5+pos_pizza_x*9)+"vw"},200,"linear");
+										$("#pizza").animate({"top":(0+pos_pizza_x*10)+"vw"},200,"linear");
 									}
 								}
 								else{
@@ -639,7 +648,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 										finp = true;
 									}
 									else{
-										$("#pizza").animate({"left":(5+pos_pizza_y*9)+"vw"},200,"linear");
+										$("#pizza").animate({"left":(0+pos_pizza_y*10)+"vw"},200,"linear");
 									}
 								}
 								else{
@@ -666,9 +675,9 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 					}
 				}
 				function start_pizza(){
-					$("#pizza").animate({"top":(5+ori_pizza_x*9)+"vw"},0,"linear");
+					$("#pizza").animate({"top":(0+ori_pizza_x*10)+"vw"},0,"linear");
 					pos_pizza_x = ori_pizza_x;
-					$("#pizza").animate({"left":(5+ori_pizza_y*9)+"vw"},0,"linear");
+					$("#pizza").animate({"left":(0+ori_pizza_y*10)+"vw"},0,"linear");
 					pos_pizza_y = ori_pizza_y;
 					dir_pizza_x = ori_dir_x;
 					dir_pizza_y = ori_dir_y;
@@ -680,16 +689,16 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			</script>
 			
 			<div id="hero" class="tile hero hero_down"></div>
-			<div id="pizza" class="tile pizza" style="top:5vw;left:32vw;display:none;"></div>
+			<div id="pizza" class="tile pizza" style="top:0vw;left:30vw;display:none;"></div>
 			
 			<div id="other_cars">
 			</div>
 
-			<div onclick="location.reload();" class="btn" style="position:fixed;top:98vw;left:5vw;font-size:2vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>RECOMMENCER</b></div>
-			<div onclick="window.location.href = 'intro.html'" class="btn" style="position:fixed;top:104.5vw;left:5vw;font-size:2vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>MENU</b></div>
-			<div id="nb_bruleurs" style="position:fixed;top:98vw;left:65vw;font-size:2vh;color:white;padding-left:1vw;padding-right:1vw;display:none;">BRÛLEURS X 10</div>
+			<div onclick="location.reload();" class="btn" style="position:fixed;top:102vw;left:5vw;font-size:2vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>RECOMMENCER</b></div>
+			<div onclick="window.location.href = 'intro.html'" class="btn" style="position:fixed;top:108.5vw;left:5vw;font-size:2vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>MENU</b></div>
+			<div id="nb_bruleurs" style="position:fixed;top:102vw;left:65vw;font-size:2vh;color:white;padding-left:1vw;padding-right:1vw;display:none;">BRÛLEURS X 10</div>
 
-			<div style="position:fixed;top:98.25vh;font-size:1.5vh;width:100%;text-align: center;color:rgb(240,240,240)">Sur un ordinateur, vous pouvez jouer avec les flèches du clavier.</div>
+			<div style="position:absolute;top:93vh;left:70vw;font-size:1.5vh;width:30vw;;text-align: center;color:rgb(240,240,240)">Sur un ordinateur, vous pouvez jouer avec les flèches du clavier.</div>
 			
 		</div>
 
@@ -713,12 +722,12 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		<div>
 			
 			<div id="arrow_menu">
-				<div id="up_div"><div style="position:fixed;top:98vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow down" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="unpress('up');" ontouchend="unpress('up')" ></div></div>
-				<div id="down_div"><div style="position:fixed;top:148vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow up" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="unpress('down');" ontouchend="unpress('down')"  ></div></div>
-				<div id="left_div"><div style="position:fixed;top:123vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow right" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div></div>
-				<div id="right_div"><div style="position:fixed;top:123vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow left" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div></div>
-				<div style="position:fixed;top:123vw;left:37.5vw;width:25vw;height:25vw;display:none;"  class="arrow talk" onclick="direction='talk'"  ></div>
-				<div style="position:fixed;top:123vw;left:37.5vw;width:25vw;height:25vw;display:none;"  class="arrow fire" onclick="direction='talk'"  ></div>
+				<div id="up_div"><div style="position:absolute;top:102vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow down" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="unpress('up');" ontouchend="unpress('up')" ></div></div>
+				<div id="down_div"><div style="position:absolute;top:152vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow up" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="unpress('down');" ontouchend="unpress('down')"  ></div></div>
+				<div id="left_div"><div style="position:absolute;top:127vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow right" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div></div>
+				<div id="right_div"><div style="position:absolute;top:127vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow left" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div></div>
+				<div style="position:absolute;top:127vw;left:37.5vw;width:25vw;height:25vw;display:none;"  class="arrow talk" onclick="direction='talk'"  ></div>
+				<div style="position:absolute;top:127vw;left:37.5vw;width:25vw;height:25vw;display:none;"  class="arrow fire" onclick="direction='talk'"  ></div>
 
 			</div>
 
@@ -732,10 +741,10 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			</div>
 		
 			<div id="dialogs_wrapper">
-				<div id="dialogs" style="position:fixed;top:110vw;left:5vw;width:90vw;color:rgb(230,230,230);font-size:2.3vh;display:none;">
+				<div id="dialogs" style="position:fixed;top:114vw;left:5vw;width:90vw;color:rgb(230,230,230);font-size:2.3vh;display:none;">
 					<p id="dialog_name">:</p>
 					<p id="dialog_text"></p>
-					<div id="suite_d"><div style="position:fixed;top:148vw;left:68vw;width:25vw;height:25vw;" class="arrow suite" disabled="disabled" onclick="direction='talk'"  ></div></div>
+					<div id="suite_d"><div style="position:absolute;top:148vw;left:37.5vw;width:25vw;height:25vw;" class="arrow suite" disabled="disabled" onclick="direction='talk'"  ></div></div>
 				</div>
 			</div>
 		
@@ -807,6 +816,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		sprites = sprites_l;
 		for (i=0;i<sprites.length;i++){
 			$('#tile_'+sprites[i][0]+'_'+sprites[i][1]).addClass("block1");
+			$('#tile_'+sprites[i][0]+'_'+sprites[i][1]).css("background-color", "rgb(133,133,133)");
 			$('#tile_'+sprites[i][0]+'_'+sprites[i][1]).css("background-image", "url('assets/img/"+sprites[i][2]+"')");
 		}
 		
@@ -847,6 +857,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 
 		// Block appearance change
 		for (i=0;i<change_tile.length;i++){
+			$('#tile_'+change_tile[i][0]+'_'+change_tile[i][1]).css("background-color", "rgb(133,133,133)");
 			$('#tile_'+change_tile[i][0]+'_'+change_tile[i][1]).css("background-image", "url('assets/img/"+change_tile[i][2]+"')");
 		}
 
@@ -959,10 +970,10 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 						
 					
 					if(delta_x != 0){
-						$("#"+div).animate({"top":(5+pos_x*9)+"vw"},300,"linear");
+						$("#"+div).animate({"top":(0+pos_x*10)+"vw"},300,"linear");
 					}
 					else{
-						$("#"+div).animate({"left":(5+pos_y*9)+"vw"},300,"linear");
+						$("#"+div).animate({"left":(0+pos_y*10)+"vw"},300,"linear");
 					}
 					setTimeout(function(){
 						
@@ -1153,7 +1164,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		in_dialog = true;
 		$("#dialogs").show();
 		rnd = getRandomInt(9999999999);
-		$("#suite_d").html(`<div style="position:fixed;top:148vw;left:68vw;width:25vw;height:25vw;" class="arrow suite r_`+rnd+`" disabled="disabled"  onclick="direction='talk'"   ></div>`)
+		$("#suite_d").html(`<div style="position:fixed;top:152vw;left:37.5vw;width:25vw;height:25vw;" class="arrow suite r_`+rnd+`" disabled="disabled"  onclick="direction='talk'"   ></div>`)
 		
 		if( dialog_pos < current_dialog.length  ){
 			// Check if pizza
