@@ -90,22 +90,6 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				cursor:pointer;
 			}
 			
-			.tile{
-				width:10.2vw;
-				height:10.2vw;
-				margin-left:-0.1vw;
-				margin-right:-0.1vw;
-				position:fixed;
-			}
-
-			.big{
-				width:20.4vw;
-				height:20.4vw;
-				position:fixed;
-				z-index:99;
-				margin-top:-0.2vw;
-				margin-left:-0.2vw;
-			}
 			
 
 			.road{
@@ -196,86 +180,6 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				background-repeat: no-repeat;
 				background-size: cover;
 				background-color: rgb(133,133,133);
-			}
-			
-			.x_0{
-				top:0vw;
-			}
-			
-			.x_1{
-				top:10vw;
-			}
-			
-			.x_2{
-				top:20vw;
-			}
-			
-			.x_3{
-				top:30vw;
-			}
-			
-			.x_4{
-				top:40vw;
-			}
-			
-			.x_5{
-				top:50vw;
-			}
-			
-			.x_6{
-				top:60vw;
-			}
-			
-			.x_7{
-				top:70vw;
-			}
-			
-			.x_8{
-				top:80vw;
-			}
-			
-			.x_9{
-				top:90vw;
-			}
-			
-			.y_0{
-				left:0vw;
-			}
-			
-			.y_1{
-				left:10vw;
-			}
-			
-			.y_2{
-				left:20vw;
-			}
-			
-			.y_3{
-				left:30vw;
-			}
-		  
-			.y_4{
-				left:40vw;
-			}
-			
-			.y_5{
-				left:50vw;
-			}
-			
-			.y_6{
-				left:60vw;
-			}
-			
-			.y_7{
-				left:70vw;
-			}
-			
-			.y_8{
-				left:80vw;
-			}
-			
-			.y_9{
-				left:90vw;
 			}
 			
 			.hero{
@@ -763,16 +667,16 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		rnd = getRandomInt(9999999999);
 		direction = "no";
 		if(pb.localeCompare("up")==0){
-			$("#up_div").html(`<div style="position:fixed;top:98vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow down r`+rnd+`" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="unpress('up');" ontouchend="unpress('up')" ></div>`);
+			$("#up_div").html(`<div style="position:fixed;top:102vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow down r`+rnd+`" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="unpress('up');" ontouchend="unpress('up')" ></div>`);
 		}
 		if(pb.localeCompare("down")==0){
-			$("#down_div").html(`<div style="position:fixed;top:148vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow up r`+rnd+`" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="unpress('down');" ontouchend="unpress('down')"  ></div>`);
+			$("#down_div").html(`<div style="position:fixed;top:152vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow up r`+rnd+`" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="unpress('down');" ontouchend="unpress('down')"  ></div>`);
 		}
 		if(pb.localeCompare("left")==0){
-			$("#left_div").html(`<div style="position:fixed;top:123vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow right r`+rnd+`" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div>`);
+			$("#left_div").html(`<div style="position:fixed;top:127vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow right r`+rnd+`" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div>`);
 		}
 		if(pb.localeCompare("right")==0){
-			$("#right_div").html(`<div style="position:fixed;top:123vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow left r`+rnd+`" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div>`);
+			$("#right_div").html(`<div style="position:fixed;top:127vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow left r`+rnd+`" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div>`);
 		}
 
 	}
