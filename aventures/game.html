@@ -667,16 +667,16 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		rnd = getRandomInt(9999999999);
 		direction = "no";
 		if(pb.localeCompare("up")==0){
-			$("#up_div").html(`<div style="position:absolute;top:102vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow down r`+rnd+`" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="unpress('up');" ontouchend="unpress('up')" ></div>`);
+			$("#up_div").html(`<div style="position:fixed;top:98vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow down r`+rnd+`" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="unpress('up');" ontouchend="unpress('up')" ></div>`);
 		}
 		if(pb.localeCompare("down")==0){
-			$("#down_div").html(`<div style="position:absolute;top:152vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow up r`+rnd+`" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="unpress('down');" ontouchend="unpress('down')"  ></div>`);
+			$("#down_div").html(`<div style="position:fixed;top:148vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow up r`+rnd+`" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="unpress('down');" ontouchend="unpress('down')"  ></div>`);
 		}
 		if(pb.localeCompare("left")==0){
-			$("#left_div").html(`<div style="position:absolute;top:127vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow right r`+rnd+`" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div>`);
+			$("#left_div").html(`<div style="position:fixed;top:123vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow right r`+rnd+`" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div>`);
 		}
 		if(pb.localeCompare("right")==0){
-			$("#right_div").html(`<div style="position:absolute;top:127vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow left r`+rnd+`" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div>`);
+			$("#right_div").html(`<div style="position:fixed;top:123vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow left r`+rnd+`" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div>`);
 		}
 
 	}
