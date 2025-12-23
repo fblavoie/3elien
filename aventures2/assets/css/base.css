@@ -1,0 +1,344 @@
+
+
+body{
+	background-color:black;
+	font-family: 'Arial';
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+
+.vehicule {
+	cursor:pointer;
+}
+
+div{
+	user-drag:none;
+	user-select:none;
+	-moz-user-select:none;
+	-webkit-user-drag:none;
+	-websit-user-select:none;
+	-ms-user-select:none;
+}
+
+img{
+	user-drag:none;
+	user-select:none;
+	-moz-user-select:none;
+	-webkit-user-drag:none;
+	-websit-user-select:none;
+	-ms-user-select:none;
+	pointer-events: none; 
+}
+
+.window{
+	background: rgb(2,0,36);
+	background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(39,39,42,1) 35%, rgba(49,64,68,1) 100%);
+}
+
+.window:hover{
+	cursor:pointer;
+}
+
+.open_window{
+	background: rgb(246,255,15);
+	background: linear-gradient(180deg, rgba(246,255,15,1) 0%, rgba(160,173,23,1) 35%, rgba(98,99,57,1) 100%);
+
+}
+
+.interruption{
+	filter: brightness(50%);
+}
+
+.logo:hover{
+	cursor:pointer;
+}
+
+
+
+.road{
+	background-color:rgb(133,133,133);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.point{
+	background: url(assets/img/tile_point.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.hor_link{
+	background: url(assets/img/tile_hor_link.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.ver_link{
+	background: url(assets/img/tile_ver_link.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.oneway{
+	background: url(assets/img/tile_oneway.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.block{
+	background: url(assets/img/tile_block.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.resto{
+	background: url(assets/img/tile_resto.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.costco{
+	background: url(assets/img/tile_costco.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.clinic{
+	background: url(assets/img/tile_medical.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.house{
+	background: url(assets/img/tile_house.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.videotron{
+	background: url(assets/img/tile_videotron.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.green{
+	background: url(assets/img/tile_green.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.gate{
+	background: url(assets/img/gate.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.gold{
+	background: url(assets/img/tile_gold.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.gold_des{
+	background: url(assets/img/tile_des.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.vomit{
+	background: url(assets/img/tile_vomit.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.ice{
+	background: url(assets/img/tile_ice.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
+.finished{
+	background: url(assets/img/tile_finished.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: rgb(133,133,133);
+}
+
+.hero{
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index:200;
+}
+
+.pizza{
+	background: url(assets/img/pizza.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index:500;
+}
+
+.arrow{
+	background: url(assets/img/arrow.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	user-select:none;
+	-moz-user-select:none;
+	-webkit-user-drag:none;
+	-websit-user-select:none;
+	-ms-user-select:none;
+}
+
+.talk{
+	background: url(assets/img/talk.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.fire{
+	background: url(assets/img/bruler.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.level_access{
+	background: url(assets/img/talk.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.suite{
+	background: url(assets/img/suite.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.arrow:hover{
+	cursor:pointer;
+}
+
+.car_yellow{
+	background: url(assets/img/car_yellow.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	transform: rotate(90deg);
+}
+
+.car_blue{
+	background: url(assets/img/car_patient.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	transform: rotate(90deg);
+}
+
+.car_green{
+	background: url(assets/img/car_green.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	transform: rotate(90deg);
+}
+
+.car_moveblock{
+	background: url(assets/img/moveblock.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.trash{
+	background: url(assets/img/trash.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.dup.dleft{
+	transform: rotate(180deg);
+}
+
+.ddown.dleft{
+	transform: rotate(90deg);
+}
+
+.dup.dright{
+	transform: rotate(270deg);
+}
+
+
+
+.car_cone{
+	background: url(assets/img/cone.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.reversed{
+	transform: rotate(225deg);
+}
+
+.right{
+	transform: rotate(180deg);
+}
+
+.left{
+	transform: rotate(0deg);
+}	
+
+.down{
+	transform: rotate(270deg);
+}	
+
+.up{
+	transform: rotate(90deg);
+}
+
+.moveblock{
+
+}
+
+.block1{
+}
+
+.hero_right{
+	background: url(assets/img/left1.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index:200;
+		transform: scaleX(-1);
+
+}
+
+.hero_left{
+	background: url(assets/img/left1.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index:200;
+}	
+
+.hero_down{
+	background: url(assets/img/down1.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index:200;
+}	
+
+.hero_up{
+	background: url(assets/img/up1.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index:200;
+}				
+
+.btn:hover{
+	cursor:pointer;
+}
+
+.added_element{
+	width:10vw;
+	height:10vw;
+	z-index:2;
+}

@@ -1,0 +1,100 @@
+
+
+			.tile{
+				width:10.2vw;
+				height:10.2vw;
+				margin-left:-0.1vw;
+				margin-right:-0.1vw;
+				position:fixed;
+			}
+
+			.big{
+				width:20.4vw;
+				height:20.4vw;
+				position:fixed;
+				z-index:99;
+				margin-top:-0.2vw;
+				margin-left:-0.2vw;
+			}
+			
+			
+			.x_0{
+				top:0vw;
+			}
+			
+			.x_1{
+				top:10vw;
+			}
+			
+			.x_2{
+				top:20vw;
+			}
+			
+			.x_3{
+				top:30vw;
+			}
+			
+			.x_4{
+				top:40vw;
+			}
+			
+			.x_5{
+				top:50vw;
+			}
+			
+			.x_6{
+				top:60vw;
+			}
+			
+			.x_7{
+				top:70vw;
+			}
+			
+			.x_8{
+				top:80vw;
+			}
+			
+			.x_9{
+				top:90vw;
+			}
+			
+			.y_0{
+				left:0vw;
+			}
+			
+			.y_1{
+				left:10vw;
+			}
+			
+			.y_2{
+				left:20vw;
+			}
+			
+			.y_3{
+				left:30vw;
+			}
+		  
+			.y_4{
+				left:40vw;
+			}
+			
+			.y_5{
+				left:50vw;
+			}
+			
+			.y_6{
+				left:60vw;
+			}
+			
+			.y_7{
+				left:70vw;
+			}
+			
+			.y_8{
+				left:80vw;
+			}
+			
+			.y_9{
+				left:90vw;
+			}
+			

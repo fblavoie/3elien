@@ -13,6 +13,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 		
+		
 		<script
 		  src="https://code.jquery.com/jquery-3.6.0.min.js"
 		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -30,9 +31,13 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
           <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
 
 		  <link href="assets/css/vertical_basis.css" rel="stylesheet">
-
-		  <style>
 		  
+		  <script src="js/global/cookies.js"></script>
+		  
+		  
+		  <style>
+			
+
 			body{
 				background-color:black;
 				font-family: 'Arial';
@@ -42,9 +47,9 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				-moz-user-select: none;
 				-ms-user-select: none;
 				user-select: none;
-
+				touch-action: none;
 			}
-			
+
 
 			.vehicule {
 				cursor:pointer;
@@ -68,43 +73,62 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				-ms-user-select:none;
 				pointer-events: none; 
 			}
-			
+
 			.window{
 				background: rgb(2,0,36);
 				background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(39,39,42,1) 35%, rgba(49,64,68,1) 100%);
 			}
-			
+
 			.window:hover{
 				cursor:pointer;
 			}
-			
+
 			.open_window{
 				background: rgb(246,255,15);
 				background: linear-gradient(180deg, rgba(246,255,15,1) 0%, rgba(160,173,23,1) 35%, rgba(98,99,57,1) 100%);
 
 			}
-			
+
 			.interruption{
 				filter: brightness(50%);
 			}
-			
+
 			.logo:hover{
 				cursor:pointer;
 			}
-			
-			
+
+
 
 			.road{
 				background-color:rgb(133,133,133);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
+
+			.point{
+				background: url(assets/img/tile_point.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.hor_link{
+				background: url(assets/img/tile_hor_link.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.ver_link{
+				background: url(assets/img/tile_ver_link.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
 			.oneway{
 				background: url(assets/img/tile_oneway.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			
+
 			.block{
 				background: url(assets/img/tile_block.png);
 				background-repeat: no-repeat;
@@ -117,18 +141,24 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				background-size: cover;
 			}
 
+			.assemblee{
+				background: url(assets/img/tile_assemblee.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
 			.costco{
 				background: url(assets/img/tile_costco.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			
+
 			.clinic{
 				background: url(assets/img/tile_medical.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			
+
 			.house{
 				background: url(assets/img/tile_house.png);
 				background-repeat: no-repeat;
@@ -140,25 +170,25 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			
+
 			.green{
 				background: url(assets/img/tile_green.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-	
+
 			.gate{
 				background: url(assets/img/gate.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-	
+
 			.gold{
 				background: url(assets/img/tile_gold.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			
+
 			.gold_des{
 				background: url(assets/img/tile_des.png);
 				background-repeat: no-repeat;
@@ -170,33 +200,34 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			
+
 			.ice{
 				background: url(assets/img/tile_ice.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			
+
+
 			.finished{
 				background: url(assets/img/tile_finished.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 				background-color: rgb(133,133,133);
 			}
-			
+
 			.hero{
 				background-repeat: no-repeat;
 				background-size: cover;
 				z-index:200;
 			}
-			
+
 			.pizza{
 				background: url(assets/img/pizza.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 				z-index:500;
 			}
-			
+
 			.arrow{
 				background: url(assets/img/arrow.png);
 				background-repeat: no-repeat;
@@ -207,75 +238,81 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				-websit-user-select:none;
 				-ms-user-select:none;
 			}
-			
+
 			.talk{
 				background: url(assets/img/talk.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			
+
 			.fire{
 				background: url(assets/img/bruler.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			
+
+			.level_access{
+				background: url(assets/img/talk.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
 			.suite{
 				background: url(assets/img/suite.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			
+
 			.arrow:hover{
 				cursor:pointer;
 			}
-			
+
 			.car_yellow{
 				background: url(assets/img/car_yellow.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 				transform: rotate(90deg);
 			}
-			
+
 			.car_blue{
 				background: url(assets/img/car_patient.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 				transform: rotate(90deg);
 			}
-			
+
 			.car_green{
 				background: url(assets/img/car_green.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 				transform: rotate(90deg);
 			}
-			
+
 			.car_moveblock{
 				background: url(assets/img/moveblock.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			
+
 			.trash{
 				background: url(assets/img/trash.png);
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			
+
 			.dup.dleft{
 				transform: rotate(180deg);
 			}
-			
+
 			.ddown.dleft{
 				transform: rotate(90deg);
 			}
-			
+
 			.dup.dright{
 				transform: rotate(270deg);
 			}
-			
-		
+
+
 
 			.car_cone{
 				background: url(assets/img/cone.png);
@@ -302,11 +339,11 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			.up{
 				transform: rotate(90deg);
 			}
-			
+
 			.moveblock{
 
 			}
-			
+
 			.block1{
 			}
 
@@ -315,7 +352,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				background-repeat: no-repeat;
 				background-size: cover;
 				z-index:200;
-				    transform: scaleX(-1);
+					transform: scaleX(-1);
 
 			}
 
@@ -343,19 +380,32 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			.btn:hover{
 				cursor:pointer;
 			}
-			
+
 			.added_element{
 				width:10vw;
 				height:10vw;
 				z-index:2;
 			}
 			
+			.selectDisable {
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+				touch-action: none;
+			}
+
+
 		  </style>
+
 	</head>
 	
 	<body id="bodygame" scroll="no" style="  overflow: hidden; width:100%;">
 	
 		<div id="princ_container" style="width:100%;height: 100%;">
+		
+			<div style="position:absolute;top:0;left:0;z-index:9999;width:100vw;height:102vw;background-color:black;" id="black_screen"></div>
 			
 			<div style="width:100vw;top:0vw;left:0vw;height:height:100vw;background-color:rgb(133,133,133);z-index:-1"></div>
 			<div id="tile_0_0" class="tile road x_0 y_0"></div>
@@ -459,149 +509,21 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			<div id="tile_9_8" class="tile road x_9 y_8"></div>
 			<div id="tile_9_9" class="tile road x_9 y_9"></div>
 			
-			<script>
-				var ori_pizza_x = 0;
-				var ori_pizza_y = 0;
-				var ori_dir_x = 0;
-				var ori_dir_y = 0;
-				var pos_pizza_x = 0;
-				var pos_pizza_y = 0;
-				var dir_pizza_x = 0;
-				var dir_pizza_y = 0;
-				var winning_x = 0;
-				var winning_y = 0;
-				
-				function run_pizza(){
-					finp = false;
-					
-					if( ((pos_pizza_x)==winning_x) && ((pos_pizza_y)==winning_y)){
-						$("#pizza").fadeOut(500);
-						$(".arrow").hide();
-						$("#success_trigger").show();
-						$("#arrow_menu").hide()
-						show_next_level();
-						$("#hero").fadeOut();
-					}
-					else{
-						if( dir_pizza_x != 0 ){
-							pos_pizza_x = pos_pizza_x + dir_pizza_x;
-							
-							if( (pos_pizza_x >= 0) && (pos_pizza_x <= 9) ){
-								// Check block
-								block = $("#tile_"+pos_pizza_x+"_"+pos_pizza_y).hasClass("block") && ($("#tile_"+pos_pizza_x+"_"+pos_pizza_y).hasClass("water") == false);
-								
-								if (block == false){
-									// Check car
-									blocking = false;
-									for(i=0;i<nb_cars;i++){
-										if( (ot_cars[i][0]==pos_pizza_x) && (ot_cars[i][1]==pos_pizza_y) ){
-											blocking = true;
-											if( $("#car_"+i).hasClass("alld") && ( ((dir_pizza_x==1)&&($("#car_"+i).hasClass("dup"))) || ((dir_pizza_x==-1)&&($("#car_"+i).hasClass("ddown")))  ) ){
-												blocking = false;
-												if( $("#car_"+i).hasClass("dleft") ){
-													dir_pizza_x = 0;
-													dir_pizza_y = -1;
-												}
-												else if( $("#car_"+i).hasClass("dright") ){
-													dir_pizza_x = 0;
-													dir_pizza_y = 1;
-												}
-											}
-										}
-									}
-									if(blocking){
-										finp = true;
-									}
-									else{
-										$("#pizza").animate({"top":(0+pos_pizza_x*10)+"vw"},200,"linear");
-									}
-								}
-								else{
-									finp = true;
-								}
-							}
-							else{
-								finp = true;
-							}
-						}
-						else if( dir_pizza_y != 0 ){
-							pos_pizza_y = pos_pizza_y + dir_pizza_y;
-							
-							if( (pos_pizza_y >= 0) && (pos_pizza_y <= 9) ){
-								// Check block
-								block = $("#tile_"+pos_pizza_x+"_"+pos_pizza_y).hasClass("block") && ($("#tile_"+pos_pizza_x+"_"+pos_pizza_y).hasClass("water") == false);
-								
-								if (block == false){
-									// Check car
-									blocking = false;
-									for(i=0;i<nb_cars;i++){
-										if( (ot_cars[i][0]==pos_pizza_x) && (ot_cars[i][1]==pos_pizza_y) ){
-											blocking = true;
-											if( $("#car_"+i).hasClass("alld") && ( ((dir_pizza_y==1)&&($("#car_"+i).hasClass("dleft"))) || ((dir_pizza_y==-1)&&($("#car_"+i).hasClass("dright")))  ) ){
-												blocking = false;
-												if( $("#car_"+i).hasClass("dup") ){
-													dir_pizza_x = -1;
-													dir_pizza_y = 0;
-												}
-												else if( $("#car_"+i).hasClass("ddown") ){
-													dir_pizza_x = 1;
-													dir_pizza_y = 0;
-												}
-											}
-										}
-									}
-									if(blocking){
-										finp = true;
-									}
-									else{
-										$("#pizza").animate({"left":(0+pos_pizza_y*10)+"vw"},200,"linear");
-									}
-								}
-								else{
-									finp = true;
-								}
-							}
-							else{
-								finp = true;
-							}
-						}
-						
-						if(finp){
-							$("#pizza").fadeOut(200);
-							setTimeout(function() {
-								next_dialog();
-							}, 200);
-
-						}
-						else{
-							setTimeout(function() {
-								run_pizza();
-							}, 200);
-						}
-					}
-				}
-				function start_pizza(){
-					$("#pizza").animate({"top":(0+ori_pizza_x*10)+"vw"},0,"linear");
-					pos_pizza_x = ori_pizza_x;
-					$("#pizza").animate({"left":(0+ori_pizza_y*10)+"vw"},0,"linear");
-					pos_pizza_y = ori_pizza_y;
-					dir_pizza_x = ori_dir_x;
-					dir_pizza_y = ori_dir_y;
-					$("#pizza").fadeIn(100);
-					run_pizza();
-				}
-				
-				
-			</script>
-			
-			<div id="hero" class="tile hero hero_down"></div>
-			<div id="pizza" class="tile pizza" style="top:0vw;left:30vw;display:none;"></div>
-			
 			<div id="other_cars">
 			</div>
+			
+			<!-- Pizza -->
+			<script src="js/custom_levels/pizza.js"></script>
+			<div id="hero" class="tile hero hero_down"></div>
+			<div id="pizza" class="tile pizza" style="top:0vw;left:30vw;display:none;"></div>
 
-			<div onclick="location.reload();" class="btn" style="position:fixed;top:102vw;left:2vw;font-size:2vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>RECOMMENCER</b></div>
-			<div onclick="window.location.href = 'intro.html'" class="btn" style="position:fixed;top:108.5vw;left:2vw;font-size:2vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>MENU</b></div>
+			<!-- Permanent buttons -->
+			<div id="in_level_menu">
+				<div onclick="normal_reload();" class="btn" style="position:fixed;top:102vw;left:2vw;font-size:2vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>RECOMMENCER</b></div>
+				<div onclick="map_menu();" class="btn" style="position:fixed;top:108.5vw;left:2vw;font-size:2vh;background-color:yellow;padding-left:1vw;padding-right:1vw;"><b>CARTE</b></div>
+			</div>
+				
+			<!-- Items -->
 			<div id="nb_bruleurs" style="position:fixed;top:102vw;left:65vw;font-size:2vh;color:white;padding-left:1vw;padding-right:1vw;display:none;">BRÛLEURS X 10</div>
 
 			<div style="position:absolute;top:93vh;left:70vw;font-size:1.5vh;width:30vw;;text-align: center;color:rgb(240,240,240)">Sur un ordinateur, vous pouvez jouer avec les flèches du clavier.</div>
@@ -628,10 +550,11 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		<div>
 			
 			<div id="arrow_menu">
-				<div id="up_div"><div style="position:absolute;top:102vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow down" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="unpress('up');" ontouchend="unpress('up')" ></div></div>
-				<div id="down_div"><div style="position:absolute;top:152vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow up" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="unpress('down');" ontouchend="unpress('down')"  ></div></div>
-				<div id="left_div"><div style="position:absolute;top:127vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow right" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div></div>
-				<div id="right_div"><div style="position:absolute;top:127vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow left" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div></div>
+				<div id="up_div"    class="selectDisable"><div style="position:absolute;top:102vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow down  selectDisable" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="unpress('up');" ontouchend="unpress('up')" ></div></div>
+				<div id="down_div"  class="selectDisable"><div style="position:absolute;top:152vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow up    selectDisable" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="unpress('down');" ontouchend="unpress('down')"  ></div></div>
+				<div id="left_div"  class="selectDisable"><div style="position:absolute;top:127vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow right selectDisable" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div></div>
+				<div id="right_div" class="selectDisable"><div style="position:absolute;top:127vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow left  selectDisable" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div></div>
+				<div style="position:absolute;top:127vw;left:37.5vw;width:25vw;height:25vw;display:none;"  class="arrow level_access" onclick="direction='talk'"  ></div>
 				<div style="position:absolute;top:127vw;left:37.5vw;width:25vw;height:25vw;display:none;"  class="arrow talk" onclick="direction='talk'"  ></div>
 				<div style="position:absolute;top:127vw;left:37.5vw;width:25vw;height:25vw;display:none;"  class="arrow fire" onclick="direction='talk'"  ></div>
 
@@ -640,9 +563,9 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			<img src="assets/img/eclair.png" style="width:100vw;height:95vw;display:none;position:fixed;left:0;top:0;z-index:500;" id="explosion">
 			
 			<div style="position:fixed;top:110vw;left:5vw;width:90vw;color:rgb(230,230,230);font-size:3vh;">
-				<p style="display:none;" id="green_trigger">Faites attention! Ne vous approchez pas trop des bornes de recharge. Le réseau électrique est instable. Vous devez réessayer.</p>
+				<p style="display:none;" id="green_trigger">Vous trébuchez dans la sauce brune et mourez d'asphyxie.</p>
 				<p style="display:none;" id="success_trigger"></p>
-				<div id="next_level" onclick="next_level()" class="btn" style="position:fixed;top:150vw;left:5vw;font-size:3.5vh;background-color:yellow;color:black;padding-left:1vw;padding-right:1vw;display:none;"><b>ALLER À LA ZONE SUIVANTE</b></div>
+				<div id="next_level" onclick="map_menu()" class="btn" style="position:fixed;top:150vw;left:0vw;width:100vw;text-align:center;padding-top:2vw;padding-bottom:2vw;font-size:5vw;background-color:yellow;color:black;padding-left:1vw;padding-right:1vw;display:none;"><b>ALLER À LA CARTE</b></div>
 
 			</div>
 		
@@ -660,6 +583,8 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 	</body>
 	
 	<script>
+	
+	
 
 	function getRandomInt(max) {
 	  return Math.floor(Math.random() * max);
@@ -669,29 +594,53 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		rnd = getRandomInt(9999999999);
 		direction = "no";
 		if(pb.localeCompare("up")==0){
-			$("#up_div").html(`<div style="position:absolute;top:102vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow down r`+rnd+`" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="unpress('up');" ontouchend="unpress('up')" ></div>`);
+			$("#up_div").html(`<div style="position:absolute;top:102vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow selectDisable down r`+rnd+`" onmousedown="pressbutton('up')"  ontouchstart="pressbutton('up')"  onmouseup="unpress('up');" ontouchend="unpress('up')" ></div>`);
 		}
 		if(pb.localeCompare("down")==0){
-			$("#down_div").html(`<div style="position:absolute;top:152vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow up r`+rnd+`" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="unpress('down');" ontouchend="unpress('down')"  ></div>`);
+			$("#down_div").html(`<div style="position:absolute;top:152vw;left:37.5vw;width:25vw;height:25vw;"  class="arrow selectDisable up r`+rnd+`" onmousedown="pressbutton('down')" ontouchstart="pressbutton('down')"  onmouseup="unpress('down');" ontouchend="unpress('down')"  ></div>`);
 		}
 		if(pb.localeCompare("left")==0){
-			$("#left_div").html(`<div style="position:absolute;top:127vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow right r`+rnd+`" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div>`);
+			$("#left_div").html(`<div style="position:absolute;top:127vw;left:12.5vw;width:25vw;height:25vw;"  class="arrow selectDisable right r`+rnd+`" onmousedown="pressbutton('left')" ontouchstart="pressbutton('left')"  onmouseup="unpress('left');" ontouchend="unpress('left')"  ></div>`);
 		}
 		if(pb.localeCompare("right")==0){
-			$("#right_div").html(`<div style="position:absolute;top:127vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow left r`+rnd+`" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div>`);
+			$("#right_div").html(`<div style="position:absolute;top:127vw;left:62.5vw;width:25vw;height:25vw;"  class="arrow selectDisable left r`+rnd+`" onmousedown="pressbutton('right')" ontouchstart="pressbutton('right')"  onmouseup="unpress('right')" ontouchend="unpress('right')"  ></div>`);
 		}
 
 	}
 
 
 
-	const queryString = window.location;
-	console.log(queryString.search)
-	params = queryString.search.replace("?level=","")
-	params = parseInt(params)
-	console.log(params)
+	
+	// Extract current user data from url -----------------------------------------------
+	let urldata = new URLSearchParams(document.location.search);
+	
+	// User data
+	let user_data_temp = (urldata.get("data"));
+	console.log("data",user_data_temp,user_data_temp.length)
+	var user_data = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]
+	for (i=0;i<user_data_temp.length;i++){
+		user_data[i] = ( parseInt(user_data_temp[i]) )
+	}
+	
+	// Current level
+	params = parseInt(urldata.get("level"))
+	console.log("user_data",user_data)
+	
+	// Map positions
+	map_X = urldata.get("fromX")
+	map_Y = urldata.get("fromY")
 
-
+	// Save cookies
+	setInterval(function(){
+		setCookie("fromX", map_X, 365*3)
+		setCookie("fromY", map_Y, 365*3)
+		setCookie("data",create_data_string(),365*3)
+	},1000);
+	
+	
+	
+	
+	// Variable initialization -------------------------------------
 	var hero_x = null;
 	var hero_y = null;
 	var trees = [];
@@ -704,6 +653,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 	var water_tiles = [];
 	var nb_gold = 0;
 	var gold_enabled = false;
+	var mmap = false;
 
 	var sprites = [];
 	
@@ -752,14 +702,16 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			}
 		}
 		
-		$("#tile_"+finished[0]+"_"+finished[1]).addClass("finished");
-	
+		for (k=0;k<finished.length;k++) {
+			$("#tile_"+finished[k][0]+"_"+finished[k][1]).addClass("finished");
+		}
+		
 		
 		 hero_x = pos_begginning[0];
 		 hero_y = pos_begginning[1];
 		
 
-		$("#hero").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+		$("#hero").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 
 		// Block appearance change
 		for (i=0;i<change_tile.length;i++){
@@ -773,9 +725,20 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 		for (i=0;i<trees.length;i++){
 			$("#tile_"+trees[i][0]+"_"+trees[i][1]).removeClass("road");
 			$("#tile_"+trees[i][0]+"_"+trees[i][1]).addClass("block");
-			$("#tile_"+trees[i][0]+"_"+trees[i][1]).css("background-image", "url('assets/img/tree.png')");
+			$("#tile_"+trees[i][0]+"_"+trees[i][1]).css("background-image", "url('assets/img/post.png')");
 		}
 		
+		
+		// Main map
+		if (typeof main_map !== 'undefined') {
+			mmap = true;
+			$("#in_level_menu").hide();
+			
+			// Create place
+			$("body").append( "<div style='background-color:yellow;width:100vw;height:6vw;position:absolute;top:92vw;left:0vw;text-align:center;font-size:4vw;padding-top:2vw;' id='place_panel'></div>" )
+		}
+		
+
 		
 
 	});
@@ -812,13 +775,15 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 	
 	var reserve = "no";
 	function pressbutton(pb){
+		console.log(direction)
 		if(direction.localeCompare("no") == 0){
 			reserve = pb
 			direction = pb;
 		}
+		
 	}
 	
-	function change_direction(delta_x,delta_y,car=-1){
+	function change_direction(delta_x,delta_y,car=-1,nb_times=0){
 		
 		movable = true;
 		if( car == -1 ){
@@ -859,8 +824,8 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 					if( car == -1 ){
 						hero_x = new_x;
 						hero_y = new_y;
-						console.log(hero_x)
-						console.log(hero_y)
+						console.log("hero_x",hero_x)
+						console.log("hero_y",hero_y)
 						pos_x = hero_x;
 						pos_y = hero_y;
 						div = "hero";
@@ -882,6 +847,16 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 						$("#"+div).animate({"left":(0+pos_y*10)+"vw"},300,"linear");
 					}
 					setTimeout(function(){
+						
+						// Check finished position(s)
+						action_finished = []
+						is_finished = false
+						for(k=0;k<finished.length;k++){
+							if((pos_x==finished[k][0]) && (pos_y==finished[k][1])){
+								is_finished = true
+								action_finished = finished[k][2];
+							}
+						}
 						
 						nocone = true;
 						if(car > -1){
@@ -951,7 +926,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 							change_direction(delta_x,delta_y,car);
 						}
 						// Ice
-						else if($('#tile_'+new_x+'_'+new_y).hasClass("ice")){
+						else if($('#tile_'+new_x+'_'+new_y).hasClass("ice") || $('#tile_'+new_x+'_'+new_y).hasClass("hor_link") || $('#tile_'+new_x+'_'+new_y).hasClass("ver_link")){
 							change_direction(delta_x,delta_y,car);
 						}
 						// Cone
@@ -999,12 +974,20 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 							can_move = true;
 						}
 						// Level completed
-						else if((pos_x==finished[0]) && (pos_y==finished[1]) && (car == -1)){
+						else if(is_finished && (car == -1)){
+							
+							// Process actions
+							for(k=0;k<action_finished.length;k++){
+								sel_action = action_finished[k]
+								user_data[sel_action[0]] = sel_action[1]
+							}
+							
 							$(".arrow").hide();
 							$("#success_trigger").show();
 							$("#arrow_menu").hide()
 							show_next_level();
 							$("#hero").fadeOut();
+							
 						}
 						// Nothing special
 						else{
@@ -1016,8 +999,12 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				}
 				else if( ((hit_car_type.localeCompare("moveblock") == 0)&&(car>=0)) == false ){ // Crash
 					// Check if car moves
-					if(ot_cars[hit_car][3] == "cone"){
-						change_direction(delta_x,delta_y,hit_car);
+					if( (ot_cars[hit_car][3] == "cone") && (nb_times == 0) ){ // Cone is not recursived
+						nb_times = nb_times + 1
+						change_direction(delta_x,delta_y,hit_car,nb_times);
+					}
+					else if((ot_cars[hit_car][3] == "cone") && (nb_times > 0)){
+						can_move = true;
 					}
 					else if( ((ot_cars[hit_car][2] == "up") || (ot_cars[hit_car][2] == "down") || (ot_cars[hit_car][2] == "alld") ) && (delta_x != 0) ){
 						change_direction(delta_x,delta_y,hit_car);
@@ -1036,22 +1023,106 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			}
 			else{
 				can_move = true;
+				
 			}
 		}
 		else{
 			can_move = true;
+			
 		}
 		
 	}
+	
+	
+	console.log("main_map",mmap)
+	setInterval(function(){
+		
+		// MAIN map ------------------------------------------------
+		if (can_move && mmap){
+			$("#hero").addClass("hero_down");
+			$("#hero").removeClass("hero_left");
+			$("#hero").removeClass("hero_right");
+			$("#hero").removeClass("hero_up");
+			
+			// Replace place name
+			for(i=0;i<world_places.length;i++){
+				place = world_places[i]
+				if((hero_x==place[0]) && (hero_y==place[1])){
+					$("#place_panel").html(place[2]);
+				}
+			}
+			
+			$("#place_panel").show()
+			can_level_access = true;
+			$(".level_access").show();
+			
+		}
+		else if(mmap && (can_move == false)){
+			$("#place_panel").hide()
+			can_level_access = false;
+			$(".level_access").hide();
+		}
+		
+		
+		// Conditional sprites
+		if (typeof conditional_sprites_hide !== 'undefined') {
+			for(i=0;i<conditional_sprites_hide.length;i++){
+				csprite = conditional_sprites_hide[i]
+				if( user_data[csprite[2]] == 0 ){
+					$('#tile_'+csprite[0]+'_'+csprite[1]).addClass("block1");
+					$('#tile_'+csprite[0]+'_'+csprite[1]).removeClass("road");
+					$('#tile_'+csprite[0]+'_'+csprite[1]).css("background-size", "cover");
+
+					// Get sprite image url
+					image_url = ""
+					for(j=0;j<sprites.length;j++){
+						sprite_sel = sprites[j]
+						if( (csprite[0] == sprite_sel[0]) && (csprite[1] == sprite_sel[1]) ){
+							image_url = sprite_sel[2]
+						}
+					}
+					
+					$('#tile_'+csprite[0]+'_'+csprite[1]).css("background-image", "url('assets/img/" + image_url + "')");	
+				}
+				else{
+				
+					$('#tile_'+csprite[0]+'_'+csprite[1]).removeClass("block1");
+					$('#tile_'+csprite[0]+'_'+csprite[1]).addClass("road");
+					$('#tile_'+csprite[0]+'_'+csprite[1]).css("background-image", "");
+					$('#tile_'+sprites[i][0]+'_'+sprites[i][1]).css("background-size", "cover");
+					
+				}
+			}
+		}
+		
+		// Conditional modifications to dialogs and actions
+		if (typeof modify_dialogs_actions !== 'undefined') {
+			for(i=0;i<modify_dialogs_actions.length;i++){
+				modifications = modify_dialogs_actions[i]
+				if( user_data[modifications[2]] == modifications[3]  ){
+					for(j=0;j<sprites.length;j++){
+						if( (sprites[j][0] == modifications[0]) && (sprites[j][1] == modifications[1]) ){
+							sprites[j][3] = modifications[5]
+							sprites[j][4] = modifications[6]
+						}
+					}
+				}
+			}
+		}
+
+		
+	}, 25)
 
 	current_nb = 1;
 	var rotate = 5;
 	last_direction = "no";
 	var can_talk = false;
 	var can_fire = false;
+	var can_level_access = false;
 	var in_dialog = false;
 	var in_fire = false;
 	var current_dialog = [];
+	var current_action = [];
 	var dialog_pos = -1;
 	
 	function show_next_level(){
@@ -1093,6 +1164,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			dialog_pos = -1;
 			
 			if(limited_trials && in_victory){ // Victory
+			
 				can_talk = false;
 				can_move = false;
 				$("#dialogs_wrapper").hide();
@@ -1101,8 +1173,10 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				$("#success_trigger").show();
 				show_next_level();
 				$("#hero").fadeOut();
+			
 			}
 			else if(limited_trials && (nb_essais == 0)){ // Failure
+				
 				can_talk = false;
 				can_move = false;
 				$("#dialogs_wrapper").hide();
@@ -1111,231 +1185,36 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				$("#success_trigger").html("Vous échouez lamentablement. Vous devez recommencer.")
 				$("#success_trigger").show();
 				$("#arrow_menu").hide()
+				
 			}
-			else{
+			else{ // END DIALOG 
+				
+				// Process actions
+				for( i=0;i<current_action.length;i++ ){
+					action = current_action[i]
+					console.log("change data",action[0],action[1])
+					user_data[action[0]] = action[1]
+				}
+			
 				in_dialog = false;
 				can_move = true;
 				can_talk = true;
+				
 				$("#arrow_menu").show()
 				$("#dialogs").hide();
+				
 			}
 		}
 	}
 	
+	</script>
 	
-	var diff_x = -10;
-	var diff_y = -10;
+	<script src="js/global/moves_interactions.js"></script>
 	
-	function interdef() {
+	<script>
 
+	$("#black_screen").fadeOut();
 
-		if (reserve.localeCompare("no")!=0 ){
-			direction_ori = direction;
-			direction = reserve;
-		}
-		
-		rotate = rotate + 5;
-		if(rotate>360){
-			rotate = 0;
-		}
-
-		// Rotate in vomit
-		$(".invomit").css({'transform' : 'rotate('+ rotate +'deg)'});
-
-
-		if((can_move==false) && in_dialog){
-			if(direction.localeCompare("talk") == 0){
-				console.log("nd")
-				direction = "no";
-				direction_ori = "no"
-				next_dialog();
-			}
-		}
-
-		if(nb_essais>0){
-			$("#nb_bruleurs").html("ESSAIS X "+nb_essais)
-			$("#nb_bruleurs").show();
-		}
-
-		if(nb_fire>0){
-			$("#nb_bruleurs").html("BRÛLEURS X "+nb_fire)
-			$("#nb_bruleurs").show();
-		}
-		else if(nb_essais==0){
-			$("#nb_bruleurs").hide();
-		}
-
-		if(can_move){
-		
-			if(direction.localeCompare("right") == 0){
-				$("#hero").removeClass("hero_left");
-				$("#hero").removeClass("hero_up");
-				$("#hero").removeClass("hero_down");
-				$("#hero").addClass("hero_right");
-				can_move = false;
-				change_direction(0,1);
-				diff_y = 1;
-				diff_x = 0;
-			}
-			
-			if(direction.localeCompare("left") == 0){
-				$("#hero").removeClass("hero_right");
-				$("#hero").removeClass("hero_up");
-				$("#hero").removeClass("hero_down");
-				$("#hero").addClass("hero_left");
-				can_move = false;
-				change_direction(0,-1);
-				diff_y = -1;
-				diff_x = 0;
-			}
-			
-			if(direction.localeCompare("up") == 0){
-				$("#hero").removeClass("hero_left");
-				$("#hero").removeClass("hero_up");
-				$("#hero").removeClass("hero_down");
-				$("#hero").addClass("hero_up");
-				can_move = false;
-				change_direction(-1,0);
-				diff_y = 0;
-				diff_x = -1;
-			}
-			
-			if(direction.localeCompare("down") == 0){
-				$("#hero").removeClass("hero_left");
-				$("#hero").removeClass("hero_up");
-				$("#hero").removeClass("hero_right");
-				$("#hero").addClass("hero_down");
-				can_move = false;
-				change_direction(+1,0);
-				diff_y = 0;
-				diff_x = 1;
-			}
-			
-			if((direction.localeCompare("talk") == 0) && can_talk){
-			
-				can_move = false;
-				can_talk = false;
-				in_dialog = true;
-				direction = "no";
-
-				for (i=0;i<sprites.length;i++){
-					if( ((hero_x+diff_x) == sprites[i][0]) && ((hero_y+diff_y) == sprites[i][1]) ){
-						current_dialog = sprites[i][3];
-						current_image = sprites[i][2];
-					}
-				}
-				
-				if(limited_trials){
-					if(current_image.substring(0, 8).localeCompare("caquiste") == 0){
-						nb_essais = nb_essais - 1
-					}
-				}
-				
-				next_dialog();
-				$("#arrow_menu").hide()
-				$("#dialogs").show();
-				
-			}
-			
-			if((direction.localeCompare("talk") == 0) && can_fire){
-				can_move = false;
-
-
-				nb_fire = nb_fire - 1;
-				direction = "no";
-				tree_x = hero_x+diff_x
-				tree_y = hero_y+diff_y
-				$(".fire").hide();
-				
-				// Change tile
-				$("#tile_"+tree_x+"_"+tree_y).css("background-image", "url('assets/img/fire.png')");
-				
-				// Animation 1 second
-				setTimeout(function() {
-					$("#tile_"+tree_x+"_"+tree_y).removeClass("block");
-					$("#tile_"+tree_x+"_"+tree_y).addClass("road");
-					$("#tile_"+tree_x+"_"+tree_y).css("background-image", "url('assets/img/tile_road.png')");
-					can_move = true;
-				}, 1000);
-				
-				// Remove from list
-				pos = null;
-				all_trees = []
-				for (i=0;i<trees.length;i++){
-					if( ((tree_x) == trees[i][0]) && ((tree_y) == trees[i][1])  ){
-						pos = i;
-					}
-					else{
-						all_trees.push(trees[i])
-					}
-				}
-				trees = all_trees;
-			}
-			
-			
-			
-			// Sprite verif
-			count = 0
-			for (i=0;i<sprites.length;i++){
-			
-				if( ((hero_x+diff_x) == sprites[i][0]) && ((hero_y+diff_y) == sprites[i][1]) ){
-					console.log("available dialog")
-					count++;
-					if(can_talk == false){
-						$(".talk").show();
-						can_talk = true;
-					}
-				}
-				
-			}
-			if((count == 0) && can_talk){
-				
-					$(".talk").hide();
-					can_talk = false;
-					
-			}
-			
-			// Tree/fire verif
-			for (i=0;i<trees.length;i++){
-			
-				if( ((hero_x+diff_x) == trees[i][0]) && ((hero_y+diff_y) == trees[i][1]) && (nb_fire>0) ){
-					console.log("fire dialog")
-					count++;
-					if(can_fire == false){
-						$(".fire").show();
-						can_fire = true;
-					}
-				}
-				
-			}
-			if((count == 0) && can_fire){
-				
-					$(".fire").hide();
-					can_fire = false;
-					
-			}
-		
-
-		}
-
-		if (reserve.localeCompare("no")!=0 ){
-			direction = direction_ori;
-			reserve = "no";
-		}
-		
-		if (direction.localeCompare("talk")==0 ){
-			direction = "no"
-		}
-		
-		
-		
-		setTimeout(function() {
-			interdef();
-		},10);
-		
-	}
-	interdef();
-	
 	
 	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
 		console.log("MOBILE")
@@ -1346,20 +1225,21 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			//event.stopPropagation();
 		});
 	}
+
+	document.querySelector("#your_target").addEventListener("touchstart", (e) =>
+	{
+		e.preventDefault();
+		e.stopPropagation();
+		this.style.userSelect = "none";
+	});
+
+	document.querySelector("#your_target").addEventListener("touchend", (e) =>
+	{
+		e.preventDefault();
+		e.stopPropagation();
+		this.style.userSelect = "default";
+	});
 	
-	//document.querySelector(".arrow").addEventListener("touchstart", (e) =>
-	//{
-	//	e.preventDefault();
-	//	e.stopPropagation();
-	//});
-	
-	//document.querySelector(".arrow").addEventListener("touchend", (e) =>
-	//{
-	//	e.preventDefault();
-	//	e.stopPropagation();
-	//});
-	
-	var audio = new Audio('assets/sounds/a.wav');
 
 	</script>
 
