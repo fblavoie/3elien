@@ -1,6 +1,6 @@
 sprites_l = [ 
 			
-				[2,6,"jf.png",[ ["VOUS","Salut Jean-François! Que fais-tu sur la Grande Allée?"],
+				[1,7,"jf.png",[ ["VOUS","Salut Jean-François! Que fais-tu sur la Grande Allée?"],
 					["JEAN-FRANÇOIS ROBERGE","France-Élaine... En tant que ministre de la langue française, je cherche des devantures de commerces où la prépondérance du français est insuffisante."],
 					["JEAN-FRANÇOIS ROBERGE","Cette mesure phare permettra de sauver notre langue."],
 					["VOUS","Plus que la francisation des immigrants?"],
@@ -44,8 +44,8 @@ finished = [ [9,0,[[22,1]]],[9,9,[[24,1]]], ];
 tiles = [
 
 				["block",0,0,"up"],["block",0,1,"up"],["block",0,2,"up"],["block",0,3,"up"],["road",0,4,"up"],["road",0,5,"up"],["block",0,6,"up"],["block",0,7,"up"],["block",0,8,"up"],["block",0,9,"up"],
-				["block",1,0,"up"],["block",1,1,"up"],["block",1,2,"up"],["block",1,3,"up"],["road",1,4,"up"],["road",1,5,"up"],["block",1,6,"up"],["block",1,7,"up"],["block",1,8,"up"],["block",1,9,"up"],
-				["block",2,0,"up"],["block",2,1,"up"],["block",2,2,"up"],["road",2,3,"up"],["road",2,4,"up"],["road",2,5,"up"],["road",2,6,"up"],["block",2,7,"up"],["block",2,8,"up"],["block",2,9,"up"],
+				["block",1,0,"up"],["block",1,1,"up"],["block",1,2,"up"],["block",1,3,"up"],["road",1,4,"up"],["road",1,5,"up"],["road",1,6,"up"],["road",1,7,"up"],["block",1,8,"up"],["block",1,9,"up"],
+				["block",2,0,"up"],["block",2,1,"up"],["block",2,2,"up"],["road",2,3,"up"],["road",2,4,"up"],["road",2,5,"up"],["road",2,6,"up"],["road",2,7,"up"],["block",2,8,"up"],["block",2,9,"up"],
 				["block",3,0,"up"],["block",3,1,"up"],["block",3,2,"up"],["road",3,3,"up"],["road",3,4,"up"],["road",3,5,"up"],["road",3,6,"up"],["block",3,7,"up"],["block",3,8,"up"],["block",3,9,"up"],
 				["block",4,0,"up"],["block",4,1,"up"],["road",4,2,"up"],["road",4,3,"up"],["road",4,4,"up"],["road",4,5,"up"],["road",4,6,"up"],["road",4,7,"up"],["block",4,8,"up"],["block",4,9,"up"],
 				["block",5,0,"up"],["block",5,1,"up"],["road",5,2,"up"],["road",5,3,"up"],["road",5,4,"up"],["road",5,5,"up"],["road",5,6,"up"],["road",5,7,"up"],["block",5,8,"up"],["block",5,9,"up"],
@@ -59,8 +59,8 @@ tiles = [
 change_tile = [ 
 				[1,3,"tree.png"],
 				[2,2,"tree.png"],
-				[1,6,"tree.png"],
-				[2,7,"tree.png"],
+//				[1,6,"tree.png"],
+				[3,7,"tree.png"],
 				[8,3,"tree.png"],
 				[8,2,"tree.png"],
 				[8,1,"tree.png"],
@@ -75,7 +75,7 @@ change_tile = [
 
 nb_fire_l = 5
 trees_l = [
-
+			[3,6],
 			[3,3],
 			[4,3],
 			[4,4],
