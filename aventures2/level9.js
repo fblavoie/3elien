@@ -74,6 +74,6 @@ setInterval(function(){
 ,500)
 
 
-$("#green_trigger").html("Vous tombez dans un trou de plancher. Comme vous êtes dans un hôpital, personne ne vient à votre rescousse.")
+$("#green_trigger").html("Vous tombez dans un trou de plancher. Comme vous êtes dans un hôpital, personne ne vient à votre rescousse. Vous devez recommencer.")
 $("#explosion").attr("src","empty.png");
 $("#explosion").css("top","-1000vh");
