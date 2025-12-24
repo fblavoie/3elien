@@ -1,7 +1,7 @@
 sprites_l = [ [0,1,"bernard.png",[      
 									["VOUS","Salut Bernard! C'est quoi tous ces rondins de bois?"],
 									["BERNARD DRAINVILLE","En tant que nouvel écologiste, j'ai coupé ces arbres."],
-									["BERNARD DRAINVILLE","C'est pour construire un petit abri pour les huards sur les terres de mon enfance."],
+									["BERNARD DRAINVILLE","C'est pour construire un petit abri pour les outardes sur les terres de mon enfance."],
 				]],
 			  [8,5,"ian.png",[      
 									["IAN LAFRENIÈRE","France-Élaine, nous avons maîtrisé un suspect en usant d'une force très légère: seulement 6 policiers et 3 coups de teaser."],
