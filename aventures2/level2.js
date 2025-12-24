@@ -1,6 +1,6 @@
 sprites_l = [ 
 			
-				[6,6,"eric2.png",[ ["VOUS (FRANCE-ÉLAINE)","C'est mon collègue Éric Caire. Vaut mieux ne pas le déranger. Dès qu'il touche à de quoi, ça se passe mal."],
+				[6,6,"eric2.png",[ ["VOUS (FRANCE-ÉLAINE DURANCEAU)","C'est mon collègue Éric Caire. Vaut mieux ne pas le déranger. Dès qu'il touche à de quoi, ça se passe mal."],
 
 				],[]],
 				[2,1,"hide.png",[],[]],
@@ -34,13 +34,13 @@ conditional_sprites_hide = [
 
 
 modify_dialogs_actions = [
-	[6,6,1,1,"eric2.png",[["VOUS (FRANCE-ÉLAINE)","Salut Éric! Te souviens-tu du système de sécurité de la salle des trésors publics que tu m'as installé?"],["ÉRIC CAIRE","Je ne me souviens de rien."],["VOUS (FRANCE-ÉLAINE)","Éric... fais un petit effort... Tu te souviens? Tu as configuré la détection de Louboutin."],["ÉRIC CAIRE","J'ai faim. Je m'en vais manger une poutine."],["VOUS (FRANCE-ÉLAINE)","Je vais tenter de retrouver mes Louboutin alors..."]],[[2,1]]]
+	[6,6,1,1,"eric2.png",[["VOUS (FRANCE-ÉLAINE DURANCEAU)","Salut Éric! Te souviens-tu du système de sécurité de la salle des trésors publics que tu m'as installé?"],["ÉRIC CAIRE","Je ne me souviens de rien."],["VOUS (FRANCE-ÉLAINE DURANCEAU)","Éric... fais un petit effort... Tu te souviens? Tu as configuré la détection de Louboutin."],["ÉRIC CAIRE","J'ai faim. Je m'en vais manger une poutine."],["VOUS (FRANCE-ÉLAINE DURANCEAU)","Je vais tenter de retrouver mes Louboutin alors..."]],[[2,1]]]
 ]
 
 
 // Different behaviors for doors
 if(user_data[7]==0){
-	sprites_l.push([6,2,"gate.png",[["PORTE","Aucun Louboutin détecté. Accès refusé."],["VOUS (FRANCE-ÉLAINE)","Ah Zut! J'ai perdu mes Louboutin... et j'en ai besoin pour accéder à la salle des trésors publics."],["VOUS (FRANCE-ÉLAINE)","C'est Éric Caire qui a installé ce système de sécurité. Je pourrais aller le voir pour qu'il le désactive."]],[[1,1]]])
+	sprites_l.push([6,2,"gate.png",[["PORTE","Aucun Louboutin détecté. Accès refusé."],["VOUS (FRANCE-ÉLAINE DURANCEAU)","Ah Zut! J'ai perdu mes Louboutin... et j'en ai besoin pour accéder à la salle des trésors publics."],["VOUS (FRANCE-ÉLAINE DURANCEAU)","C'est Éric Caire qui a installé ce système de sécurité. Je pourrais aller le voir pour qu'il le désactive."]],[[1,1]]])
 }
 else{
 	sprites_l.push([6,2,"gate.png",[["PORTE","Louboutin détectés. Accès accordé."]],[[0,1]]])
