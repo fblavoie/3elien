@@ -1,6 +1,6 @@
 sprites_l = [ [1,7,"genevieve.png",[ 
 									["VOUS","Salut Geneviève! Que fais-tu ici avec le maire de Québec?"],
-									["GENEVIÈVE GUILBAULT","Bonjour France-Élaine! En tant que nouvelle ministre des affaires gouvernementales, je suis venu border le petit Bruno."],
+									["GENEVIÈVE GUILBAULT","Bonjour France-Élaine! En tant que nouvelle ministre des affaires municipales, je suis venu border le petit Bruno."],
 									["VOUS","Et c'est quoi tous ces tramways sur la route?"],
 									["GENEVIÈVE GUILBAULT","Ahhh... Ça, c'est mon petit Bruno qui a laissé traîner ses jouets..."],
 									["VOUS", "J'aurais besoin d'aller chercher une poutine pour notre collègue Éric. Tu pourrais appeler un col bleu pour ramasser les tramways?"],
