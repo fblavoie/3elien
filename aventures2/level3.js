@@ -1,9 +1,9 @@
 sprites_l = [ 
 			
 				[2,3,"legault.png",[ ["FRANÇOIS LEGAULT","Bonjour ma chère France-Élaine! Comment ça va?"],
-					["VOUS (FRANCE-ÉLAINE)","Grand chef François Premier... ça va très mal."],
-					["VOUS (FRANCE-ÉLAINE)","Je veux offrir une nouvelle subvention pour les propriétaires de maisons valant au moins un million de dollars."],
-					["VOUS (FRANCE-ÉLAINE)","J'ai cependant besoin de mes Louboutin pour accéder à la salle des trésors publics, et je ne les trouve plus."],
+					["VOUS (FRANCE-ÉLAINE DURANCEAU)","Grand chef François Premier... ça va très mal."],
+					["VOUS (FRANCE-ÉLAINE DURANCEAU)","Je veux offrir une nouvelle subvention pour les propriétaires de maisons valant au moins un million de dollars."],
+					["VOUS (FRANCE-ÉLAINE DURANCEAU)","J'ai cependant besoin de mes Louboutin pour accéder à la salle des trésors publics, et je ne les trouve plus."],
 					["FRANÇOIS LEGAULT","Je ne crois pas qu'il reste grand chose dans la salle des trésors. Rappelle-toi... nous avons tout dilapidé dans des projets comme Northvolt."],
 					["FRANÇOIS LEGAULT","Pour tes Louboutin, peut-être que notre nouveau ministre des polices, Ian Lafrenière, pourrait t'aider. Il se trouve présentement sur les plaines d'Abraham."],
 				],[]],
