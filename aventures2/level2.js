@@ -84,6 +84,10 @@ tiles = [
             ]
 			
 change_tile = [ 
+				[1,5,"bricks.png"],
+				[1,8,"bricks.png"],
+				[2,5,"bricks.png"],
+				[2,8,"bricks.png"],
 
 
 				];
