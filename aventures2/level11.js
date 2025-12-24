@@ -2,6 +2,21 @@ sprites_l = [
 				[9,5,"loub.png",[ 
 					["VOUS","Voilà enfin mes Louboutin!"],
 				],[[7,1]]],
+				[6,1,"brownie.png",[ 
+					["VOUS","Ce sont les brownies qui serviraient à payer les partisans libéraux à la prochaine course à la chefferie."],
+				],[]],
+				[6,2,"brownie.png",[ 
+					["VOUS","Ce sont les brownies qui serviraient à payer les partisans libéraux à la prochaine course à la chefferie."],
+				],[]],
+				[7,1,"brownie.png",[ 
+					["VOUS","Ce sont les brownies qui serviraient à payer les partisans libéraux à la prochaine course à la chefferie."],
+				],[]],
+				[8,1,"brownie.png",[ 
+					["VOUS","Ce sont les brownies qui serviraient à payer les partisans libéraux à la prochaine course à la chefferie."],
+				],[]],
+				[8,2,"brownie.png",[ 
+					["VOUS","Ce sont les brownies qui serviraient à payer les partisans libéraux à la prochaine course à la chefferie."],
+				],[]],
 			];
 conditional_sprites_hide = [ 
 							[9,5,7],
@@ -20,9 +35,9 @@ tiles = [
 				["block",3,0,"up"],["road",3,1,"up"],["road",3,2,"up"],["road",3,3,"up"],["road",3,4,"up"],["road",3,5,"up"],["road",3,6,"up"],["road",3,7,"up"],["road",3,8,"up"],["block",3,9,"up"],
 				["block",4,0,"up"],["block",4,1,"up"],["block",4,2,"up"],["block",4,3,"up"],["road",4,4,"up"],["road",4,5,"up"],["road",4,6,"up"],["block",4,7,"up"],["block",4,8,"up"],["block",4,9,"up"],
 				["block",5,0,"up"],["block",5,1,"up"],["block",5,2,"up"],["block",5,3,"up"],["road",5,4,"up"],["road",5,5,"up"],["road",5,6,"up"],["block",5,7,"up"],["block",5,8,"up"],["block",5,9,"up"],
-				["block",6,0,"up"],["block",6,1,"up"],["block",6,2,"up"],["block",6,3,"up"],["road",6,4,"up"],["road",6,5,"up"],["road",6,6,"up"],["block",6,7,"up"],["block",6,8,"up"],["block",6,9,"up"],
-				["block",7,0,"up"],["block",7,1,"up"],["block",7,2,"up"],["block",7,3,"up"],["road",7,4,"up"],["road",7,5,"up"],["road",7,6,"up"],["block",7,7,"up"],["block",7,8,"up"],["block",7,9,"up"],
-				["block",8,0,"up"],["block",8,1,"up"],["block",8,2,"up"],["block",8,3,"up"],["road",8,4,"up"],["road",8,5,"up"],["road",8,6,"up"],["block",8,7,"up"],["block",8,8,"up"],["block",8,9,"up"],
+				["block",6,0,"up"],["road",6,1,"up"],["road",6,2,"up"],["block",6,3,"up"],["road",6,4,"up"],["road",6,5,"up"],["road",6,6,"up"],["block",6,7,"up"],["block",6,8,"up"],["block",6,9,"up"],
+				["block",7,0,"up"],["road",7,1,"up"],["road",7,2,"up"],["road",7,3,"up"],["road",7,4,"up"],["road",7,5,"up"],["road",7,6,"up"],["block",7,7,"up"],["block",7,8,"up"],["block",7,9,"up"],
+				["block",8,0,"up"],["road",8,1,"up"],["road",8,2,"up"],["block",8,3,"up"],["road",8,4,"up"],["road",8,5,"up"],["road",8,6,"up"],["block",8,7,"up"],["block",8,8,"up"],["block",8,9,"up"],
 				["block",9,0,"up"],["block",9,1,"up"],["block",9,2,"up"],["block",9,3,"up"],["road",9,4,"up"],["road",9,5,"up"],["road",9,6,"up"],["block",9,7,"up"],["block",9,8,"up"],["block",9,9,"up"],
             ]
 			
