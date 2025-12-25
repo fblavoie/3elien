@@ -1,7 +1,7 @@
 sprites_l = [ 
 			
 				[2,2,"legault.png",[ ["FRANÇOIS LEGAULT","Ma chère France-Élaine, je t'avais pourtant averti..."],
-					["FRANÇOIS LEGAULT","Je viens tout juste de donner les derniers sous noirs pour les nouvelles primes des médecins de famille."],
+					["FRANÇOIS LEGAULT","Je viens tout juste de dépenser les derniers sous noirs pour les nouvelles primes des médecins de famille."],
 					["FRANÇOIS LEGAULT","Il ne reste plus rien pour récompenser tes pauvres riches... plus rien..."],
 					["VOUS","Malheureusement, cette triste réalité termine mon aventure. Revenez sur 3elien.com pour de nouveaux jeux."],
 
