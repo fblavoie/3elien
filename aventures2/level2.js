@@ -100,6 +100,8 @@ trees_l = []
 // Special case
 setInterval(function(){
 	if( (hero_x==6)&&(hero_y==2) ){
-		window.location = "game.html?level=12&fromX="+map_X+"&fromY="+map_Y+"&data="+create_data_string();
+		const newParams = new URLSearchParams({ level: 12, data: create_data_string(), fromX: map_X, fromY: map_Y });
+		window.history.replaceState({}, "", "?" + newParams.toString());
+		location.reload();		
 	}
 },100);
