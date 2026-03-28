@@ -300,7 +300,8 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			<div id="number0" style="z-index:999;position:absolute;text-align:left;font-size:9vh;left:5vw;width:90vw;top:19vh;color:white;text-align:center;"></div>
 			<div id="number0_letters" style="z-index:999;position:absolute;text-align:left;font-size:3vh;left:5vw;width:90vw;top:16vh;color:white;text-align:center;"></div>
 
-			<div id="number1" style="position:absolute;text-align:right;font-size:8vh;left:10vw;width:70vw;top:75vh;color:white;"></div>
+			<div id="number2" style="position:absolute;text-align:left;font-size:1.75vh;left:2vw;width:20vw;top:88vh;color:white;">Number of trials: <span id="trial_nb">0</span></div>
+			
 			<div id="operator" style="position:absolute;text-align:right;font-size:8vh;left:85vw;top:75vh;color:white;"></div>
 
 			<div id="result" style="position:absolute;text-align:right;left:10vw;font-size:8vh;width:70vw;top:26vh;color:white;"></div>
@@ -315,6 +316,8 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				<img src="assets/img/eye_angry.png" style="z-index:100;position:absolute;left:10vw;top:73.8vh;height:4vh;width:auto;transform: rotate(-5deg);transform: scaleX(-1);">
 				<img src="assets/img/mouth_angry.png" style="z-index:100;position:absolute;left:2.5vw;top:80vh;height:6vh;width:15vw;transform: rotate(-5deg);">
 			</div>
+			
+			
 
 
 			<div class="bottom_button" id="erase_letter" style="left:68vw;background-color:#c2b908;display:none;" onclick="back_button()">
@@ -591,13 +594,16 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				
 				
 				
-				
+				var trial_nb = 0
 				function validate(){
 					console.log(letters_choice)
 					validated = true
 				
 					if(letters_choice.length >= 5){
 						console.log("passed")
+					
+						trial_nb = trial_nb + 1;
+						$("#trial_nb").html(trial_nb)
 					
 						// Create string
 						s = create_string()
