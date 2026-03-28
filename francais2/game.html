@@ -302,17 +302,17 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			<div id="number0" style="z-index:999;position:absolute;text-align:left;font-size:9vh;left:5vw;width:90vw;top:20vh;color:white;text-align:center;"></div>
 			<div id="number0_letters" style="z-index:999;position:absolute;text-align:left;font-size:3vh;left:5vw;width:90vw;top:18vh;color:white;text-align:center;"></div>
 
-			<div id="number2" style="position:absolute;text-align:left;font-size:1.75vh;left:2vw;width:20vw;top:88vh;color:white;">Number of attempts: <span id="trial_nb">0</span></div>
+			<div id="number2" style="position:absolute;text-align:left;font-size:2.5vh;left:2vw;width:25vw;top:88vh;color:white;">Number of attempts: <span id="trial_nb">0</span></div>
 			
 			<div id="operator" style="position:absolute;text-align:right;font-size:8vh;left:85vw;top:75vh;color:white;"></div>
 
 			<div id="result" style="position:absolute;text-align:right;left:10vw;font-size:8vh;width:70vw;top:26vh;color:white;"></div>
 			<div id="bottom_unit" style="position:absolute;text-align:left;font-size:4vh;left:85vw;top:88.5vh;color:rgb(200,200,200);display:none">M$</div>
 		
-			<div id="top_message" style="position:absolute;text-align:right;font-size:2vh;width:70vw;top:3.5vh;left:22.5vw;color:black;height:12.4vh;background-color:white;padding:0.5vh;padding-left:2vh;padding-right:1vh;border-radius: 2vw;z-index:98;">LOADING</div>
+			<div id="top_message" style="position:absolute;text-align:right;font-size:2.3vh;width:70vw;top:3.5vh;left:22.5vw;color:black;height:12.4vh;background-color:white;padding:0.5vh;padding-left:2vh;padding-right:1vh;border-radius: 2vw;z-index:98;">LOADING</div>
 			<img src="assets/img/bernard_square.png" style="z-index:99;position:absolute;left:1vw;top:3.5vh;width:20vw;height:auto;clip-path: circle();background-color:rgb(90,90,90);">
 			
-			<div style="position:absolute;width:100vw;padding-top:0.5vh;font-size:1.5vh;height:2.0vh;background-color:rgb(80,80,80);text-align:center;color:rgb(200,200,200)">Play with your friends by sharing this code: <b><span id="seed_code" style="letter-spacing:1vw;font-family: 'Courier New', monospace;"></span></b></div>
+			<div style="position:absolute;width:100vw;padding-top:0.5vh;font-size:2vh;height:2.5vh;background-color:rgb(80,80,80);text-align:center;color:rgb(200,200,200)">Play with your friends by sharing this code: <b><span id="seed_code" style="letter-spacing:1vw;font-family: 'Courier New', monospace;"></span></b></div>
 
 			
 
@@ -680,10 +680,10 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 							}
 							else{
 								if(trial_nb <= 1){
-									new_message("Congratulations! You've found the correct answer in only one attempt!")
+									new_message("Congratulations! You've found the correct answer in only <b>one attempt</b>!")
 								}
 								else{
-									new_message("Congratulations! You've found the correct answer in "+trial_nb+" attempts!")
+									new_message("Congratulations! You've found the correct answer in <b>"+trial_nb+" attempts</b>!")
 								}
 								$("#number0").addClass("color-blink")
 								$("#new_word").show();
