@@ -300,7 +300,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			<div id="number0" style="z-index:999;position:absolute;text-align:left;font-size:9vh;left:5vw;width:90vw;top:19vh;color:white;text-align:center;"></div>
 			<div id="number0_letters" style="z-index:999;position:absolute;text-align:left;font-size:3vh;left:5vw;width:90vw;top:16vh;color:white;text-align:center;"></div>
 
-			<div id="number2" style="position:absolute;text-align:left;font-size:1.75vh;left:2vw;width:20vw;top:88vh;color:white;">Number of trials: <span id="trial_nb">0</span></div>
+			<div id="number2" style="position:absolute;text-align:left;font-size:1.75vh;left:2vw;width:20vw;top:88vh;color:white;">Number of attempts: <span id="trial_nb">0</span></div>
 			
 			<div id="operator" style="position:absolute;text-align:right;font-size:8vh;left:85vw;top:75vh;color:white;"></div>
 
@@ -651,7 +651,12 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 								reset("Your word is valid, but it's not the one I was looking for. The green tiles are included in the correct answer. The red ones should not be selected.")
 							}
 							else{
-								new_message("Congratulations! You've found the correct answer!")
+								if(trial_nb <= 1){
+									new_message("Congratulations! You've found the correct answer in only one attempt!")
+								}
+								else{
+									new_message("Congratulations! You've found the correct answer in "+trial_nb+" attempts!")
+								}
 								$("#number0").addClass("color-blink")
 								$("#new_word").show();
 								$(".tile").removeClass("tile_choice")
