@@ -679,6 +679,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 								reset("Your word is valid, but it's not the one I was looking for. The green tiles are included in the correct answer. The red ones should not be selected.")
 							}
 							else{
+								can_select = false;
 								if(trial_nb <= 1){
 									new_message("Congratulations! You've found the correct answer in only <b>one attempt</b>!")
 								}
