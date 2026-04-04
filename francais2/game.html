@@ -711,8 +711,11 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 						else{
 							reset("Sorry! The submitted word is not in the French dictionnary.")
 							$("#top_message").css("background-color","red");
+							$("#top_message").css("color","white");
+
 							setTimeout(function(){
 								$("#top_message").css("background-color","white");		
+								$("#top_message").css("color","black");
 							},1000)
 						}
 						
