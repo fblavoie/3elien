@@ -692,7 +692,15 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 							
 							
 							if(winning == false){
-								reset("Your word is valid, but it's not the one I was looking for. The green tiles are included in the correct answer. The red ones should not be selected.")
+								if( expected_word.localeCompare(create_string()) == 0 ){
+									$("#top_message").css("background-color","#ad9900");
+									$("#top_message").css("color","white");
+									reset("You've found the correct word... but you must find another way to create it on the grid.")
+								}
+								else{
+									reset("Your word is valid, but it's not the one I was looking for. The green tiles are included in the correct answer. The red ones should not be selected.")
+								}
+							
 							}
 							else{
 								can_select = false;
