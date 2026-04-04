@@ -713,10 +713,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 							$("#top_message").css("background-color","red");
 							$("#top_message").css("color","white");
 
-							setTimeout(function(){
-								$("#top_message").css("background-color","white");		
-								$("#top_message").css("color","black");
-							},1000)
+
 						}
 						
 					}
@@ -925,6 +922,10 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				function ct(x,y){
 					
 					if (can_select){
+
+						$("#top_message").css("background-color","white");		
+						$("#top_message").css("color","black");
+
 					
 						choice = (x+"_"+y)
 						console.log(possible_choices,choice)
