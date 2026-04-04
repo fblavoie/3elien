@@ -680,10 +680,12 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 										all_correct_tiles = false;
 									}
 								}
+							
+								if(all_correct_tiles && (expected_word.localeCompare(create_string()) == 0)){
+									winning = true;
+								}
 							}
-							if(all_correct_tiles && (expected_word.localeCompare(create_string()) == 0)){
-								winning = true;
-							}
+							
 							
 							if(winning == false){
 								reset("Your word is valid, but it's not the one I was looking for. The green tiles are included in the correct answer. The red ones should not be selected.")
