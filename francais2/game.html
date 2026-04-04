@@ -502,6 +502,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				var already_validated = []
 				var word_to_find = ""
 				var sol_path 
+				var expected_word = ""
 				
 				
 				
@@ -583,6 +584,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 						}
 						
 						console.log(word_to_find)
+						expected_word = word_to_find;
 					
 						for (sol=0;sol<solutions.length;sol++){
 							if(solutions[sol].localeCompare(word_to_find)==0 ){
@@ -666,13 +668,21 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 							}
 						
 							// Check path solution
+							all_correct_tiles = true;
 							if(s.length == nb_letters_solution){
 								winning = true
 								for(iii=0;iii<nb_letters_solution;iii++){
 									if( sol_path[iii].localeCompare(already_selected[iii]) != 0){
 										winning = false;
 									}
+									// Check if in list
+									if( sol_path.includes(already_selected[iii]) == False ){
+										all_correct_tiles = false;
+									}
 								}
+							}
+							if(all_correct_tiles && (expected_word.localeCompare(create_string()) == 0)){
+								winning = true;
 							}
 							
 							if(winning == false){
