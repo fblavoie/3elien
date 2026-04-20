@@ -530,23 +530,6 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 	
 	<script>
 		
-		document.querySelector(".selection").addEventListener("touchstart", (e) =>
-			{
-				e.preventDefault();
-				e.stopPropagation();
-				this.style.userSelect = "none";
-			});
-
-			document.querySelector(".selection").addEventListener("touchend", (e) =>
-			{
-				e.preventDefault();
-				e.stopPropagation();
-				this.style.userSelect = "default";
-			});
-			
-			$(document).on('contextmenu', function (e) {
-                return false;
-            });
 
 		
 	</script>
