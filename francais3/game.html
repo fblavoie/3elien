@@ -40,6 +40,12 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 			body{
 				background-size: 100vw 100vh;
 				background: #EDDC77;
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;
 			}
 			
 			#bodygame{
@@ -60,6 +66,23 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				-webkit-user-drag:none;
 				-websit-user-select:none;
 				-ms-user-select:none;
+				outline: 0;
+				-webkit-tap-highlight-color: transparent;
+			}
+			
+			::selection {
+			  background-color: transparent;
+			}
+			
+			.selection{
+				user-drag:none;
+				user-select:none;
+				-moz-user-select:none;
+				-webkit-user-drag:none;
+				-websit-user-select:none;
+				-ms-user-select:none;	
+				outline: 0;
+				
 			}
 
 			img{
@@ -377,7 +400,7 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 						leftv = Math.random()*0*7+3.5+50;
 					}
 					french_word = french_words[i]
-					newdiv = `<div class="selection" id="sel_${i}" onclick="click_function(${i},${leftv},${topv})" style="position:absolute;top:${topv}vh;left:${leftv}vw;height:8vh;width:43vw;background: url('assets/img/boy_french.png') no-repeat center/cover;"><div  id="word_${i}" style="margin-left:1.9vw;font-size:clamp(0rem, 3vh, 30vw);margin-top:2vh;width:30vw;text-align:center;">${french_word}</div></div>`
+					newdiv = `<div class="selection" unselectable="on" onselectstart="return false;"  onmousedown="return false;" id="sel_${i}" onclick="click_function(${i},${leftv},${topv})" style="position:absolute;top:${topv}vh;left:${leftv}vw;height:8vh;width:43vw;background: url('assets/img/boy_french.png') no-repeat center/cover;"><div  id="word_${i}" style="margin-left:1.9vw;font-size:clamp(0rem, 3vh, 30vw);margin-top:2vh;width:30vw;text-align:center;">${french_word}</div></div>`
 					console.log(newdiv);
 					$("#words").append(newdiv);
 
@@ -414,6 +437,9 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 				
 				
 				function click_function(i,leftv,topv){
+					
+					$('#sel_'+i).blur();
+				
 					if((in_animation == false) && (can_click[i])){
 						current_english_word = english_words[ word_pos_list[ current_pos ] ];
 						$("#message").hide()
@@ -501,5 +527,23 @@ Copyrights : Francis B. Lavoie et Adam Renquinha. TOUS DROITS RÉSERVÉS
 
 	</body>
 	
+	
+	<script>
+		
+		document.querySelector(".selection").addEventListener("touchstart", (e) =>
+			{
+				e.preventDefault();
+				e.stopPropagation();
+				this.style.userSelect = "none";
+			});
+
+			document.querySelector(".selection").addEventListener("touchend", (e) =>
+			{
+				e.preventDefault();
+				e.stopPropagation();
+				this.style.userSelect = "default";
+			});
+		
+	</script>
 
 </html>
